@@ -1,0 +1,8 @@
+﻿
+
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+
+
+Microsoft.Extensions.Configuration.Json
+Microsoft.Extensions.DependencyInjection

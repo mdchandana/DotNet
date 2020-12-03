@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "All Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-md-3 mt-5">
+        <h4>All Employees</h4>
+    </div>
+
+    <div class="col-md-9 mt-5">
+        <a asp-controller="Home" asp-action="Create" class="btn btn-primary">New Employee</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Emp Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emp in Model)
+                {
+                    <tr>
+                        <td>@emp.Id</td>
+                        <td>@emp.Name</td>
+                        <td>@emp.Email</td>
+                        <td>@emp.Gender</td>
+                        <td>@emp.Department.DeptName</td>
+                        <td>@Html.ActionLink("Details","Details","Home",new {id=emp.Id }) | </td> 
+                        <td><a href="/Home/Edit?id=@emp.Id">Edit</a> | </td>
+                        <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@emp.Id">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@*<form asp-controller="Home" asp-action="Index" method="post">
+        <label asp-for="DeptName"></label>
+        <select asp-for="DeptName" asp-items="@(new SelectList(ViewBag.DeptList,"Id","DeptName"))"></select>
+    </form>*@
+
+
+
+@*<form asp-controller="Home" asp-action="Index" method="post">
+        <label asp-for="DeptId"></label>
+        <select asp-for="DeptId" asp-items="@(new SelectList(Model.Departments,"Id","DeptName"))"></select>
+        <button type="submit">Save</button>
+    </form>*@
+
+@*<form asp-controller="Home" asp-action="Index" method="post">
+        <label asp-for="DeptId"></label>
+        <select asp-for="DeptId" asp-items="@(new SelectList(_departmentRepository.GetDepartments(),"Id","DeptName"))"></select>
+        <button type="submit">Save</button>
+    </form>*@

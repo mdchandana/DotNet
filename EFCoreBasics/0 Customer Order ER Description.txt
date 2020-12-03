@@ -1,0 +1,52 @@
+
+
+
+--------------------------------Customer Order-------------------------------------
+Customer Entity
+A customer can association with many orders.
+(specific customerId can assocoate with Order table many times)
+CardinalityRatio N
+
+Order Entity
+A Order associate to a only one specific Customer.
+(A specific OrderId associate with Customer table only once.)
+CardinalityRatio 1
+----------------------------------------------------------------------------------
+
+
+
+-------------------------------Order OrderDetail--------------------------------
+Order Entity
+A Order Entity can associate with many OrderDetail.
+(specific OrderId can associate with OrderDetail table many times)
+CardinalityRatio N
+
+OrderDetail Entity
+A OrderDetail associate to a only one specific Order.
+(A specific OrderDetailId associate with Order table only once.)
+CardinalityRatio 1
+-------------------------------------------------------------------------------
+
+
+
+-------------------------------OrderDetail Product--------------------------------
+OrderDetail Entity
+A OrderDetail associate to a only one specific Product.
+(A specific OrderDetailId associate with Product table only once.)
+CardinalityRatio 1
+
+Product Entity
+A Product associate with many OrderDetail.
+(A specific ProductId associate with OrderDetail table many times.)
+CardinalityRatio N
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

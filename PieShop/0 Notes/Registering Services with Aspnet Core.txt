@@ -1,0 +1,25 @@
+﻿
+
+
+ Now, our repository class, so the MockPieRepository, will be consumed by another class. Traditionally, 
+ what you would do is creating an instance in the code of the Consumer. This would, however, create a 
+ hard link between the Consumer and the Repository class itself. Now, remember that MVC was all about 
+ loose coupling, and here we are considering to do tight coupling. That's not good. In the previous module, 
+ we have seen that ASP.NET Core comes with a built-in dependency injection container that allows us to resolve
+ dependencies at runtime. We can register classes and the interfaces in the ConfigureServices method of the 
+ Startup class. The container works with built-in services, but the good news is that we can also use the 
+ system for our own service classes. Instead of creating an instance of the repository in our Consumer class, 
+ and thus creating tight coupling, what you will do is register our repository in the container.
+ All other classes that want to make use of a repository can then ask dependency injection container for an
+ instance of the repository. This way, we'll create more loosely coupled code and remember, that's one of
+ the goals of ASP.NET Core MVC. Here you can see a part of the ConfigureServices method, which lives in the 
+ Startup class. In the highlighted line here, I'm registering my own repository, so the MockPieRepository, 
+ in the container using services.AddScoped. I pass the interface and then the concrete implementation. 
+ The result of this call is that we can now, from anywhere, ask for an IPieRepository, and we will from the 
+ container get back a fully instantiated MockPieRepository. Now, what is that AddScoped thing all about? When 
+ registering items in the container, we have a number of options to do so, and they differ in the way that the
+ objects are created and how long they will live. When we use AddTransient, every time we ask the container for
+ an instance, we'll get back a new clean instance. The AddSingleton method results in a singleton, a single 
+ object basically, being created. Every time we request an instance, we'll get back the same instance. 
+ AddScoped is the one we just saw, is the third option. Scoped lifetime services are created once per request.
+ So basically, MVC creates one instance per HTTP request, but uses that same instance in other calls within the same web request.

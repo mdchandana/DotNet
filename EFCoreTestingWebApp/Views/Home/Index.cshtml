@@ -1,0 +1,13 @@
+﻿@model IEnumerable<EFCoreBasics.DAL.Entities.Customer>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>EFCore Testing WebApp - Index</h1>
+
+
+@foreach (var emp in Model)
+{
+    @emp.Name
+    <br />
+}

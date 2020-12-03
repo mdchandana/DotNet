@@ -1,0 +1,10 @@
+﻿
+
+
+
+=====For Dependency Injection====================================
+Microsoft.Extensions.DependencyInjection
+
+
+=====For Appsetting.json configuration=================
+Microsoft.Extensions.Configuration.Json

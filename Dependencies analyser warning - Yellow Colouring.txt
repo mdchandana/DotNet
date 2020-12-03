@@ -1,0 +1,9 @@
+
+
+=======FIXED
+Dependencies analyser warning - with Yellow Colouring
+
+====Solution
+I've had the same issue. I think its because of the "C:\Program Files\dotnet" folder perssion. 
+you can open the visual studio by Run as Administrator or give the folder all permission in security folder.
+I did it and my proplem was resolved.
