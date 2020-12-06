@@ -11,7 +11,7 @@ namespace EFCoreBasics.DAL
     {
 
 
-        
+
         //public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         //{
 
@@ -41,7 +41,7 @@ namespace EFCoreBasics.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //In EfCore , we can't define 2 keys as primary key..
+            //In EfCore , we can't define Composite key..
             //So solution is below lines.. easily we can define OrderId,ProductId
 
             modelBuilder.Entity<OrderDetail>().HasKey(table => new

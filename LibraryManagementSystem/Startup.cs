@@ -17,6 +17,7 @@ namespace LibraryManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddControllersWithViews(options=>options.EnableEndpointRouting=false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +29,9 @@ namespace LibraryManagementSystem
             }
             app.UseStaticFiles();
             app.UseRouting();
+
+            //for Atttribute Routing..so we have to specify attribute routes in Action method..
+            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {
