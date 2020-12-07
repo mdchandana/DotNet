@@ -9,13 +9,23 @@ namespace EFCoreBasics.DAL
 {
     public class AppDbContext : DbContext
     {
+        /*
+         * IF WE NEED TO RUN THIS CLASS LIBRY PROJECT STAND ALONE WITH DbCOntext....
+         *    1. Comment or,Remove 'AppDbContext(DbContextOptions<AppDbContext> options) : base(options)' method..
+         *       [this is only need when we run our project through WebApp..  ]
+         *       
+         *    2. override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         *       [have to set Database provider and connectionString]
+         */
 
 
+        /*We Only need this DbContextOption method when we run through WebApp Project..
+        *This method call By 'void ConfigureServices(IServiceCollection services)' -
+        method inside Startup.cs in WebApp Project..*/
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
 
-        //public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        //{
-
-        //}
+        }
 
 
         public DbSet<Customer> Customers { get; set; }
@@ -23,6 +33,17 @@ namespace EFCoreBasics.DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+
+
+
+
+        /* WORKED.......IF WE NEED THIS OnConfiguring Method Only If We RUN EfCoreBasics ClassLibry STAND ALONE.....
+         * We Don't need this OnConfiguring method to configure, when our WebApp project set as statup project..Eg:EFCoreTestingWebApp ...
+         * This method is configuring DatabaseProvider using UseSqlServer() method and 
+         * Read ConnString by appsettings.json file Withing EfCoreBasics ClassLibry ...(appsettings.json File inside ClassLib Project)..
+         * appsettings.json" properties should be configured to  'Copy To Output Derectory'  'copyIfNewer' or 'Always'
+         */
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +58,9 @@ namespace EFCoreBasics.DAL
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("EFCoreBasicsDbConnString"));
 
         }
+
+
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

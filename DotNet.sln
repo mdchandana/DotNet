@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTestingWebApp", "EFCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Notes", "0 Notes", "{1C30125F-354F-410F-8EBD-C7E862EDD395}"
 	ProjectSection(SolutionItems) = preProject
-		0 Default Startup file of  MVC Project.txt = 0 Default Startup file of  MVC Project.txt
+		0 Set Startup project as other when migration.txt = 0 Set Startup project as other when migration.txt
 		Dependencies analyser warning - Yellow Colouring.txt = Dependencies analyser warning - Yellow Colouring.txt
 		Nuget packages Installed Location.txt = Nuget packages Installed Location.txt
 	EndProjectSection

@@ -16,7 +16,11 @@ namespace EFCoreBasics.DAL.Entities
 
 
         public int Qty { get; set; }
+
+        [Column(TypeName ="decimal(18,2)")]
         public decimal UnitPrice { get; set; }
+
+        [Column(TypeName ="decimal(18,2)")]
         public decimal Discount { get; set; }
 
         //--------------------MANY TO MANY-------------------------       
