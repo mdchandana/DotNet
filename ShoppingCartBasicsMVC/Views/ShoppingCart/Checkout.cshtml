@@ -1,0 +1,19 @@
+﻿@model ShoppingCartBasicsMVC.Models.Entities.Customer
+
+@using (Html.BeginForm("SaveOrder", "ShoppingCart", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Customer Name</td>
+            <td><input type="text" name="Name" /></td>
+        </tr>
+        <tr>
+            <td>Customer Address</td>
+            <td><input type="text" name="Address" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit">Save Order</button></td>
+        </tr>
+    </table>
+}

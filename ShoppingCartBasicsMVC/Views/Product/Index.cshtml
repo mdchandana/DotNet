@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShoppingCartBasicsMVC.Models.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Products</h2>
+
+<table cellpadding="2" cellspacing="2" border="1">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Buy</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.Price</td>
+            <td>@Html.ActionLink("Order","AddOrderItem","ShoppingCart",new {Id=product.Id },null)</td>
+        </tr>
+        }
+    </tbody>
+</table>

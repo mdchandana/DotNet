@@ -2,10 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFCoreBasics.BLL;
-using EFCoreBasics.BLL.Interface;
-using EFCoreBasics.DAL;
-using EFCoreBasics.DAL.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,37 +9,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shawn.Data;
 
-namespace EFCoreTestingWebApp
+namespace Shawn
 {
     public class Startup
     {
         private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configurattion)
         {
-            _configuration = configuration;
+            _configuration = configurattion;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            services.AddScoped<ICustomerBLL, CustomerBLL>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            //services.AddScoped<ICustomerRepository,MockCustomerRepository>(); //worked
-            //services.AddScoped<AppDbContext>();
-
-            ////WORKED When We have NOT define DbContextOptions in AppDbContext class
-            //services.AddDbContext<AppDbContext>();
-
-            ////WORKED When We have define DbContextOptions in AppDbContext class
-            services.AddDbContext<AppDbContext>(options =>  //lambda
-                options.UseSqlServer(_configuration.GetConnectionString("EFCoreBasicsDbConnString")));
-
-
-
+            services.AddDbContext<DutchContext>(options=> 
+                options.UseSqlServer(_configuration.GetConnectionString("ShawnDbConnString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,13 +38,22 @@ namespace EFCoreTestingWebApp
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
             });
         }
     }

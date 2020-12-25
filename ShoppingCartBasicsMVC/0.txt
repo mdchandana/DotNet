@@ -1,0 +1,4 @@
+﻿
+--Installed----------------------------
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Design

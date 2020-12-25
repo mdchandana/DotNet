@@ -1,0 +1,18 @@
+﻿
+Steps--
+1 . Install Microsoft.EntityFrameworkCore.SqlServer
+2 . Install Microsoft.EntityFrameworkCore.Design
+3 . Set startup project as this project
+4 . Run below code..
+
+===WORKED
+
+PM> Scaffold-DbContext "Data Source=CHANDANA\SQLEXPRESS2012;Initial Catalog=E-IRRIGATION;Integrated Security=True;ConnectRetryCount=0" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context EIrrigationContext
+
+
+===WORKED With DataAnnotations
+
+PM> Scaffold-DbContext "Data Source=CHANDANA\SQLEXPRESS2012;Initial Catalog=E-IRRIGATION;Integrated Security=True;ConnectRetryCount=0" Microsoft.EntityFrameworkCore.SqlServer -OutputDir OldDatabaseModels -Context EIrrigationContext -DataAnnotations
+
+
+
