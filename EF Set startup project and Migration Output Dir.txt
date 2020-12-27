@@ -4,6 +4,40 @@
 Install Microsoft.EntityFrameworkCore.SqlServer
 Install Microsoft.EntityFrameworkCore.Design
 
+==Worked=================================================================================================
+--No need to set startup flag -s when we are inside the project..
+--Startup flag only need when we are in ouside the project folder... to figureout which project to RUN...
+
+Chandana Priyantha@CHANDANA MINGW64 /e/DEVELOPMENT/TESTING/1 DotNet/DotNet/IrrigationWebSystem (master)
+$ dotnet ef migrations add InitialMigration --context AppDbContext -o Infrastructure/Data/Migrations
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+
+
+Chandana Priyantha@CHANDANA MINGW64 /e/DEVELOPMENT/TESTING/1 DotNet/DotNet/IrrigationWebSystem (master)
+$ dotnet ef database update
+Build started...
+Build succeeded.
+More than one DbContext was found. Specify which one to use. Use the '-Context' parameter for PowerShell commands and the '--context' parameter for dotnet commands.
+
+
+
+Chandana Priyantha@CHANDANA MINGW64 /e/DEVELOPMENT/TESTING/1 DotNet/DotNet/IrrigationWebSystem (master)
+$ dotnet ef database update --context AppDbContext
+Build started...
+Build succeeded.
+Security Warning: The negotiated TLS 1.0 is an insecure protocol and is supported for backward compatibility only. The recommended protocol version is TLS 1.2 and later.
+Done.
+======================================================================================================
+
+
+=============From Microsoft
+dotnet ef migrations add InitialCreate --context BlogContext --output-dir Migrations/SqlServerMigrations
+================================
+
+
+
 
 
 ===========================Set startup project and Migration Output Dir======================================
@@ -30,6 +64,10 @@ $ dotnet ef migrations add InitialMigration -s ../StudyMash -o Infrastructure/Mi
 $ dotnet ef migrations add InitialMigration --startup-project StudyMash --output-dir Infrastructure/Migrations
 
 ============================
+
+
+
+
 
 
 
