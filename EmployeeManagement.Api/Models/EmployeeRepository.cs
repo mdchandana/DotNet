@@ -40,6 +40,12 @@ namespace EmployeeManagement.Api.Models
                             .FirstOrDefaultAsync(emp => emp.EmployeeId == employeeId);
         }
 
+        public async Task<Employee> GetEmployeeByEmail(string email)
+        {
+            return await _appDbContext.Employees
+                .FirstOrDefaultAsync(emp => emp.Email == email);
+        }
+
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await _appDbContext.Employees.ToListAsync();
