@@ -22,17 +22,37 @@ namespace EmployeeManagement.Api.Models
             return result.Entity;
         }
 
-        public async void DeleteEmployee(int employeeId)
+        //public async void DeleteEmployee(int employeeId)
+        //{
+        //    var result = await _appDbContext.Employees
+        //                        .FirstOrDefaultAsync(emp => emp.EmployeeId == employeeId);
+        //    if(result != null)
+        //    {
+        //        _appDbContext.Employees.Remove(result);
+        //        await _appDbContext.SaveChangesAsync();
+        //    }
+
+        //}
+
+
+        public async Task<Employee> DeleteEmployee(int employeeId)
         {
-            var result = await _appDbContext.Employees
+            var employeeToDelete = await _appDbContext.Employees
                                 .FirstOrDefaultAsync(emp => emp.EmployeeId == employeeId);
-            if(result != null)
+            if (employeeToDelete != null)
             {
-                _appDbContext.Employees.Remove(result);
+                _appDbContext.Employees.Remove(employeeToDelete);
                 await _appDbContext.SaveChangesAsync();
+
+                return employeeToDelete;
             }
 
+            return null;
         }
+
+
+
+
 
         public async Task<Employee> GetEmployee(int employeeId)
         {
@@ -51,23 +71,41 @@ namespace EmployeeManagement.Api.Models
             return await _appDbContext.Employees.ToListAsync();
         }
 
+        public async Task<IEnumerable<Employee>> Search(string name, Gender? gender)
+        {
+            IQueryable<Employee> query = _appDbContext.Employees;
+
+            if(!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(e => e.FirstName.Contains(name)
+                          || e.LastName.Contains(name));
+            }
+
+            if(gender !=null)
+            {
+                query = query.Where(e => e.Gender == gender);
+            }
+
+            return await query.ToListAsync();
+        }
+
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            var result = await _appDbContext.Employees
+            var employeeToUpdate = await _appDbContext.Employees
                         .FirstOrDefaultAsync(emp => emp.EmployeeId == employee.EmployeeId);
 
-            if(result != null)
+            if(employeeToUpdate != null)
             {
-                result.FirstName = employee.FirstName;
-                result.LastName = employee.LastName;
-                result.Email = employee.Email;
-                result.DateOfBrith = employee.DateOfBrith;
-                result.Gender = employee.Gender;
-                result.DepartmentId = employee.DepartmentId;
-                result.PhotoPath = employee.PhotoPath;
+                employeeToUpdate.FirstName = employee.FirstName;
+                employeeToUpdate.LastName = employee.LastName;
+                employeeToUpdate.Email = employee.Email;
+                employeeToUpdate.DateOfBrith = employee.DateOfBrith;
+                employeeToUpdate.Gender = employee.Gender;
+                employeeToUpdate.DepartmentId = employee.DepartmentId;
+                employeeToUpdate.PhotoPath = employee.PhotoPath;
 
                 await _appDbContext.SaveChangesAsync();
-                return result;
+                return employeeToUpdate;
             }
 
             return null;

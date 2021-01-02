@@ -13,8 +13,9 @@ namespace EmployeeManagement.Api.Models
         Task<Employee> GetEmployeeByEmail(string email);
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);
-        void DeleteEmployee(int employeeId);
+        //void DeleteEmployee(int employeeId);  //when we try to await void method : 'cannot await wait'
+        Task<Employee> DeleteEmployee(int employeeId);
+        Task<IEnumerable<Employee>> Search(string name, Gender? gender);
 
-       
     }
 }
