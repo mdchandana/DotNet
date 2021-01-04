@@ -10,5 +10,16 @@ api/employees
 
 ---------------------------------
 
+
+
 ----for Models project
 Install-Package System.ComponentModel.Annotations
+
+
+----for Api project
+microsoft.entityframeworkcore.sqlserver
+microsoft.entityframeworkcore.tools
+
+
+----for Api project
+Microsoft.AspNetCore.Blazor.HttpClient

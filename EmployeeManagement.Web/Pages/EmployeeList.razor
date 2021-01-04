@@ -4,6 +4,7 @@
 
 <h3>Employees List</h3>
 
+
 <table>
     <thead>
         <tr>
@@ -11,6 +12,7 @@
             <th>EmpFistName</th>
             <th>EmpLastName</th>
             <th>Email</th>
+            <th>Department</th>
             <th>Photo</th>
             <th>Actions</th>
         </tr>
@@ -18,21 +20,18 @@
     <tbody>
         @foreach (var emp in Employees)
         {
-        <tr>
-            <td>@emp.EmployeeId</td>
-            <td>@emp.FirstName</td>
-            <td>@emp.LastName</td>
-            <td>@emp.Email</td>
-            <td><img src="@emp.PhotoPath" width="50" height="50" /></td>
-            <td><a href="#">Details |</a></td>
-            <td><a href="#">Edit |</a></td>
-            <td><a href="#">Delete</a></td>
-        </tr>
+            <tr>
+                <td>@emp.EmployeeId</td>
+                <td>@emp.FirstName</td>
+                <td>@emp.LastName</td>
+                <td>@emp.Email</td>
+                <td>@emp.Department.DepartmentName</td>
+                <td><img src="@emp.PhotoPath" width="100" height="150" /></td>
+                <td><a href="/Details/@emp.EmployeeId">Details |</a></td>
+                <td><a href="#">Edit |</a></td>
+                <td><a href="#">Delete</a></td>
+            </tr>
         }
     </tbody>
 </table>
 
-@foreach (var emp in Employees)
-{
-
-}

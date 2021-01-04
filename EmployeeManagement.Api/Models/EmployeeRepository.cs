@@ -57,6 +57,8 @@ namespace EmployeeManagement.Api.Models
         public async Task<Employee> GetEmployee(int employeeId)
         {
             return await _appDbContext.Employees
+                            .Include(e=>e.Department)
+                            //.ThenInclude(e=>e.Experience)
                             .FirstOrDefaultAsync(emp => emp.EmployeeId == employeeId);
         }
 
@@ -68,7 +70,9 @@ namespace EmployeeManagement.Api.Models
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return await _appDbContext.Employees.ToListAsync();
+            return await _appDbContext.Employees
+                         .Include(e=>e.Department).ToListAsync();
+
         }
 
         public async Task<IEnumerable<Employee>> Search(string name, Gender? gender)

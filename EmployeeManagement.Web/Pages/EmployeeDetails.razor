@@ -1,0 +1,29 @@
+﻿@page "/Details/{id}"
+@inherits EmployeeDetailsBase
+
+<h3>Employee Details</h3>
+
+@if (Employee == null || Employee.Department == null)
+{
+
+}
+else
+{
+
+    <p>Id         :</p> @Employee.EmployeeId
+    <br />
+    <p>First Name :</p> @Employee.FirstName
+    <br />
+    <p> Gender    :</p> @Employee.Gender
+    <br />
+    <p> Email     :</p>@Employee.Email
+    <br />
+    <p>Department :</p> @Employee.Department.DepartmentName
+    <br />
+
+    <img src="@Employee.PhotoPath" width="100" height="150" />
+}
+
+<a href="/">Back</a>
+
+
