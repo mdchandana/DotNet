@@ -30,7 +30,10 @@ namespace EmployeeManagement.Web
             services.AddServerSideBlazor();
             services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
                  {
-                     client.BaseAddress = new Uri("https://localhost:44399/");
+                     //client.BaseAddress = new Uri("https://localhost:44399/");
+
+                     //IIS Deployed address http://localhost/api/employees
+                     client.BaseAddress = new Uri("http://localhost/");
                  });                            
         }
 

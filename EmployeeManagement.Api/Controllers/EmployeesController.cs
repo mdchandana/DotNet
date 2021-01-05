@@ -39,11 +39,11 @@ namespace EmployeeManagement.Api.Controllers
             {
                 return Ok(await _employeeRepository.GetEmployees());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from database");
+                    "Error retrieving data from database :"+ex.Message+ " "+ex.Source);
             }
 
         }

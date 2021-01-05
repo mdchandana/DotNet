@@ -41,7 +41,7 @@ namespace IrrigationWebSystem.ApplicationCore.DomainEntities
         public EmployeePosition EmployeePosition { get; set; }
 
 
-        public List<EmployeeContact> GetEmployeeContacts { get; set; }
+        public List<EmployeeContact> EmployeeContacts { get; set; }
         public List<EmployeeLeave> EmployeeLeaves { get; set; }
 
     }
