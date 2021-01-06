@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StudyMash.Domain
+namespace StudyMash.ApplicationCore.DomainEntities
 {
     [Table("Make")]
     public class Make

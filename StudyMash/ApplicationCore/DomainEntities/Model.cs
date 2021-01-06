@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudyMash.Domain
+namespace StudyMash.ApplicationCore.DomainEntities
 {
     public class Model
     {

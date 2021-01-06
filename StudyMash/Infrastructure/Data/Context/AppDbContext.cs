@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudyMash.Domain;
+using StudyMash.ApplicationCore.DomainEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudyMash.Infrastructure
+namespace StudyMash.Infrastructure.Data.Context
 {
     public class AppDbContext : DbContext
     {
