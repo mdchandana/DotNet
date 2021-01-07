@@ -45,7 +45,10 @@ namespace StudyMash
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Make}/{action=Index}/{id?}");
             });
 
 
@@ -62,7 +65,3 @@ namespace StudyMash
 }
 
 
-
-//endpoints.MapControllerRoute(
-//                    name: "default",
-//                    pattern: "{controller=Home}/{action=Index}/{id?}");          

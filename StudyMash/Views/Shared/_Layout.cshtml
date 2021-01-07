@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
+
+
+
+</head>
+<body>
+
+    @*<nav class="navbar navbar-expand-md navbar-light bg-light">*@    
+    
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">Study Mash</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="/Make/Bikes" class="nav-item nav-link active">Home</a>
+                    <a href="#" class="nav-item nav-link">Profile</a>
+
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Masters</a>
+
+                        <div class="dropdown-menu">
+                            <a asp-controller="Make" asp-action="Index" class="dropdown-item">Makes</a>
+                            <a href="#" class="dropdown-item">Sent</a>
+                            <a href="#" class="dropdown-item">Drafts</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="navbar-nav">
+                    <a href="#" class="nav-item nav-link">Login</a>
+                </div>
+            </div>
+        </nav>   
+
+
+
+        <div class="container">           @* container-fluid  *@   
+            @RenderBody()
+            
+            <hr />
+            <footer>
+                <p>2021 - StudyMash</p>
+            </footer>
+        </div>
+</body>
+</html>
