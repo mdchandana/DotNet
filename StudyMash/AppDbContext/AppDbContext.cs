@@ -15,14 +15,29 @@ namespace StudyMash.Infrastructure.Data.Context
         }
 
         public DbSet<Make> Makes { get; set; }
-        public DbSet<Model> Models { get; set; }
+        public DbSet<VehicleModel> Models { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            /*
+              If you want to seed on application start, in your applications starting method you can 
+              do a check for the data you want using conditional checks and if no returns, add those
+             classes to the context and save the changes.
+
+              The seeding in EF Core is designed for migration, its initialised data for the database, 
+              not for an applications runtime. If you want a set of data to be unchanged then consider 
+              utilising an alternative method? Like keeping it in xml/json format with in memory caching 
+              via properties with field checks.
+            */
+
+            base.OnModelCreating(modelBuilder);
+
+
             modelBuilder.Entity<Make>()
                 .ToTable("Make");
-            modelBuilder.Entity<Model>()
+            modelBuilder.Entity<VehicleModel>()
                 .ToTable("Model");
 
             //we are using the HasData method to inform EF Core about the data it has to seed
@@ -36,11 +51,38 @@ namespace StudyMash.Infrastructure.Data.Context
                     new Make()
                     {
                         Id = 2,
-                        Name = "Harly Devidson"
+                        Name = "Toyota"
+                    },
+                    new Make()
+                    {
+                        Id = 3,
+                        Name = "Nissan"
                     }
                 );
 
 
+
+            modelBuilder.Entity<VehicleModel>()
+                .HasData(
+                    new VehicleModel()
+                    {
+                       Id=1,
+                       Name="Fit",
+                       MakeId=1      
+                    },
+                    new VehicleModel()
+                    {
+                        Id=2,
+                        Name="Aqua",
+                        MakeId=2
+                    },
+                    new VehicleModel()
+                    {
+                        Id=3,
+                        Name="Vits",
+                        MakeId=2
+                    }
+               );
         }
     }
 }

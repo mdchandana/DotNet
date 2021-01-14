@@ -12,7 +12,7 @@
         <h2 class="text-info">Make Of Vehicle</h2>
     </div>
     <div class="col-6 text-right">
-        <a class="btn btn-info " asp-action="Create">Add New Make</a>
+        <a class="btn btn-info " asp-action="Create"><i class="fas fa-motorcycle"></i> &nbsp; Add New Make</a>
     </div>
 
     <br />
@@ -27,13 +27,54 @@
             </tr>
             @foreach (var item in Model)
             {
+                ////WORKED--------
+                @*<tr>
+                <td>@Html.DisplayFor(m => item.Name)</td>
+                <td class="text-right">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </td>
+            </tr>*@
+
+
                 <tr>
+
                     <td>@Html.DisplayFor(m => item.Name)</td>
                     <td class="text-right">
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>  |  
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+
+                            <form asp-action="Delete" method="post">
+
+                                @*<input type="submit" class="btn btn-danger" value="Delete" />*@
+
+                                @*<input type="submit" onclick="confirm('Are sure want to Delete')"
+        class="btn btn-danger" value="Delete" />*@
+
+                                @*<input type="submit" onclick="if (!confirm('Are sure want to Delete')) { return false }"
+        class="btn btn-danger" value="Delete" />*@
+
+
+                                @*=========Submit buuton with passsing a data itself , Need a Form ========================*@
+                                @*========This is not same as Link, This Only POST,  this is POST ... Button only call POST======*@
+                                @*========This call [HttpPost] Delete action method ======*@
+
+                                @*===WORKED WITHOUT BUTTON ICON  ===*@
+                                @*<input type="submit" onclick="if (!confirm('Are sure want to Delete')) { return false }"
+                                       class="btn btn-danger rounded-0" value="Delete" asp-action="Delete" asp-route-id="@item.Id" />*@
+
+                                <button type="submit" onclick="if (!confirm('Are sure want to Delete')) { return false }"
+                                       class="btn btn-danger rounded-0" value="Delete" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                      
+                        </div>
                     </td>
-                </tr>
+
+                </tr>              
+
+
             }
         </table>
     </div>

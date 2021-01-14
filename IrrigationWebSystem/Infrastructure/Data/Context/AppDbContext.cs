@@ -10,10 +10,10 @@ namespace IrrigationWebSystem.Infrastructure.Data.Context
     public class AppDbContext : DbContext
     {
 
-        public AppDbContext()
-        {
+        //public AppDbContext()
+        //{
 
-        }
+        //}
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -26,10 +26,10 @@ namespace IrrigationWebSystem.Infrastructure.Data.Context
         public DbSet<EmployeeLeave> EmployeeLeaves { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
+        //}
 
 
     }

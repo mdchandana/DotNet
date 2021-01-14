@@ -37,7 +37,7 @@ namespace StudyMash.Controllers
         [HttpPost]
         public ActionResult Create(Make make)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _appDbContext.Makes.Add(make);
                 _appDbContext.SaveChanges();
@@ -52,28 +52,84 @@ namespace StudyMash.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return BadRequest("Make Id cannot be Empty..");
+
+            var foundMake = _appDbContext.Makes.Find(id);
+
+            if (foundMake == null)
+                return NotFound($"Cannot find the Make with Id :{id}");
+
+
+            return View(foundMake);
         }
 
+
+
+
         [HttpPost]
-        public ActionResult Edit(Make make)
+        public ActionResult Edit(int? id,Make makeChanges)
         {
-            return View();
+
+            if (id == null)
+                return BadRequest("Make Id cannot be Empty..");
+
+
+            if (ModelState.IsValid)
+            {
+                var makeFound = _appDbContext.Makes.Find(id);
+                if (makeFound == null)
+                    return NotFound($"Cannot find the make with Id :{makeChanges.Id} ");
+                else
+                {
+                    makeFound.Name = makeChanges.Name;
+                    _appDbContext.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
+            return View(makeChanges);
         }
+
+
+
+
 
 
         [HttpGet]
         public ActionResult Delete(int? id)
-        {
-            return View();
+        {            
+
+            if (id == null)
+                return BadRequest("Make Id cannot be Empty...");
+
+            var foundMake = _appDbContext.Makes.Find(id);
+            if (foundMake == null)
+                return NotFound($"Cannot find the Make with Id :{id}");
+
+            return View(foundMake);
         }
 
 
         [HttpPost]
-        [ActionName(nameof(Delete))]
+        [ActionName("Delete")]
         public ActionResult Delete_Post(int? id)
         {
-            return View();
+            
+
+            if (id == null)
+                return BadRequest("Make Id cannot be Empty...");
+
+            var foundMake = _appDbContext.Makes.Find(id);
+
+            if (foundMake == null)
+                return NotFound($"Cannot find the Make with Id :{id}");
+
+            _appDbContext.Makes.Remove(foundMake);
+            _appDbContext.SaveChanges();
+
+            //return View();
+            return RedirectToAction(nameof(Index));
         }
 
     }

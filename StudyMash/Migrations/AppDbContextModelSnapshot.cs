@@ -42,11 +42,16 @@ namespace StudyMash.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "Harly Devidson"
+                            Name = "Toyota"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Nissan"
                         });
                 });
 
-            modelBuilder.Entity("StudyMash.Models.Model", b =>
+            modelBuilder.Entity("StudyMash.Models.VehicleModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,9 +70,29 @@ namespace StudyMash.Migrations
                     b.HasIndex("MakeId");
 
                     b.ToTable("Model");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MakeId = 1,
+                            Name = "Fit"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MakeId = 2,
+                            Name = "Aqua"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MakeId = 2,
+                            Name = "Vits"
+                        });
                 });
 
-            modelBuilder.Entity("StudyMash.Models.Model", b =>
+            modelBuilder.Entity("StudyMash.Models.VehicleModel", b =>
                 {
                     b.HasOne("StudyMash.Models.Make", "Make")
                         .WithMany()

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<a asp-action="Index">Get</a>
+
+<br />
+
+<form method="post">
+    <input type="submit" onclick="if (!confirm('Are you sure want to delete?')) { return false }" value="Post" />
+</form>

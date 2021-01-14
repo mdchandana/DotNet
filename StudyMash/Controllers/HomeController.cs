@@ -10,7 +10,13 @@ namespace StudyMash.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Hello world");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(string name)
+        {
+            return View();
         }
     }
 }
