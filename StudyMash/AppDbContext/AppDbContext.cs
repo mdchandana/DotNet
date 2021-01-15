@@ -15,7 +15,7 @@ namespace StudyMash.Infrastructure.Data.Context
         }
 
         public DbSet<Make> Makes { get; set; }
-        public DbSet<VehicleModel> Models { get; set; }
+        public DbSet<Model> Models { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace StudyMash.Infrastructure.Data.Context
 
             modelBuilder.Entity<Make>()
                 .ToTable("Make");
-            modelBuilder.Entity<VehicleModel>()
+            modelBuilder.Entity<Model>()
                 .ToTable("Model");
 
             //we are using the HasData method to inform EF Core about the data it has to seed
@@ -62,21 +62,21 @@ namespace StudyMash.Infrastructure.Data.Context
 
 
 
-            modelBuilder.Entity<VehicleModel>()
+            modelBuilder.Entity<Model>()
                 .HasData(
-                    new VehicleModel()
+                    new Model()
                     {
                        Id=1,
                        Name="Fit",
                        MakeId=1      
                     },
-                    new VehicleModel()
+                    new Model()
                     {
                         Id=2,
                         Name="Aqua",
                         MakeId=2
                     },
-                    new VehicleModel()
+                    new Model()
                     {
                         Id=3,
                         Name="Vits",

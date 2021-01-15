@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudyMash.Infrastructure.Data.Context;
+using StudyMash.Models;
+using StudyMash.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +24,25 @@ namespace StudyMash.Controllers
 
             return View(modelList);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {           
+            return View();
+        }
+
+        
+        [HttpPost]
+        public ActionResult Create(Model vehicleModel)
+        {
+            var makeList = _appDbContext.Makes.ToList();
+            makeList.Insert(0, new Make() { Id = 0, Name = "Select" });
+            ViewBag.MakeList = makeList;
+
+
+
+            return View();
+        }
+
     }
 }

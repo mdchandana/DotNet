@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyMash.Models
 {
-    public class VehicleModel
+    public class Model
     {
         public int Id { get; set; }
 
