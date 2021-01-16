@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using IrrigationWebSystem.Models.Enums;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
@@ -25,15 +26,15 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public DateTime? DateOfBirth { get; set; }
 
         [Required]
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }             //enums
 
         [Required]
-        public string CivilStatus { get; set; }
+        public CivilStatus CivilStatus { get; set; }   //enums
 
         public DateTime? AppointmentDate { get; set; }
         
         
-        public string AchievedClass { get; set; }
+        public ClassMnGrade ClassMnGrade { get; set; }  //enums
 
         [Column(TypeName="decimal(18,2)")]
         public decimal? BasicSalary { get; set; }
@@ -43,7 +44,7 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public byte[] Image { get; set; }
         public string ImageName { get; set; }
 
-        public string CurrentlyWorkingStatus { get; set; }
+        public CurrentlyWorkingStatus CurrentlyWorkingStatus { get; set; }   //enums
 
         [Required]
         public int EmployeePositionId { get; set; }

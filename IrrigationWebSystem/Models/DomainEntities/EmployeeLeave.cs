@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using IrrigationWebSystem.Models.Enums;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
@@ -19,13 +20,13 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public int EmployeeId { get; set; }
 
         [Required]
-        public string Type { get; set; }
+        public LeaveType LeaveType { get; set; }   //enums
 
         [Required]
         public DateTime LeaveDate { get; set; }
 
         [Required]
-        public string leaveFullOrHalfDay { get; set; }
+        public HalfFullLeaveType HalfFullLeaveType { get; set; }   //enums
 
 
         public Employee Employee { get; set; }

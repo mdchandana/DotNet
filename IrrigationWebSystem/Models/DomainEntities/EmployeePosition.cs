@@ -13,10 +13,10 @@ namespace IrrigationWebSystem.Models.DomainEntities
     {       
         public int Id { get; set; }
 
-        //[Required]
+        [Required]
         public string Position { get; set; }
 
-        //[Required]
+        [Required]
         public string PositionCode { get; set; }
 
         public List<Employee> Employees { get; set; }

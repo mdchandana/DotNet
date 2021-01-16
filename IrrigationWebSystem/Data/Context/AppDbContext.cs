@@ -27,7 +27,7 @@ namespace IrrigationWebSystem.Data.Context
         public DbSet<WmScheme> WmSchemes { get; set; }
         public DbSet<WmWaterLevelCapacityMuruthawelaTank> WmWaterLevelCapacityMuruthawelaTanks { get; set; }
         public DbSet<WmRainFall> wmRainFalls { get; set; }
-        public DbSet<WmCultivationSeasonInformations> wmCultivationSeasonInformations { get; set; }
+        public DbSet<WmCultivationSeasonInformation> wmCultivationSeasonInformations { get; set; }
         public DbSet<WmDailyWaterLevelAndissue> dailyWaterLevelAndissues { get; set; }
 
 
