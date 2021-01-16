@@ -1,6 +1,7 @@
 ﻿
 using IrrigationOldDbModelProject.IrrigationOldDbModel;
-using IrrigationWebSystem.Infrastructure.Data.Context;
+using IrrigationWebSystem.Data.Context;
+using IrrigationWebSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace IrrigationOldDbModelProject
 
                 foreach (var empPosition in oldContext.EmployeePositions)
                 {
-                    IrrigationWebSystem.ApplicationCore.DomainEntities.EmployeePosition positionObj = new IrrigationWebSystem.ApplicationCore.DomainEntities.EmployeePosition();
+                    IrrigationWebSystem.Models.DomainEntities.EmployeePosition positionObj = new IrrigationWebSystem.Models.DomainEntities.EmployeePosition();
                     positionObj.Position = empPosition.EmppPosition;
                     positionObj.PositionCode = empPosition.EmppPositionCode;
 
@@ -47,7 +48,7 @@ namespace IrrigationOldDbModelProject
 
                 foreach (var empOld in oldContext.Employees)
                 {
-                    IrrigationWebSystem.ApplicationCore.DomainEntities.Employee newEmployeeObj = new IrrigationWebSystem.ApplicationCore.DomainEntities.Employee();
+                    IrrigationWebSystem.Models.DomainEntities.Employee newEmployeeObj = new IrrigationWebSystem.Models.DomainEntities.Employee();
 
                     newEmployeeObj.Nic = empOld.EmpNic;
                     newEmployeeObj.EmpNumber = empOld.EmpNumber;
@@ -56,8 +57,18 @@ namespace IrrigationOldDbModelProject
                     newEmployeeObj.SurName = empOld.EmpSurName;
                     newEmployeeObj.FullName = empOld.EmpFullName;
                     newEmployeeObj.Address = empOld.EmpAddress;
-                    newEmployeeObj.Gender = empOld.EmpGender;
+
+
+                    if (empOld.EmpGender.Equals("පුරුෂ"))                //enums
+                        newEmployeeObj.Gender = Gender.Male;
+                    if (empOld.EmpGender.Equals("ස්ත්‍රී"))
+                        newEmployeeObj.Gender = Gender.FeMale;
+
+
+
                     newEmployeeObj.Image = empOld.EmpImage;
+
+
 
                     //bellow line of code doesn't work..
                     //since still not generated a Employee Id , By EF ... It is generating after calle `saveChanges()`                      
@@ -65,13 +76,25 @@ namespace IrrigationOldDbModelProject
                     //newEmployeeObj.ImageName = newEmployeeObj.Id + ".jpg";   
 
 
-                    newEmployeeObj.CivilStatus = empOld.EmpCivilStatus;
+
+                    if (empOld.EmpCivilStatus.Equals("විවාහක"))                   //enums       
+                        newEmployeeObj.CivilStatus = CivilStatus.Married;
+                    if (empOld.EmpCivilStatus.Equals("අවිවාහක"))
+                        newEmployeeObj.CivilStatus = CivilStatus.UnMarried;
+
+                   
+
+
                     newEmployeeObj.AppointmentDate = empOld.EmpAppointmentDate;
                     newEmployeeObj.BasicSalary = empOld.EmpBasicSalary;
-                    newEmployeeObj.CurrentlyWorkingStatus = empOld.EmpStatus;
+
+                    newEmployeeObj.CurrentlyWorkingStatus = CurrentlyWorkingStatus.Working;    //enums
+
                     newEmployeeObj.DateOfBirth = empOld.EmpDateOfBirth;
                     newEmployeeObj.Email = empOld.EmpEmail;
-                    newEmployeeObj.AchievedClass = empOld.EmpAchievedClass;
+
+
+                    newEmployeeObj.ClassMnGrade = ClassMnGrade.UnKnown;   //enums
 
                     //Saving Emp positionID-------------------------------------------------------------
                     //OldDb having EmpPosition.. new Db having positionId...
@@ -90,9 +113,9 @@ namespace IrrigationOldDbModelProject
 
 
                     //Saving Emp Contacts----------------------------------------------------------------
-                    var EmpContact = new IrrigationWebSystem.ApplicationCore.DomainEntities.EmployeeContact()
+                    var EmpContact = new IrrigationWebSystem.Models.DomainEntities.EmployeeContact()
                     {
-                        EmployeeId = newEmployeeObj.Id,
+                        EmployeeId = newEmployeeObj.EmployeeId,
                         Contact = empOld.EmpContact1
                     };
                     newContext.EmployeeContacts.Add(EmpContact);
@@ -103,33 +126,45 @@ namespace IrrigationOldDbModelProject
 
 
 
-                //Saving Leave -------------------------------------------------------
-                foreach (var leaveOld in oldContext.EmployeeLeaves)
+                ////Saving Leave -------------------------------------------------------
+                //foreach (var leaveOld in oldContext.EmployeeLeaves)
+                //{
+                //    var empLeaveNew = new IrrigationWebSystem.Models.DomainEntities.EmployeeLeave();
+
+                //    //Employee Id for leave..
+                //    //we have to find , mapping New Employee tbl and old EmpLeave 
+                //    var empIdForLeave = (from emp in newContext.Employees.ToList()
+                //                         where emp.EmpNumber == leaveOld.EmpNumber
+                //                         select emp.EmployeeId).FirstOrDefault();
+
+
+                //    empLeaveNew.EmployeeId = empIdForLeave;
+                //    empLeaveNew.LeaveDate = leaveOld.EmplLeaveDate;
+                //    empLeaveNew.LeaveType= leaveOld.EmplType;
+                //    empLeaveNew.HalfFullLeaveType = leaveOld.EmplLeaveFullOrHalfDay;                   
+
+                //    newContext.EmployeeLeaves.Add(empLeaveNew);                  
+
+                //}
+                ////-----------------------------------------------------------------------
+                //newContext.SaveChanges();
+                //Console.WriteLine("Employee leave saved");
+
+
+                ////Saving MuruthawelaTank Level and Capacity ------------------------------
+
+                foreach(var oldTankLevelAndCapacity in oldContext.WmWaterLevelCapacityMuruthawelaTanks)
                 {
-                    var empLeaveNew = new IrrigationWebSystem.ApplicationCore.DomainEntities.EmployeeLeave();
+                    IrrigationWebSystem.Models.DomainEntities.WmWaterLevelCapacityMuruthawelaTank wmWaterLevelCapacityMuruthawelaTankNew = new IrrigationWebSystem.Models.DomainEntities.WmWaterLevelCapacityMuruthawelaTank();
 
-                    //Employee Id for leave..
-                    //we have to find , mapping New Employee tbl and old EmpLeave 
-                    var empIdForLeave = (from emp in newContext.Employees.ToList()
-                                         where emp.EmpNumber == leaveOld.EmpNumber
-                                         select emp.Id).FirstOrDefault();
-
-
-                    empLeaveNew.EmployeeId = empIdForLeave;
-                    empLeaveNew.LeaveDate = leaveOld.EmplLeaveDate;
-                    empLeaveNew.Type = leaveOld.EmplType;
-                    empLeaveNew.leaveFullOrHalfDay = leaveOld.EmplLeaveFullOrHalfDay;                   
-
-                    newContext.EmployeeLeaves.Add(empLeaveNew);                  
-                    
+                    wmWaterLevelCapacityMuruthawelaTankNew.WaterLevel = oldTankLevelAndCapacity.WlcmWaterLevel;
+                    wmWaterLevelCapacityMuruthawelaTankNew.capacity = oldTankLevelAndCapacity.WlcmCapacity.Value;
+                    newContext.Add(wmWaterLevelCapacityMuruthawelaTankNew);
+                    newContext.SaveChanges();
                 }
-                //-----------------------------------------------------------------------
-                newContext.SaveChanges();
-                Console.WriteLine("Employee leave saved");
+                
 
-
-
-
+                Console.WriteLine("waterlevel and capacity are saved..");
 
             }
             catch (Exception ex)
@@ -143,7 +178,7 @@ namespace IrrigationOldDbModelProject
 
 
 
-
+            Console.WriteLine("All are completed..");
 
             Console.ReadKey();
         }

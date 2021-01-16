@@ -16,35 +16,35 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public string TankName { get; set; }
 
         [Required]
-        public DateTime? WaterIssuingConsiderDate { get; set; }
+        public DateTime WaterIssuingConsiderDate { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(13,2)")]
         public decimal WarterLevelAtSluice { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal? EffectiveHead { get; set; }
+        [Column(TypeName = "decimal(13,2)")]
+        public decimal EffectiveHead { get; set; }
 
         [Required]
         public int Capacity { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(13,2)")]
         public decimal GateOpenedSize { get; set; }
 
         [Required]
-        public DateTime? WaterIssuedDurationFromDateWithTime { get; set; }
+        public DateTime WaterIssuedDurationFromDateWithTime { get; set; }
 
         [Required]
-        public DateTime? WaterIssuedDurationToDateWithTime { get; set; }
+        public DateTime WaterIssuedDurationToDateWithTime { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(13,2)")]
         public decimal NoOfHours { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(13,2)")]
         public decimal WaterIssuedInAcft { get; set; }
        
     }

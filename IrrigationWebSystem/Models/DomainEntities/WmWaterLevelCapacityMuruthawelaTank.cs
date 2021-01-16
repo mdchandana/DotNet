@@ -12,11 +12,10 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(13,1)")]
         public decimal WaterLevel { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
         public int capacity { get; set; }
     }
 }

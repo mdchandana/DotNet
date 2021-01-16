@@ -10,10 +10,10 @@ namespace IrrigationWebSystem.Data.Context
     public class AppDbContext : DbContext
     {
 
-        //public AppDbContext()
-        //{
+        public AppDbContext()
+        {
 
-        //}
+        }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -57,10 +57,10 @@ namespace IrrigationWebSystem.Data.Context
         }
 
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
+        }
 
 
     }

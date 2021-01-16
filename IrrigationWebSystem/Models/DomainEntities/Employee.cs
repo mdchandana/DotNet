@@ -36,7 +36,7 @@ namespace IrrigationWebSystem.Models.DomainEntities
         
         public ClassMnGrade ClassMnGrade { get; set; }  //enums
 
-        [Column(TypeName="decimal(18,2)")]
+        [Column(TypeName="decimal(13,2)")]
         public decimal? BasicSalary { get; set; }
 
         public string Email { get; set; }        

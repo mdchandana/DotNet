@@ -18,7 +18,7 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public DateTime RainFallDate { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(13,2)")]
         public decimal RainFallAmount { get; set; }       
     }
 }

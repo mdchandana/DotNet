@@ -8,6 +8,7 @@ namespace IrrigationWebSystem.Models.Enums
 {
     public enum ClassMnGrade
     {
+        UnKnown=0,
         [Display(Name = "MN-1")]
         MN1 =1,
         [Display(Name = "MN-2")]

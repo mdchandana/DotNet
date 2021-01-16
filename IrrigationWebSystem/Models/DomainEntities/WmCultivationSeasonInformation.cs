@@ -17,11 +17,13 @@ namespace IrrigationWebSystem.Models.DomainEntities
         [Required]
         public int CultivationSeasonYear { get; set; }
                
-        public int WmSchemeId { get; set; }   
+        public int WmSchemeId { get; set; }
 
+        [Required]
+        public DateTime WaterIssueStartDate { get; set; }
 
-        public DateTime? WaterIssueStartDate { get; set; }       
-        public DateTime? WaterIssueEndDate { get; set; }
+        [Required]
+        public DateTime WaterIssueEndDate { get; set; }
 
 
 

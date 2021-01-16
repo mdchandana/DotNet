@@ -1,0 +1,16 @@
+﻿
+
+        
+        
+        -----------------This code no need to specify [Required]----------------
+        [Required]
+        public int EmployeePositionId { get; set; }
+        public EmployeePosition EmployeePosition { get; set; }
+
+
+
+
+        ------------------This code is OK Work----------------------------------
+        ------------------int EmployeePositionId automatically set to not null
+        public int EmployeePositionId { get; set; }
+        public EmployeePosition EmployeePosition { get; set; }
