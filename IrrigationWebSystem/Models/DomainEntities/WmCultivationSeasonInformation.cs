@@ -16,8 +16,7 @@ namespace IrrigationWebSystem.Models.DomainEntities
 
         [Required]
         public int CultivationSeasonYear { get; set; }
-
-        [Required]
+               
         public int WmSchemeId { get; set; }   
 
 
@@ -26,6 +25,6 @@ namespace IrrigationWebSystem.Models.DomainEntities
 
 
 
-        public WmScheme wmScheme { get; set; }
+        public WmScheme WmScheme { get; set; }
     }
 }

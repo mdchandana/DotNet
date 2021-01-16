@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShopHRM.Shared", "PieSho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShopHRM.Api", "PieShopHRM.Api\PieShopHRM.Api.csproj", "{54A48307-1AF4-4E56-8C67-829B4C8DDE89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrrigationWebSystem", "IrrigationWebSystem\IrrigationWebSystem.csproj", "{6FA409DD-7F45-4C6F-8614-861318F5EA99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IrrigationWebSystem", "IrrigationWebSystem\IrrigationWebSystem.csproj", "{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,10 +149,10 @@ Global
 		{54A48307-1AF4-4E56-8C67-829B4C8DDE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A48307-1AF4-4E56-8C67-829B4C8DDE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54A48307-1AF4-4E56-8C67-829B4C8DDE89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,19 @@
+﻿
+
+Chandana Priyantha@CHANDANA MINGW64 /e/DEVELOPMENT/TESTING/1 DotNet/DotNet/IrrigationWebSystem (master)
+$ dotnet ef dbcontext info
+Build started...
+Build succeeded.
+Provider name: Microsoft.EntityFrameworkCore.SqlServer
+Database name: IrrigationSystemDB
+Data source: CHANDANA\SQLEXPRESS2012
+Options: None
+
+
+
+
+Chandana Priyantha@CHANDANA MINGW64 /e/DEVELOPMENT/TESTING/1 DotNet/DotNet/IrrigationWebSystem (master)
+$ dotnet ef migrations add InitialMigration -o Data/Migrations
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'

@@ -15,8 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IrrigationWebSystem\IrrigationWebSystem.csproj" />
-  </ItemGroup>
-
 </Project>

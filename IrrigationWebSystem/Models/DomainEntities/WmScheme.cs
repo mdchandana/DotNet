@@ -13,7 +13,7 @@ namespace IrrigationWebSystem.Models.DomainEntities
         [Required]
         public string Name { get; set; }
 
-        public List<WmCultivationSeasonInformation> wmCultivationSeasonInformations { get; set; }
+        public List<WmCultivationSeasonInformation> WmCultivationSeasonInformations { get; set; }
 
     }
 }
