@@ -47,8 +47,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCartDrinks", "Shopp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyMash", "StudyMash\StudyMash.csproj", "{55C76E45-6AA6-47B0-8052-58CB2B1A12C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IrrigationWebSystem", "IrrigationWebSystem\IrrigationWebSystem.csproj", "{7EE5E145-DD41-4832-895C-4DEB9F5E6C63}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IrrigationOldDbModelProject", "IrrigationOldDbModelProject\IrrigationOldDbModelProject.csproj", "{5A20E649-00CA-49DC-9348-8BC114510B2C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor Venkat", "Blazor Venkat", "{5E9CEE1C-78D7-4DEC-9001-B5A7529ABFE8}"
@@ -69,7 +67,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShopHRM.App", "PieShopHR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShopHRM.Shared", "PieShopHRM.Shared\PieShopHRM.Shared.csproj", "{E513B708-D6F0-4752-B0A2-06802977FE61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PieShopHRM.Api", "PieShopHRM.Api\PieShopHRM.Api.csproj", "{54A48307-1AF4-4E56-8C67-829B4C8DDE89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShopHRM.Api", "PieShopHRM.Api\PieShopHRM.Api.csproj", "{54A48307-1AF4-4E56-8C67-829B4C8DDE89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrrigationWebSystem", "IrrigationWebSystem\IrrigationWebSystem.csproj", "{6FA409DD-7F45-4C6F-8614-861318F5EA99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,10 +121,6 @@ Global
 		{55C76E45-6AA6-47B0-8052-58CB2B1A12C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55C76E45-6AA6-47B0-8052-58CB2B1A12C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55C76E45-6AA6-47B0-8052-58CB2B1A12C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EE5E145-DD41-4832-895C-4DEB9F5E6C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EE5E145-DD41-4832-895C-4DEB9F5E6C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EE5E145-DD41-4832-895C-4DEB9F5E6C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EE5E145-DD41-4832-895C-4DEB9F5E6C63}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A20E649-00CA-49DC-9348-8BC114510B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A20E649-00CA-49DC-9348-8BC114510B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A20E649-00CA-49DC-9348-8BC114510B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -153,6 +149,10 @@ Global
 		{54A48307-1AF4-4E56-8C67-829B4C8DDE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A48307-1AF4-4E56-8C67-829B4C8DDE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54A48307-1AF4-4E56-8C67-829B4C8DDE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA409DD-7F45-4C6F-8614-861318F5EA99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

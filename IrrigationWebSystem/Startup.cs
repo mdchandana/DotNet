@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IrrigationWebSystem.Infrastructure.Data.Context;
-using IrrigationWebSystem.Infrastructure.IoC;
+using IrrigationWebSystem.Data.Context;
+using IrrigationWebSystem.Data.Repository;
+using IrrigationWebSystem.Models.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IrrigationWebSystem
 {
@@ -27,10 +28,11 @@ namespace IrrigationWebSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContextPool<AppDbContext>(options =>
+
+            services.AddDbContext<AppDbContext>(options=>
                 options.UseSqlServer(_configuration.GetConnectionString("IrrigationSystemDbConnString")));
 
-            DependencyContainer.RegisterServices(services);
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
         }
 
@@ -43,7 +45,7 @@ namespace IrrigationWebSystem
             }
 
             app.UseStaticFiles();
-
+          
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -54,6 +56,7 @@ namespace IrrigationWebSystem
                 //});
 
                 endpoints.MapDefaultControllerRoute();
+
             });
         }
     }
