@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
-    [Table("EmployeePosition")]
+    
     public class EmployeePosition
     {       
         public int Id { get; set; }

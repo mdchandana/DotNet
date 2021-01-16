@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
-    [Table("EmployeeContact")]
+   
     public class EmployeeContact
     {
         public int Id { get; set; }

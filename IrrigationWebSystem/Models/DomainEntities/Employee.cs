@@ -9,7 +9,7 @@ using IrrigationWebSystem.Models.Enums;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
-    [Table("Employee")]
+    
     public class Employee
     {       
         public int EmployeeId { get; set; }

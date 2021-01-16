@@ -31,6 +31,31 @@ namespace IrrigationWebSystem.Data.Context
         public DbSet<WmDailyWaterLevelAndissue> dailyWaterLevelAndissues { get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+            modelBuilder.Entity<Employee>()
+                .ToTable("Employee");
+            modelBuilder.Entity<EmployeePosition>()
+                .ToTable("EmployeePosition");
+            modelBuilder.Entity<EmployeeContact>()
+                .ToTable("EmployeeContact");
+            modelBuilder.Entity<EmployeeLeave>()
+                .ToTable("EmployeeLeave");
+            modelBuilder.Entity<WmScheme>()
+                .ToTable("WmScheme");
+            modelBuilder.Entity<WmWaterLevelCapacityMuruthawelaTank>()
+                .ToTable("WmWaterLevelCapacityMuruthawelaTank");
+            modelBuilder.Entity<WmRainFall>()
+                .ToTable("WmRainFall");
+            modelBuilder.Entity<WmCultivationSeasonInformation>()
+                .ToTable("WmCultivationSeasonInformation");
+            modelBuilder.Entity<WmDailyWaterLevelAndissue>()
+                .ToTable("WmDailyWaterLevelAndissue");
+        }
+
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

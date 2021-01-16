@@ -9,14 +9,13 @@ using IrrigationWebSystem.Models.Enums;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
-    [Table("EmployeeLeave")]
+   
     public class EmployeeLeave
     {
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
+       
         public int EmployeeId { get; set; }
 
         [Required]
