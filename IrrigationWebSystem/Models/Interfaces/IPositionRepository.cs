@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace IrrigationWebSystem.Models.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface IPositionRepository
     {
-        IEnumerable<Employee> GetEmployees();
-        Employee GetEmployeeByEmpNumber(string empNumber);
+        List<EmployeePosition> GetAllPositions();
     }
 }

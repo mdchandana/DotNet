@@ -18,6 +18,11 @@ namespace IrrigationWebSystem.Data.Repository
             _context = context;
         }
 
+        public Employee GetEmployeeByEmpNumber(string empNumber)
+        {
+            return _context.Employees.FirstOrDefault(emp => emp.EmpNumber == empNumber);
+        }
+
         public IEnumerable<Employee> GetEmployees()
         {
             return _context.Employees;
