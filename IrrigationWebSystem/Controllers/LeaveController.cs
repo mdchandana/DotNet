@@ -24,7 +24,7 @@ namespace IrrigationWebSystem.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(EmpLeaveVM empLeaveVM)
+        public ActionResult Create(EmployeeLeaveVM empLeaveVM)
         {
             return View();
         }

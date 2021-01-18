@@ -39,15 +39,16 @@ namespace IrrigationWebSystem.Data.Repository
                     .FirstOrDefault(emp => emp.EmpNumber == empNumber);
         }
 
-        public Employee GetEmployeeByPositionId(int positionId)
+        public IEnumerable<Employee> GetEmployeesByPositionId(int positionId)
         {
             return _context.Employees
-                .FirstOrDefault(Employee => Employee.EmployeePositionId == positionId);
+                    .Where(Employee => Employee.EmployeePositionId == positionId);
         }
+
 
         public IEnumerable<Employee> GetEmployees()
         {
-            return _context.Employees;
+            return _context.Employees.Include(p => p.EmployeePosition);
         }
 
         public Employee UpdateEmployee(Employee employeeChangees)

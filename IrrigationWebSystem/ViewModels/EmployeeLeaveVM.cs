@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IrrigationWebSystem.ViewModels
 {
-    public class EmpLeaveVM
+    public class EmployeeLeaveVM
     {
         public int Id { get; set; }
 

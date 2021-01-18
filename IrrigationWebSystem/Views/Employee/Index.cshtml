@@ -1,9 +1,43 @@
-﻿
+﻿@model EmployeeListVM
 @{
     ViewData["Title"] = "Index";
 }
 
-<h3>All Employees</h3>
+<br />
+<h3 class="text-info">All Employees</h3>
+<br />
 
 
+<div class="form-group row">
+    <div class="col-md-1">
+        <label asp-for="PositionId" class="col-form-label">Position</label>
+    </div>
+    <div class="col-md-4">
+        <select asp-for="PositionId" asp-items="@Model.EmployeePositions" class="form-control"></select>
+    </div>
+</div>
 
+
+<table class="table table-striped border">
+    <thead>
+        <tr class="table-info">
+            <th>Emp Number</th>
+            <th>Personel File Number</th>
+            <th>Name With Initials</th>
+            <th>Position</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.EmployeesVMs)
+        {
+            <tr>
+                <td>@emp.EmpNumber</td>
+                <td>@emp.PersonalFileNumber</td>
+                <td>@emp.NameWithInitial</td>
+                <td>@emp.EmployeePosition.Position</td>
+                <td class="text-right"><a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.EmployeeId" class="btn btn-primary">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

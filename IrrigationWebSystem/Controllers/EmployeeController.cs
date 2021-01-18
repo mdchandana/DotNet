@@ -24,10 +24,55 @@ namespace IrrigationWebSystem.Controllers
 
         public IActionResult Index()
         {
-            var employeesByPosition = _employeeRepository.GetEmployeeByPositionId(1);
+            var employeesVM = _employeeRepository.GetEmployees()
+                                        .Select(emp => new EmployeeVM()
+                                        {
+                                            EmployeeId = emp.EmployeeId,
+                                            EmpNumber = emp.EmpNumber,
+                                            Nic = emp.Nic,
+                                            PersonalFileNumber = emp.PersonalFileNumber,
+                                            NameWithInitial = emp.NameWithInitial,
+                                            FullName = emp.FullName,
+                                            SurName = emp.SurName,
+                                            EmployeePosition = emp.EmployeePosition,
+                                            Gender = emp.Gender,
+                                            CivilStatus = emp.CivilStatus,
+                                            Address = emp.Address,
+                                            //ContactNumber1 = emp.EmployeeContacts.ToList()[0].ToString(),
+                                            Email = emp.Email,
+                                            DateOfBirth = emp.DateOfBirth,
+                                            AppointmentDate = emp.AppointmentDate,
+                                            BasicSalary = emp.BasicSalary,
+                                            CurrentlyWorkingStatus = emp.CurrentlyWorkingStatus,
+                                            ClassMnGrade = emp.ClassMnGrade
+
+                                        }).ToList();
 
 
-            return View(employeesByPosition);
+            //var employeeListVM1= new EmployeeListVM()
+            //{
+            //    EmployeePositions2 = _positionRepository.GetAllPositions().Select(p => new SelectListItem()
+            //                        {
+            //                            Value=p.Id.ToString(),
+            //                            Text=p.Position
+
+            //                        }).ToList(),
+
+            //    EmployeesVMs= employeesVM
+            //};
+
+
+
+            var employeeListVM = new EmployeeListVM()
+            {
+                EmployeePositions = new SelectList(_positionRepository.GetAllPositions(), "Id", "Position"),
+
+                EmployeesVMs = employeesVM
+            };
+
+
+
+            return View(employeeListVM);
         }
 
         [HttpGet]
@@ -77,21 +122,24 @@ namespace IrrigationWebSystem.Controllers
 
 
         [HttpGet]
-        public ActionResult Edit(int employeeId)
+        public ActionResult Edit(int id)
         {
 
             ViewBag.Positions = new SelectList(_positionRepository.GetAllPositions(), "Id", "Position");
 
-            if (employeeId.ToString() == null)
+            EmployeeVM employeeVM = null;
+
+            if (id.ToString() == null)
                 return BadRequest("EmployeeId cannot be Empty");
 
-            var foundEmployee = _employeeRepository.GetEmployeeByEmpId(employeeId);
+            var foundEmployee = _employeeRepository.GetEmployeeByEmpId(id);
             if (foundEmployee == null)
-                return NotFound($"Employee with EmployeeId {employeeId} Not found");
+                return NotFound($"Employee with EmployeeId {id} Not found");
             else
             {
-                EmployeeVM employeeVM = new EmployeeVM
+                employeeVM = new EmployeeVM
                 {
+                    EmployeeId = foundEmployee.EmployeeId,
                     EmpNumber = foundEmployee.EmpNumber,
                     Nic = foundEmployee.Nic,
                     PersonalFileNumber = foundEmployee.PersonalFileNumber,
@@ -102,7 +150,7 @@ namespace IrrigationWebSystem.Controllers
                     Gender = foundEmployee.Gender,
                     CivilStatus = foundEmployee.CivilStatus,
                     Address = foundEmployee.Address,
-                    ContactNumber1 = foundEmployee.EmployeeContacts.ToList()[0].ToString(),
+                    //ContactNumber1 = foundEmployee.EmployeeContacts.ToList()[0].ToString(),
                     Email = foundEmployee.Email,
                     DateOfBirth = foundEmployee.DateOfBirth,
                     AppointmentDate = foundEmployee.AppointmentDate,
@@ -112,7 +160,7 @@ namespace IrrigationWebSystem.Controllers
                 };
             }
 
-            return View(foundEmployee);
+            return View(employeeVM);
         }
 
 

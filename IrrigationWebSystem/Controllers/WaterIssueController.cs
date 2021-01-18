@@ -30,39 +30,39 @@ namespace IrrigationWebSystem.Controllers
 
         void CalculateIssue()
         {
-            string tankName = "";
-            DateTime waterIssueConsiderDate = DateTime.Today;
-            decimal waterLevelAtSluice = 280.20m; //--------------------------------------------------------------------taking by userInput
+            //string tankName = "";
+            //DateTime waterIssueConsiderDate = DateTime.Today;
+            //decimal waterLevelAtSluice = 280.20m; //--------------------------------------------------------------------taking by userInput
 
 
 
 
-            //get capacity by level
-            int tankCapacity = _waterLevelCapacityRepository
-                                .GetMuruthawelaWaterCapacityByLevel(waterLevelAtSluice).capacity;
+            ////get capacity by level
+            //int tankCapacity = _waterLevelCapacityRepository
+            //                    .GetMuruthawelaWaterCapacityByLevel(waterLevelAtSluice).capacity;
 
 
-            WmDailyWaterLevelAndissue wmDailyWaterLevelAndissue = new WmDailyWaterLevelAndissue();
+            //WmDailyWaterLevelAndissue wmDailyWaterLevelAndissue = new WmDailyWaterLevelAndissue();
 
             //---------------------------Effective head-------------------------------------------------
             //EffectiveHead=Water Level at sluice - Sil Level
             //                             280.20 - 244 = 36.20
 
 
-            double silLevel = 244;  //this is a fixed value                                   
-            double effectiveHead = 0;
-            effectiveHead = waterLevelAtSluice - silLevel;
+            //double silLevel = 244;  //this is a fixed value                                   
+            //double effectiveHead = 0;
+            //effectiveHead = waterLevelAtSluice - silLevel;
 
-            wmDailyWaterLevelAndissue.WarterLevelAtSluice = (decimal)waterLevelAtSluice;
-            wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
-            wmDailyWaterLevelAndissue.Capacity = tankCapacity;
-            wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
+            //wmDailyWaterLevelAndissue.WarterLevelAtSluice = (decimal)waterLevelAtSluice;
+            //wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
+            //wmDailyWaterLevelAndissue.Capacity = tankCapacity;
+            //wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
 
 
             //------------------------------Gate opening------------------------------------------------
-            wmDailyWaterLevelAndissue.GateOpenedSize = 0;
-            //issue ACFT
-            wmDailyWaterLevelAndissue.WaterIssuedInAcft = 0;
+            //wmDailyWaterLevelAndissue.GateOpenedSize = 0;
+            ////issue ACFT
+            //wmDailyWaterLevelAndissue.WaterIssuedInAcft = 0;
 
 
             ////------------------------------Gate opening------------------------------------------------

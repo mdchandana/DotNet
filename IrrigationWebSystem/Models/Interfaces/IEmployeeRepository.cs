@@ -11,7 +11,7 @@ namespace IrrigationWebSystem.Models.Interfaces
         IEnumerable<Employee> GetEmployees();
         Employee GetEmployeeByEmpId(int employeeId);
         Employee GetEmployeeByEmpNumber(string empNumber);
-        Employee GetEmployeeByPositionId(int positionId);
+        IEnumerable<Employee> GetEmployeesByPositionId(int positionId);
         Employee AddEmployee(Employee employee);
         Employee UpdateEmployee(Employee employee);
     }
