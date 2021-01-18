@@ -1,0 +1,353 @@
+﻿@model EmployeeVM
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+
+
+<!--<form>-->
+@*<div class="row mb-3">
+        <div class="col-md-4">
+            <label asp-for="PersonalFileNumber" class="form-label">PersonalFileNumber</label>
+            <input asp-for="PersonalFileNumber" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="EmpNumber" class="form-label">Emp Number</label>
+            <input asp-for="EmpNumber" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Nic" class="form-label">NIC Number</label>
+            <input asp-for="Nic" class="form-control" />
+        </div>
+    </div>*@
+
+
+<!--<div class="form-group row">
+    <div class="col-md-2">
+        <label asp-for="EmpNumber" class="form-label">Emp Number</label>
+    </div>
+    <div class="clo-md-4">
+        <input asp-for="EmpNumber" class="form-control" />
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-2">
+        <label asp-for="PersonalFileNumber" class="form-label">Personal File Number</label>
+    </div>
+    <div class="clo-md-4">
+        <input asp-for="PersonalFileNumber" class="form-control" />
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-2">
+        <label asp-for="Nic" class="form-label">NIC Number</label>
+    </div>
+    <div class="clo-md-4">
+        <input asp-for="Nic" class="form-control" />
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-6">
+        <label asp-for="NameWithInitial" class="form-label">Name With Initials</label>
+        <input asp-for="NameWithInitial" class="form-control" />
+    </div>
+    <div class="col-6">
+        <label asp-for="SurName" class="form-label">SurName</label>-->
+@*<span class="input-group-text col-md-2">First and last name</span>*@
+<!--<input asp-for="SurName" class="form-control" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <label asp-for="FullName" class="form-label">Full Name</label>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="Address" class="form-label">Address</label>
+            <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="DateOfBirth" class="form-label">Name With Initials</label>
+            <input asp-for="DateOfBirth" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Gender" class="form-label">SurName</label>
+            <input asp-for="Gender" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Gender" class="form-label">SurName</label>
+            <input asp-for="Gender" class="form-control" />
+        </div>
+    </div>
+</form>-->
+@*<div class="container"><h2>Example tab 2 (using standard nav-tabs)</h2></div>
+    <div id="exTab2" class="container">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#1" data-toggle="tab">Overview</a>
+            </li>
+            <li>
+                <a href="#2" data-toggle="tab">Without clearfix</a>
+            </li>
+            <li>
+                <a href="#3" data-toggle="tab">Solution</a>
+            </li>
+        </ul>
+
+        <div class="tab-content ">
+            <div class="tab-pane active" id="1">
+                <h3>Standard tab panel created on bootstrap using nav-tabs</h3>
+            </div>
+            <div class="tab-pane" id="2">
+                <h3>Notice the gap between the content and tab after applying a background color</h3>
+            </div>
+            <div class="tab-pane" id="3">
+                <h3>add clearfix to tab-content (see the css)</h3>
+            </div>
+        </div>
+    </div>*@
+
+
+@*<div>
+        <h2>Dynamic Tabs</h2>
+        <p>To make the tabs toggleable, add the data-toggle="tab" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>HOME</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <h3>Menu 3</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
+    </div>*@
+<br />
+<br />
+
+<h3 class="text-info">Edit Employee</h3>
+
+@*<div class="row">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link alert-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="EmpNumber" class="form-label">Emp Number</label>
+                        </div>
+                        <div class="clo-md-4">
+                            <input asp-for="EmpNumber" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="PersonalFileNumber" class="form-label">File Number</label>
+                        </div>
+                        <div class="clo-md-4">
+                            <input asp-for="PersonalFileNumber" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Nic" class="form-label">NIC Number</label>
+                        </div>
+                        <div class="clo-md-4">
+                            <input asp-for="Nic" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+<form asp-controller="Employee" asp-action="Create" method="post">
+    <div class="text-right">
+        <input type="submit" class="btn btn-success" value="Save Employee" />
+    </div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Basics</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+    <div class="tab-content" id="nav-tabContent">
+
+
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <br />
+            <div class="m-2">
+                <div class="col-md-3 mb-3">
+                    <label asp-for="EmpNumber" class="form-label">Employee Number</label>
+                    <input asp-for="EmpNumber" class="form-control" />
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="PersonalFileNumber" class="form-label">Personal File Number</label>
+                    <input asp-for="PersonalFileNumber" class="form-control" />
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="Nic" class="form-label">NIC Number</label>
+                    <input asp-for="Nic" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label asp-for="EmployeePositionId" class="form-label"></label>
+                    <select asp-for="EmployeePositionId" class="form-control" asp-items="ViewBag.Positions">
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NameWithInitial" class="form-label">Name With Initials</label>
+                    <input asp-for="NameWithInitial" class="form-control" />
+                </div>
+
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="Gender" class="form-label"></label>
+                    <select asp-for="Gender" class="form-control"
+                            asp-items="@Html.GetEnumSelectList<Gender>()">
+                        <option>Plz Select</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="CivilStatus" class="form-label"></label>
+                    <select asp-for="CivilStatus" class="form-control"
+                            asp-items="@Html.GetEnumSelectList<CivilStatus>()">
+                        <option>Plz Select</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="AppointmentDate" class="form-label">Appointment Date</label>
+                    <input asp-for="AppointmentDate" class="form-control" />
+                </div>
+                @*<div class="col-md-3 mb-3">
+                        <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                        <input asp-for="DateOfBirth" class="form-control" />
+                    </div>*@
+                <div class="col-md-3 mb-3">
+                    <label data- asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                    <input asp-for="DateOfBirth" class="form-control" id="birthDate" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label asp-for="BasicSalary" class="form-label">Basic Salary</label>
+                    <input asp-for="BasicSalary" class="form-control" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label asp-for="ClassMnGrade" class="form-label"></label>
+                    <select asp-for="ClassMnGrade" class="form-control"
+                            asp-items="@Html.GetEnumSelectList<ClassMnGrade>()">
+                        <option>Plz Select</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <br />
+            <div class="m-2">
+                <div class="col-md-8 mb-3">
+                    <label asp-for="SurName" class="form-label">SurName</label>
+                    <input asp-for="SurName" class="form-control" />
+                </div>
+
+                <div class="col-md-8 mb-3">
+                    <label asp-for="FullName" class="form-label">Full Name</label>
+                    <input asp-for="FullName" class="form-control" />
+                </div>
+
+                <div class="col-md-8 mb-3">
+                    <label asp-for="Address" class="form-label">Address</label>
+                    <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="col-md-3 mb-3">
+                <label asp-for="ContactNumber1" class="form-label">Contact Number</label>
+                <input asp-for="ContactNumber1" class="form-control" />
+            </div>
+            <div class="col-md-3 mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+        </div>
+
+
+
+
+    </div>
+</form>
+
+
+
+<script type="text/javascript">
+        //$(function () {
+        //    $('#DateOfBirth').datepicker({
+        //        format: "dd/mm/yyyy"
+        //    });
+        //});
+
+</script>
+
+
+
+
+
