@@ -9,6 +9,10 @@ namespace IrrigationWebSystem.Models.Interfaces
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetEmployees();
+        Employee GetEmployeeByEmpId(int employeeId);
         Employee GetEmployeeByEmpNumber(string empNumber);
+        Employee GetEmployeeByPositionId(int positionId);
+        Employee AddEmployee(Employee employee);
+        Employee UpdateEmployee(Employee employee);
     }
 }

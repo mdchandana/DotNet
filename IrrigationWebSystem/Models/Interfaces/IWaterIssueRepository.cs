@@ -7,5 +7,6 @@ namespace IrrigationWebSystem.Models.Interfaces
 {
     public interface IWaterIssueRepository
     {
+
     }
 }

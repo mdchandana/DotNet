@@ -33,19 +33,27 @@ namespace IrrigationWebSystem.Controllers
             ViewBag.Positions = new SelectList(_positionRepository.GetAllPositions(), "Id", "Position");
 
             Employee foundEmployee = _employeeRepository.GetEmployeeByEmpNumber("538");
-                                                        
-            EmployeeVM employeeVM = new EmployeeVM()
+
+
+            EmployeeVM employeeVM = new EmployeeVM
             {
                 EmpNumber = foundEmployee.EmpNumber,
                 Nic = foundEmployee.Nic,
                 PersonalFileNumber = foundEmployee.PersonalFileNumber,
                 NameWithInitial = foundEmployee.NameWithInitial,
-                FullName=foundEmployee.FullName,
-                EmployeePositionId=foundEmployee.EmployeePositionId,
+                FullName = foundEmployee.FullName,
+                SurName = foundEmployee.SurName,
+                EmployeePositionId = foundEmployee.EmployeePositionId,
                 Gender = foundEmployee.Gender,
-                CivilStatus=foundEmployee.CivilStatus,
-                Address = foundEmployee.Address
-
+                CivilStatus = foundEmployee.CivilStatus,
+                Address = foundEmployee.Address,
+                ContactNumber1 = foundEmployee.EmployeeContacts.ToList()[0].ToString(),
+                Email = foundEmployee.Email,
+                DateOfBirth = foundEmployee.DateOfBirth,
+                AppointmentDate = foundEmployee.AppointmentDate,
+                BasicSalary = foundEmployee.BasicSalary,
+                CurrentlyWorkingStatus = foundEmployee.CurrentlyWorkingStatus,
+                ClassMnGrade=foundEmployee.ClassMnGrade
             };
 
             return View(employeeVM);

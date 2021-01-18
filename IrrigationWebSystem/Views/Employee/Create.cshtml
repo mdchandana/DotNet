@@ -148,6 +148,7 @@
     </div>*@
 <br />
 <br />
+
 <h3 class="text-info">Create Employee</h3>
 
 @*<div class="row">
@@ -200,9 +201,9 @@
 
 
 <form asp-controller="Employee" asp-action="Create" method="post">
-
-    <input type="submit" class="btn btn-success" value="Save" />
-
+    <div class="text-right">
+        <input type="submit" class="btn btn-success" value="Save Employee" />
+    </div>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Basics</a>
@@ -210,6 +211,8 @@
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
         </div>
     </nav>
+
+
 
 
 
@@ -237,14 +240,19 @@
                     <input asp-for="Nic" class="form-control" />
                 </div>
 
-                <div class="col-md-8 mb-3">
+                <div class="col-md-6 mb-3">
                     <label asp-for="EmployeePositionId" class="form-label"></label>
                     <select asp-for="EmployeePositionId" class="form-control" asp-items="ViewBag.Positions">
                     </select>
                 </div>
 
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NameWithInitial" class="form-label">Name With Initials</label>
+                    <input asp-for="NameWithInitial" class="form-control" />
+                </div>
 
-                <div class="col-md-8 mb-3">
+
+                <div class="col-md-3 mb-3">
                     <label asp-for="Gender" class="form-label"></label>
                     <select asp-for="Gender" class="form-control"
                             asp-items="@Html.GetEnumSelectList<Gender>()">
@@ -252,7 +260,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-8 mb-3">
+                <div class="col-md-3 mb-3">
                     <label asp-for="CivilStatus" class="form-label"></label>
                     <select asp-for="CivilStatus" class="form-control"
                             asp-items="@Html.GetEnumSelectList<CivilStatus>()">
@@ -260,9 +268,28 @@
                     </select>
                 </div>
 
-                <div class="col-md-8 mb-3">
-                    <label asp-for="NameWithInitial" class="form-label">Name With Initials</label>
-                    <input asp-for="NameWithInitial" class="form-control" />
+                <div class="col-md-3 mb-3">
+                    <label asp-for="AppointmentDate" class="form-label">Appointment Date</label>
+                    <input asp-for="AppointmentDate" class="form-control" />
+                </div>
+                @*<div class="col-md-3 mb-3">
+                    <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                    <input asp-for="DateOfBirth" class="form-control" />
+                </div>*@
+                <div class="col-md-3 mb-3">
+                    <label data- asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                    <input asp-for="DateOfBirth" class="form-control" id="birthDate" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label asp-for="BasicSalary" class="form-label">Basic Salary</label>
+                    <input asp-for="BasicSalary" class="form-control" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label asp-for="ClassMnGrade" class="form-label"></label>
+                    <select asp-for="ClassMnGrade" class="form-control"
+                            asp-items="@Html.GetEnumSelectList<ClassMnGrade>()">
+                        <option>Plz Select</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -293,8 +320,16 @@
 
 
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            ...
+            <div class="col-md-3 mb-3">
+                <label asp-for="ContactNumber1" class="form-label">Contact Number</label>
+                <input asp-for="ContactNumber1" class="form-control" />
+            </div>
+            <div class="col-md-3 mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
         </div>
+
 
 
 
@@ -303,7 +338,14 @@
 
 
 
+<script type="text/javascript">
+        //$(function () {
+        //    $('#DateOfBirth').datepicker({
+        //        format: "dd/mm/yyyy"
+        //    });
+        //});
 
+</script>
 
 
 

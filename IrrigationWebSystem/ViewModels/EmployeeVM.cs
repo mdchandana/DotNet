@@ -48,7 +48,7 @@ namespace IrrigationWebSystem.ViewModels
         public int EmployeePositionId { get; set; }
         public EmployeePosition EmployeePosition { get; set; }
 
-
+        public string ContactNumber1 { get; set; }
         //public List<EmployeeContact> EmployeeContacts { get; set; }
         //public List<EmployeeLeave> EmployeeLeaves { get; set; }
     }
