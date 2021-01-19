@@ -42,6 +42,7 @@ namespace IrrigationWebSystem.Data.Repository
         public IEnumerable<Employee> GetEmployeesByPositionId(int positionId)
         {
             return _context.Employees
+                    .Include(p=> p.EmployeePosition)
                     .Where(Employee => Employee.EmployeePositionId == positionId);
         }
 

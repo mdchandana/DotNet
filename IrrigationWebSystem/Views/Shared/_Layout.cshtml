@@ -21,27 +21,61 @@
     @*<nav class="navbar navbar-expand-md navbar-light bg-light">*@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Study Mash</a>
+        <a href="#" class="navbar-brand">Irrigation Web System</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="/Make/Bikes" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">Profile</a>
+
+                @*<a href="/Make/Bikes" class="nav-item nav-link active">Home</a>
+        <a href="#" class="nav-item nav-link">Profile</a>*@
 
 
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Masters</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">HR Managemet</a>
+
+                    <div class="dropdown-menu">
+                        <a asp-controller="Employee" asp-action="Index" class="dropdown-item">Search Employees</a>
+                        <a asp-controller="Employee" asp-action="Create" class="dropdown-item">New Employee</a>
+                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">Search Employee Leaves</a>
+                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">New Employee Leave</a>
+                    </div>
+                </div>
+
+
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Water Management</a>
+
+                    <div class="dropdown-menu">
+                        <a asp-controller="Make" asp-action="Index" class="dropdown-item">Makes</a>
+                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">VehicleModel</a>
+                    </div>
+                </div>
+
+
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Development</a>
 
                     <div class="dropdown-menu">
                         <a asp-controller="Make" asp-action="Index" class="dropdown-item">Makes</a>
                         <a asp-controller="Model" asp-action="Index" class="dropdown-item">VehicleModel</a>
                         <a href="#" class="dropdown-item">Drafts</a>
                     </div>
-
                 </div>
+
+                <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Photo Gallery</a>
+
+                <div class="dropdown-menu">
+                    <a asp-controller="Make" asp-action="Index" class="dropdown-item">Makes</a>
+                    <a asp-controller="Model" asp-action="Index" class="dropdown-item">VehicleModel</a>
+                    <a href="#" class="dropdown-item">Drafts</a>
+                </div>
+            </div>
 
                 <a href="#" class="nav-item nav-link">About</a>
 

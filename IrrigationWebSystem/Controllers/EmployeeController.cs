@@ -24,7 +24,7 @@ namespace IrrigationWebSystem.Controllers
 
         public IActionResult Index()
         {
-            var employeesVM = _employeeRepository.GetEmployees()
+            var employeesVM = _employeeRepository.GetEmployeesByPositionId(1)
                                         .Select(emp => new EmployeeVM()
                                         {
                                             EmployeeId = emp.EmployeeId,
@@ -70,10 +70,80 @@ namespace IrrigationWebSystem.Controllers
                 EmployeesVMs = employeesVM
             };
 
-
-
             return View(employeeListVM);
         }
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult GetEmployeesByPosition(int positionId)
+        {
+
+            var employeesVM = _employeeRepository.GetEmployeesByPositionId(positionId)
+                                        .Select(emp => new EmployeeVM()
+                                        {
+                                            EmployeeId = emp.EmployeeId,
+                                            EmpNumber = emp.EmpNumber,
+                                            Nic = emp.Nic,
+                                            PersonalFileNumber = emp.PersonalFileNumber,
+                                            NameWithInitial = emp.NameWithInitial,
+                                            FullName = emp.FullName,
+                                            SurName = emp.SurName,
+                                            EmployeePosition = emp.EmployeePosition,
+                                            Gender = emp.Gender,
+                                            CivilStatus = emp.CivilStatus,
+                                            Address = emp.Address,
+                                            //ContactNumber1 = emp.EmployeeContacts.ToList()[0].ToString(),
+                                            Email = emp.Email,
+                                            DateOfBirth = emp.DateOfBirth,
+                                            AppointmentDate = emp.AppointmentDate,
+                                            BasicSalary = emp.BasicSalary,
+                                            CurrentlyWorkingStatus = emp.CurrentlyWorkingStatus,
+                                            ClassMnGrade = emp.ClassMnGrade
+
+                                        }).ToList();
+
+
+            //var employeeListVM1= new EmployeeListVM()
+            //{
+            //    EmployeePositions2 = _positionRepository.GetAllPositions().Select(p => new SelectListItem()
+            //                        {
+            //                            Value=p.Id.ToString(),
+            //                            Text=p.Position
+
+            //                        }).ToList(),
+
+            //    EmployeesVMs= employeesVM
+            //};
+
+
+
+            var employeeListVM = new EmployeeListVM()
+            {
+                EmployeePositions = new SelectList(_positionRepository.GetAllPositions(), "Id", "Position"),
+
+                EmployeesVMs = employeesVM
+            };
+
+            return PartialView("PartialEmployeeByPosition", employeeListVM);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpGet]
         public ActionResult Create()

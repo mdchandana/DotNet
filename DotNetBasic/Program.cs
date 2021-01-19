@@ -26,7 +26,7 @@ namespace DotNetBasic
 
         public void MyMethod()
         {
-            int myLocalVariable;           // LocalVariable
+            //int myLocalVariable;           // LocalVariable
             //myLocalVariable++;          //Compile Error: local variables cant use before initialize
 
 

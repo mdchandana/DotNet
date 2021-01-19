@@ -1,0 +1,25 @@
+﻿@model EmployeeListVM
+
+<table class="table table-striped border">
+    <thead>
+        <tr class="table-info">
+            <th>Emp Number</th>
+            <th>Personel File Number</th>
+            <th>Name With Initials</th>
+            <th>Position</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.EmployeesVMs)
+        {
+            <tr>
+                <td>@emp.EmpNumber</td>
+                <td>@emp.PersonalFileNumber</td>
+                <td>@emp.NameWithInitial</td>
+                <td>@emp.EmployeePosition.Position</td>
+                <td class="text-right"><a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.EmployeeId" class="btn btn-primary">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
