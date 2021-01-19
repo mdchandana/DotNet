@@ -34,6 +34,8 @@ namespace IrrigationWebSystem
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<IWaterLevelCapacityMuruthawelaTank, WaterLevelCapacityMuruthawelaTankRepository>();
+            services.AddScoped<IWaterIssueRepository, WaterIssueRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

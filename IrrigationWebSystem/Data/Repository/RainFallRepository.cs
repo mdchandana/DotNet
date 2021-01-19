@@ -19,23 +19,23 @@ namespace IrrigationWebSystem.Data.Repository
 
         public void AddRainFall(WmRainFall wmRainFall)
         {
-            _appDbContext.wmRainFalls.Add(wmRainFall);
+            _appDbContext.WmRainFalls.Add(wmRainFall);
             _appDbContext.SaveChanges();
         }
 
         public void DeleteRainFallBy(int rainFallId)
         {
-            var foundRainFall = _appDbContext.wmRainFalls.Find(rainFallId);
+            var foundRainFall = _appDbContext.WmRainFalls.Find(rainFallId);
             if(foundRainFall != null)
             {
-                _appDbContext.wmRainFalls.Remove(foundRainFall);
+                _appDbContext.WmRainFalls.Remove(foundRainFall);
                 _appDbContext.SaveChanges();
             }
         }
 
         public List<WmRainFall> GetRainFallByArea(string area)
         {
-            return _appDbContext.wmRainFalls
+            return _appDbContext.WmRainFalls
                 .Where(rain => rain.RainFallArea == area).ToList();
         }
     }

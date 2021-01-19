@@ -26,9 +26,9 @@ namespace IrrigationWebSystem.Data.Context
         public DbSet<EmployeeLeave> EmployeeLeaves { get; set; }
         public DbSet<WmScheme> WmSchemes { get; set; }
         public DbSet<WmWaterLevelCapacityMuruthawelaTank> WmWaterLevelCapacityMuruthawelaTanks { get; set; }
-        public DbSet<WmRainFall> wmRainFalls { get; set; }
-        public DbSet<WmCultivationSeasonInformation> wmCultivationSeasonInformations { get; set; }
-        public DbSet<WmDailyWaterLevelAndissue> dailyWaterLevelAndissues { get; set; }
+        public DbSet<WmRainFall> WmRainFalls { get; set; }
+        public DbSet<WmCultivationSeasonInformation> WmCultivationSeasonInformations { get; set; }
+        public DbSet<WmDailyWaterLevelAndissue> WmDailyWaterLevelAndissues { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

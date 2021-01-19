@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace IrrigationWebSystem.Data.Repository
 {
-    public class WaterLevelCapacityMuruthawelaTank : IWaterLevelCapacityMuruthawelaTank
+    public class WaterIssueRepository : IWaterIssueRepository
     {
         private AppDbContext _appDbContext;
 
-        public WaterLevelCapacityMuruthawelaTank(AppDbContext appDbContext)
+        public WaterIssueRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public WmWaterLevelCapacityMuruthawelaTank GetMuruthawelaWaterCapacityByLevel(decimal waterLevel)
+        public void AddWaterIssue(WmDailyWaterLevelAndissue wmDailyWaterLevelAndIssue)
         {
-            return _appDbContext.WmWaterLevelCapacityMuruthawelaTanks
-                    .FirstOrDefault(level => level.WaterLevel == waterLevel);
+            _appDbContext.WmDailyWaterLevelAndissues.Add(wmDailyWaterLevelAndIssue);
+            _appDbContext.SaveChanges();
         }
     }
 }

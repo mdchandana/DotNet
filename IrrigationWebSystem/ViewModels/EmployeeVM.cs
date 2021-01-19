@@ -21,6 +21,8 @@ namespace IrrigationWebSystem.ViewModels
         public string SurName { get; set; }
         public string FullName { get; set; }
         public string Address { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
         [Required]
@@ -29,6 +31,7 @@ namespace IrrigationWebSystem.ViewModels
         [Required]
         public CivilStatus CivilStatus { get; set; }   //enums
 
+        [DataType(DataType.Date)]
         public DateTime? AppointmentDate { get; set; }
 
 

@@ -19,13 +19,13 @@ namespace IrrigationWebSystem.Data.Repository
 
         public void AddCultivationSeasonInformation(WmCultivationSeasonInformation wmCultivationSeasonInformation)
         {
-            _appDbContext.wmCultivationSeasonInformations.Add(wmCultivationSeasonInformation);
+            _appDbContext.WmCultivationSeasonInformations.Add(wmCultivationSeasonInformation);
             _appDbContext.SaveChanges();
         }
 
         public List<WmCultivationSeasonInformation> GetWmCultivationSeasonInformation()
         {
-            return _appDbContext.wmCultivationSeasonInformations.ToList();
+            return _appDbContext.WmCultivationSeasonInformations.ToList();
         }
     }
 }
