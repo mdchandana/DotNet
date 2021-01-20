@@ -9,5 +9,6 @@ namespace IrrigationWebSystem.Models.Interfaces
     public interface IWaterIssueRepository
     {
         void AddWaterIssue(WmDailyWaterLevelAndissue wmDailyWaterLevelAndIssue);
+        List<WmDailyWaterLevelAndissue> GetWaterIssuesForPeriod(DateTime startDate,DateTime endDate);
     }
 }

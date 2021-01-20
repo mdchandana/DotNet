@@ -1,0 +1,86 @@
+﻿@model WmWaterIssuesForPeriodVM
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<br />
+
+<h3 class="text-info">Water Issues For Time Period</h3>
+
+<br />
+<br />
+
+<div>
+
+
+    <form id="myForm">
+
+        <div class="form-group">            
+            <label asp-for="DurationStart" class="form-label">Date From</label>
+            <div class="col-md-3">
+                <input asp-for="DurationStart" class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="DurationEnd" class="form-label">Date To</label>
+            <div class="col-md-3">
+                <input asp-for="DurationEnd" class="form-control" />
+            </div>
+        </div>
+
+
+
+    </form>
+
+
+
+
+    <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
+
+    <div id="divWaterIssuesForPeriod">
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+        //$("#WarterLevelAtSluice").val('');
+        //$("#GateOpenedSize").val('');
+
+        $("#btnAddToList").click(function () {
+
+
+            $("#loader").show();
+
+            var myFormData = $("#myForm").serialize();
+
+            $.ajax({
+
+                method: "POST",
+                url: "/WaterIssue/GetWaterIssuesForPeriod",
+                data: myFormData,
+                success: function (response) {
+                    //console.log(response);
+                    $("#divWaterIssuesForPeriod").html(response);
+                    $("#loader").hide();
+                    
+                }
+            })
+
+        })
+
+
+
+
+    })
+</script>

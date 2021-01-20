@@ -22,5 +22,16 @@ namespace IrrigationWebSystem.Data.Repository
             _appDbContext.WmDailyWaterLevelAndissues.Add(wmDailyWaterLevelAndIssue);
             _appDbContext.SaveChanges();
         }
+
+        public List<WmDailyWaterLevelAndissue> GetWaterIssuesForPeriod(DateTime startDate,DateTime endDate)
+        {
+            var result = (from waterIssues in _appDbContext.WmDailyWaterLevelAndissues
+                          where waterIssues.WaterIssuingConsiderDate >= startDate && waterIssues.WaterIssuingConsiderDate < endDate
+                          select waterIssues).ToList();
+
+
+            return result;
+
+        }
     }
 }

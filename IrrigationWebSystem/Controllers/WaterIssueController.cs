@@ -153,6 +153,15 @@ namespace IrrigationWebSystem.Controllers
 
 
 
+
+
+        public ActionResult GetWaterIssuesForPeriod(DateTime startDate,DateTime endDate)
+        {
+            var waterIssueForPeriod=_waterIssueRepository.GetWaterIssuesForPeriod(startDate, endDate);
+
+
+            return PartialView("PartialwaterIssuesForPeriod", waterIssueForPeriod);
+        }
        
     }
 }

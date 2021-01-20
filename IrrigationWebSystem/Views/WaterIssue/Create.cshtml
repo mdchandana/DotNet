@@ -14,7 +14,7 @@
 
 
     <form id="myForm">
-        
+
         <div class="form-group row">
             <div class="col-md-3">
                 <label asp-for="WaterIssuedDurationFromDateWithTime" class="form-label">Water Issue Duration From</label>
@@ -50,11 +50,12 @@
             <div class="col-md-3">
                 <input asp-for="GateOpenedSize" class="form-control" />
             </div>
-            <a href="#" class="btn btn-primary" id="btnAddToList">Update</a>
-        </div>        
+            <a href="#" class="btn btn-primary" id="btnAddToList">Update</a>            
+        </div>
 
     </form>
 
+    <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
 
     <div id="tblUpdatedRecord">
 
@@ -71,10 +72,13 @@
     $(document).ready(function () {
 
 
-        $("#WarterLevelAtSluice").val('');
-        $("#GateOpenedSize").val('');
+        //$("#WarterLevelAtSluice").val('');
+        //$("#GateOpenedSize").val('');
 
         $("#btnAddToList").click(function () {
+
+
+            $("#loader").show();
 
             var myFormData = $("#myForm").serialize();
 
@@ -86,6 +90,9 @@
                 success: function (response) {
                     //console.log(response);    
                     $("#tblUpdatedRecord").html(response);
+
+                    $("#loader").hide();
+
                     alert('WaterIssue Record Updated successfully..');
                 }
             })

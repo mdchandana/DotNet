@@ -1,7 +1,129 @@
-﻿
+﻿@model EmployeeLeaveVM
 @{
     ViewData["Title"] = "Create";
 }
 
-<h3>Emp Leave Create</h3>
+<br />
 
+<h3 class="text-info">Updating Water level and Water Issue - Muruthawela Tank</h3>
+
+<br />
+<br />
+
+<div>
+
+
+    <form id="myForm">
+
+
+        <div class="form-group row">
+            <div class="col-md-1">
+                <label asp-for="PositionId" class="col-form-label">Position</label>
+            </div>
+            <div class="col-md-4">
+                <select asp-for="PositionId" asp-items="@Model.EmployeePositions" class="form-control"></select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-1">
+                <label asp-for="EmployeeId" class="col-form-label">Position</label>
+            </div>
+            <div class="col-md-4">
+                <select asp-for="EmployeeId" asp-items="@Model.Employees" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label asp-for="LeaveType" class="form-label">Water Issue Duration From</label>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="LeaveType" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label asp-for="LeaveDate" class="form-label">Water Issue Duration From</label>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="LeaveDate" class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label asp-for="HalfFullLeaveType" class="form-label">Water Issue Duration From</label>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="HalfFullLeaveType" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label asp-for="LeaveType" class="form-label"></label>
+            </div>
+            <div class="col-md-4">
+                <select asp-for="LeaveType" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<LeaveType>()">
+                    <option>Plz Select</option>
+                </select>
+            </div>
+        </div>
+
+
+    </form>
+
+    <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
+
+    <div id="tblUpdatedRecord">
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+        //$("#WarterLevelAtSluice").val('');
+        //$("#GateOpenedSize").val('');
+
+        $("#btnAddToList").click(function () {
+
+
+            $("#loader").show();
+
+            var myFormData = $("#myForm").serialize();
+
+            $.ajax({
+
+                method: "POST",
+                url: "/WaterIssue/Create",
+                data: myFormData,
+                success: function (response) {
+                    //console.log(response);
+                    $("#tblUpdatedRecord").html(response);
+
+                    $("#loader").hide();
+
+                    alert('WaterIssue Record Updated successfully..');
+                }
+            })
+
+        })
+
+
+
+
+    })
+</script>
