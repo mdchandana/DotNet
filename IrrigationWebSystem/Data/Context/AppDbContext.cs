@@ -22,7 +22,7 @@ namespace IrrigationWebSystem.Data.Context
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeePosition> EmployeePositions { get; set; }        
-        public DbSet<EmployeeContact> EmployeeContacts { get; set; }
+        //public DbSet<EmployeeContact> EmployeeContacts { get; set; }
         public DbSet<EmployeeLeave> EmployeeLeaves { get; set; }
         public DbSet<WmScheme> WmSchemes { get; set; }
         public DbSet<WmWaterLevelCapacityMuruthawelaTank> WmWaterLevelCapacityMuruthawelaTanks { get; set; }
@@ -63,6 +63,11 @@ namespace IrrigationWebSystem.Data.Context
         //    optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
         //}
 
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=tcp:mdchandana.database.windows.net,1433;Initial Catalog=IrrigationSystemDB;Persist Security Info=False;User ID=chandana;Password=myApple5s;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        }
 
     }
 }

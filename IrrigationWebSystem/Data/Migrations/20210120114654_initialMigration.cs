@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IrrigationWebSystem.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -104,8 +104,8 @@ namespace IrrigationWebSystem.Data.Migrations
                     AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ClassMnGrade = table.Column<int>(type: "int", nullable: false),
                     BasicSalary = table.Column<decimal>(type: "decimal(13,2)", nullable: true),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     ImageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CurrentlyWorkingStatus = table.Column<int>(type: "int", nullable: false),
                     EmployeePositionId = table.Column<int>(type: "int", nullable: false)
@@ -145,26 +145,6 @@ namespace IrrigationWebSystem.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeContact",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmployeeContact", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EmployeeContact_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "EmployeeLeave",
                 columns: table => new
                 {
@@ -192,11 +172,6 @@ namespace IrrigationWebSystem.Data.Migrations
                 column: "EmployeePositionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeContact_EmployeeId",
-                table: "EmployeeContact",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EmployeeLeave_EmployeeId",
                 table: "EmployeeLeave",
                 column: "EmployeeId");
@@ -209,9 +184,6 @@ namespace IrrigationWebSystem.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "EmployeeContact");
-
             migrationBuilder.DropTable(
                 name: "EmployeeLeave");
 

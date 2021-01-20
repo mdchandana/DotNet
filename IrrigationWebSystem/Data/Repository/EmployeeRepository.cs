@@ -34,8 +34,7 @@ namespace IrrigationWebSystem.Data.Repository
 
         public Employee GetEmployeeByEmpNumber(string empNumber)
         {
-            return _context.Employees
-                    .Include(contact=>contact.EmployeeContacts)
+            return _context.Employees                   
                     .FirstOrDefault(emp => emp.EmpNumber == empNumber);
         }
 

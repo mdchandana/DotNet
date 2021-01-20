@@ -41,6 +41,9 @@ namespace IrrigationWebSystem.Data.Migrations
                     b.Property<int>("ClassMnGrade")
                         .HasColumnType("int");
 
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CurrentlyWorkingStatus")
                         .HasColumnType("int");
 
@@ -61,9 +64,6 @@ namespace IrrigationWebSystem.Data.Migrations
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
@@ -86,27 +86,6 @@ namespace IrrigationWebSystem.Data.Migrations
                     b.HasIndex("EmployeePositionId");
 
                     b.ToTable("Employee");
-                });
-
-            modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.EmployeeContact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("EmployeeContact");
                 });
 
             modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.EmployeeLeave", b =>
@@ -294,17 +273,6 @@ namespace IrrigationWebSystem.Data.Migrations
                     b.Navigation("EmployeePosition");
                 });
 
-            modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.EmployeeContact", b =>
-                {
-                    b.HasOne("IrrigationWebSystem.Models.DomainEntities.Employee", "Employee")
-                        .WithMany("EmployeeContacts")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.EmployeeLeave", b =>
                 {
                     b.HasOne("IrrigationWebSystem.Models.DomainEntities.Employee", "Employee")
@@ -329,8 +297,6 @@ namespace IrrigationWebSystem.Data.Migrations
 
             modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.Employee", b =>
                 {
-                    b.Navigation("EmployeeContacts");
-
                     b.Navigation("EmployeeLeaves");
                 });
 
