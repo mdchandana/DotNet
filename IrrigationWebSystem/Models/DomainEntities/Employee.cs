@@ -39,9 +39,11 @@ namespace IrrigationWebSystem.Models.DomainEntities
         [Column(TypeName="decimal(13,2)")]
         public decimal? BasicSalary { get; set; }
 
+        public string ContactNumber { get; set; }
+
         public string Email { get; set; }        
 
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
         public string ImageName { get; set; }
 
         public CurrentlyWorkingStatus CurrentlyWorkingStatus { get; set; }   //enums
@@ -51,7 +53,7 @@ namespace IrrigationWebSystem.Models.DomainEntities
         public EmployeePosition EmployeePosition { get; set; }
 
 
-        public List<EmployeeContact> EmployeeContacts { get; set; }
+        //public List<EmployeeContact> EmployeeContacts { get; set; }
         public List<EmployeeLeave> EmployeeLeaves { get; set; }
 
     }

@@ -14,8 +14,8 @@ namespace IrrigationOldDbModelProject
     {
         static void Main(string[] args)
         {
-            var newContext = new AppDbContext();
-            var oldContext = new EIrrigationOldDbContext();
+            //var newContext = new AppDbContext();
+            //var oldContext = new EIrrigationOldDbContext();
 
             
 
@@ -66,7 +66,7 @@ namespace IrrigationOldDbModelProject
 
 
 
-            //        newEmployeeObj.Image = empOld.EmpImage;
+            ////        newEmployeeObj.Image = empOld.EmpImage;
 
 
 
@@ -112,16 +112,16 @@ namespace IrrigationOldDbModelProject
                     
 
 
-            //        //Saving Emp Contacts----------------------------------------------------------------
-            //        var EmpContact = new IrrigationWebSystem.Models.DomainEntities.EmployeeContact()
-            //        {
-            //            EmployeeId = newEmployeeObj.EmployeeId,
-            //            Contact = empOld.EmpContact1
-            //        };
-            //        newContext.EmployeeContacts.Add(EmpContact);
-            //        newContext.SaveChanges();
-            //    }
-            //    Console.WriteLine("Employees and Contacts saved..");
+            ////        //Saving Emp Contacts----------------------------------------------------------------
+            ////        var EmpContact = new IrrigationWebSystem.Models.DomainEntities.EmployeeContact()
+            ////        {
+            ////            EmployeeId = newEmployeeObj.EmployeeId,
+            ////            Contact = empOld.EmpContact1
+            ////        };
+            ////        newContext.EmployeeContacts.Add(EmpContact);
+            ////        newContext.SaveChanges();
+            ////    }
+            ////    Console.WriteLine("Employees and Contacts saved..");
 
 
 

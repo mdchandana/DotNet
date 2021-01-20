@@ -40,8 +40,6 @@ namespace IrrigationWebSystem.Data.Context
                 .ToTable("Employee");
             modelBuilder.Entity<EmployeePosition>()
                 .ToTable("EmployeePosition");
-            modelBuilder.Entity<EmployeeContact>()
-                .ToTable("EmployeeContact");
             modelBuilder.Entity<EmployeeLeave>()
                 .ToTable("EmployeeLeave");
             modelBuilder.Entity<WmScheme>()
@@ -54,13 +52,16 @@ namespace IrrigationWebSystem.Data.Context
                 .ToTable("WmCultivationSeasonInformation");
             modelBuilder.Entity<WmDailyWaterLevelAndissue>()
                 .ToTable("WmDailyWaterLevelAndissue");
+
+            //modelBuilder.Entity<EmployeeContact>()
+            //    .ToTable("EmployeeContact");
         }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=CHANDANA\\SQLEXPRESS2012;Database=IrrigationSystemDB;Integrated Security=True;");
+        //}
 
 
     }
