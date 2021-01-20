@@ -4,6 +4,7 @@ using IrrigationWebSystem.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,14 +31,14 @@ namespace IrrigationWebSystem.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var wmDailyWaterLevelAndissueVM = new WmDailyWaterLevelAndissueVM()
-            {
-                WaterIssuingConsiderDate = DateTime.Today,
-                WaterIssuedDurationFromDateWithTime=DateTime.Today,
-                WaterIssuedDurationToDateWithTime=DateTime.Today
-            };
+            //CultureInfo culture = new CultureInfo("en-US");
+            //var wmDailyWaterLevelAndissueVM = new WmDailyWaterLevelAndissueVM()
+            //{                
+            //    WaterIssuedDurationFromDateWithTime = DateTime.Today,
+            //    WaterIssuedDurationToDateWithTime=DateTime.Now
+            //};
 
-            return View(wmDailyWaterLevelAndissueVM);
+            return View();
         }
 
 
@@ -50,8 +51,9 @@ namespace IrrigationWebSystem.Controllers
             int tankCapacity = _waterLevelCapacityRepository
                                 .GetMuruthawelaWaterCapacityByLevel(wmDailyWaterLevelAndissueVM.WarterLevelAtSluice).capacity;
 
+            //----
+            WmDailyWaterLevelAndissue wmDailyWaterLevelAndissue = new WmDailyWaterLevelAndissue(); 
 
-            
 
             //---------------------------Effective head------------------------------------------------ -
             //EffectiveHead = Water Level at sluice - Sil Level
@@ -62,12 +64,17 @@ namespace IrrigationWebSystem.Controllers
             double effectiveHead = 0;
             effectiveHead = (double)wmDailyWaterLevelAndissueVM.WarterLevelAtSluice - silLevel;
 
+            wmDailyWaterLevelAndissue.TankName = tankName;
+            wmDailyWaterLevelAndissue.WaterIssuingConsiderDate = wmDailyWaterLevelAndissueVM.WaterIssuedDurationFromDateWithTime;
+            wmDailyWaterLevelAndissue.WaterIssuedDurationFromDateWithTime = wmDailyWaterLevelAndissueVM.WaterIssuedDurationFromDateWithTime;
+            wmDailyWaterLevelAndissue.WaterIssuedDurationToDateWithTime = wmDailyWaterLevelAndissueVM.WaterIssuedDurationToDateWithTime;
 
-            wmDailyWaterLevelAndissueVM.EffectiveHead = (decimal)effectiveHead;
-            wmDailyWaterLevelAndissueVM.Capacity = tankCapacity;
+            wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
+            wmDailyWaterLevelAndissue.Capacity = tankCapacity;
 
-            wmDailyWaterLevelAndissueVM.WaterIssuedInAcft = 0;
-
+            wmDailyWaterLevelAndissue.WarterLevelAtSluice = wmDailyWaterLevelAndissueVM.WarterLevelAtSluice;
+            wmDailyWaterLevelAndissue.GateOpenedSize = wmDailyWaterLevelAndissueVM.GateOpenedSize;
+            wmDailyWaterLevelAndissue.WaterIssuedInAcft = 0;
 
             //=========================================Time Manipulation===========================================
 
@@ -78,6 +85,13 @@ namespace IrrigationWebSystem.Controllers
             var totMinutes = timeStamp.TotalMinutes;
             int hrs = timeStamp.Hours;
             int remainingMinutes = (int)totMinutes - (hrs * 60);
+
+            //==============Time duration pass to DB=======================================================================
+            wmDailyWaterLevelAndissue.NoOfHours = (decimal)double.Parse((hrs.ToString() + "." + remainingMinutes.ToString()));
+            //================================================================================================================
+
+
+
 
 
             ///calculating minutes as considering 100
@@ -95,10 +109,10 @@ namespace IrrigationWebSystem.Controllers
             minutesAsUnits = Math.Round(minutesAsUnits, 0);
 
 
+
+
             //==============Time duration pass to formula===================================================
-
             double timeDurationPassToFormula = double.Parse((hrs.ToString()+"." + minutesAsUnits.ToString()));
-
             //=====================================================================================================
 
 
@@ -109,84 +123,36 @@ namespace IrrigationWebSystem.Controllers
             try
             {
 
-                waterIssued = (double)9.92 * 3.5 * ((double)wmDailyWaterLevelAndissueVM.GateOpenedSize / 12) *
-                            Math.Sqrt((double)wmDailyWaterLevelAndissueVM.EffectiveHead) * ((double)timeDurationPassToFormula / 24);
+                waterIssued = (double)9.92 * 3.5 * ((double)wmDailyWaterLevelAndissue.GateOpenedSize / 12) *
+                            Math.Sqrt((double)wmDailyWaterLevelAndissue.EffectiveHead) * ((double)timeDurationPassToFormula / 24);
             }
             catch (Exception ee)
             {
                 //MessageBox.Show("A problem occured :" + ee.Message);
             }
-            wmDailyWaterLevelAndissueVM.WaterIssuedInAcft = (decimal)waterIssued;
+            wmDailyWaterLevelAndissue.WaterIssuedInAcft = (decimal)waterIssued;
 
+            
 
-
-
+            //Updating database-------
+            _waterIssueRepository.AddWaterIssue(wmDailyWaterLevelAndissue);
 
 
 
 
             //return Content("Hrs :"+hrs+" , remaining minutes :"+remainingMinutes+ " minutesForFormula :"+ minutesAsUnits+" timeDurationForFormula :"+ timeDurationPassToFormula+" water Issued :::"+ wmDailyWaterLevelAndissue.WaterIssuedInAcft);
-            return Content("TimeDurationForFormula :" + timeDurationPassToFormula
-                + " Effective Head " + wmDailyWaterLevelAndissueVM.EffectiveHead
-                + " Water Issued :::" + wmDailyWaterLevelAndissueVM.WaterIssuedInAcft);
+            //return Content("TimeDurationForFormula :" + timeDurationPassToFormula
+            //    + " Effective Head " + wmDailyWaterLevelAndissueVM.EffectiveHead
+            //    + " Water Issued :::" + wmDailyWaterLevelAndissueVM.WaterIssuedInAcft);
+
+
+            //return Json(wmDailyWaterLevelAndissue);
+
+            return PartialView("PartialWaterIssued", wmDailyWaterLevelAndissue); 
         }
 
 
 
-        void CalculateIssue()
-        {
-            //string tankName = "";
-            //DateTime waterIssueConsiderDate = DateTime.Today;
-            //decimal waterLevelAtSluice = 280.20m; //--------------------------------------------------------------------taking by userInput
-
-
-
-
-            ////get capacity by level
-            //int tankCapacity = _waterLevelCapacityRepository
-            //                    .GetMuruthawelaWaterCapacityByLevel(waterLevelAtSluice).capacity;
-
-
-            //WmDailyWaterLevelAndissue wmDailyWaterLevelAndissue = new WmDailyWaterLevelAndissue();
-
-            //---------------------------Effective head-------------------------------------------------
-            //EffectiveHead=Water Level at sluice - Sil Level
-            //                             280.20 - 244 = 36.20
-
-
-            //double silLevel = 244;  //this is a fixed value                                   
-            //double effectiveHead = 0;
-            //effectiveHead = waterLevelAtSluice - silLevel;
-
-            //wmDailyWaterLevelAndissue.WarterLevelAtSluice = (decimal)waterLevelAtSluice;
-            //wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
-            //wmDailyWaterLevelAndissue.Capacity = tankCapacity;
-            //wmDailyWaterLevelAndissue.EffectiveHead = (decimal)effectiveHead;
-
-
-            //------------------------------Gate opening------------------------------------------------
-            //wmDailyWaterLevelAndissue.GateOpenedSize = 0;
-            ////issue ACFT
-            //wmDailyWaterLevelAndissue.WaterIssuedInAcft = 0;
-
-
-            ////------------------------------Gate opening------------------------------------------------
-            //waterLevelAndIssuedBean.GateOpenedSize = double.Parse(this.txtGateOpened.Text.ToString());
-
-            ////======================CALCULATING WATER ISSUED============================
-
-            //double waterIssued = 0;
-            //try
-            //{
-
-            //    waterIssued = (double)9.92 * 3.5 * (waterLevelAndIssuedBean.GateOpenedSize / 12) *
-            //                Math.Sqrt(waterLevelAndIssuedBean.EffectiveHead) * (waterLevelAndIssuedBean.NoOfHoursForFormula / 24);
-            //}
-            //catch (Exception ee)
-            //{
-            //    MessageBox.Show("A problem occured :" + ee.Message);
-            //}
-            //waterLevelAndIssuedBean.WaterIssuedInACFT = waterIssued;
-        }
+       
     }
 }
