@@ -61,11 +61,11 @@ namespace IrrigationWebSystem
                 //    await context.Response.WriteAsync("Hello World!");
                 //});
 
-                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapDefaultControllerRoute();
 
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Employee}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Employee}/{action=Index}/{id?}");
 
             });
         }

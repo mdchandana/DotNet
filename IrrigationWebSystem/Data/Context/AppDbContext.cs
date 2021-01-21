@@ -10,10 +10,10 @@ namespace IrrigationWebSystem.Data.Context
     public class AppDbContext : DbContext
     {
 
-        public AppDbContext()
-        {
+        //public AppDbContext()
+        //{
 
-        }
+        //}
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -64,10 +64,10 @@ namespace IrrigationWebSystem.Data.Context
         //}
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=tcp:mdchandana.database.windows.net,1433;Initial Catalog=IrrigationSystemDB;Persist Security Info=False;User ID=chandana;Password=myApple5s;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=tcp:mdchandana.database.windows.net,1433;Initial Catalog=IrrigationSystemDB;Persist Security Info=False;User ID=chandana;Password=myApple5s;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        //}
 
     }
 }
