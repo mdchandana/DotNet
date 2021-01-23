@@ -2,32 +2,34 @@
 @model IEnumerable<WmDailyWaterLevelAndissue>
 
 
-<table class="table table-striped border">
-    <thead class="table-info">
-        <tr>
-            <th>Date</th>
-            <th>WaterLevel At Sluice</th>
-            <th>Effective Head</th>
-            <th>TankCapacity</th>
-            <th>Duration Start</th>
-            <th>Duration End</th>
-            <th>Gate Opened</th>
-            <th>WaterIssued (ACFT)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var waterIssues in Model)
-        {
-        <tr>
-            <td>@waterIssues.WaterIssuingConsiderDate.ToShortDateString()</td>
-            <td>@waterIssues.WarterLevelAtSluice</td>
-            <td>@waterIssues.EffectiveHead</td>
-            <td>@waterIssues.Capacity</td>
-            <td>@waterIssues.WaterIssuedDurationFromDateWithTime</td>
-            <td>@waterIssues.WaterIssuedDurationToDateWithTime</td>
-            <td>@waterIssues.GateOpenedSize</td>
-            <td>@waterIssues.WaterIssuedInAcft.ToString("0.00")</td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <thead class="table-info">
+            <tr>
+                <th>Date</th>
+                <th>WaterLevel At Sluice</th>
+                <th>Effective Head</th>
+                <th>TankCapacity</th>
+                <th>Duration Start</th>
+                <th>Duration End</th>
+                <th>Gate Opened</th>
+                <th>WaterIssued (ACFT)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var waterIssues in Model)
+            {
+                <tr>
+                    <td>@waterIssues.WaterIssuingConsiderDate.ToShortDateString()</td>
+                    <td>@waterIssues.WarterLevelAtSluice</td>
+                    <td>@waterIssues.EffectiveHead</td>
+                    <td>@waterIssues.Capacity</td>
+                    <td>@waterIssues.WaterIssuedDurationFromDateWithTime</td>
+                    <td>@waterIssues.WaterIssuedDurationToDateWithTime</td>
+                    <td>@waterIssues.GateOpenedSize</td>
+                    <td>@waterIssues.WaterIssuedInAcft.ToString("0.00")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

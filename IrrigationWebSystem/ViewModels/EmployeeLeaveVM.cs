@@ -15,11 +15,12 @@ namespace IrrigationWebSystem.ViewModels
         public int EmployeeId { get; set; }
 
         [Required]
+
         public LeaveType LeaveType { get; set; }   //enums
 
         [Required]
-
-        public DateTime LeaveDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? LeaveDate { get; set; }
 
         [Required]
         public HalfFullLeaveType HalfFullLeaveType { get; set; }   //enums
@@ -29,15 +30,19 @@ namespace IrrigationWebSystem.ViewModels
 
 
 
+
         public int PositionId { get; set; }  //this just id for selectlist
         public SelectList EmployeePositions { get; set; }
-        public IEnumerable<EmployeeVM> EmployeesVMs { get; set; }
 
 
 
                 
         public SelectList Employees { get; set; }
-        //public IEnumerable<EmployeeVM> EmployeesVMs { get; set; }
+
+
+
+        public int IdForLeaveTempList { get; set; }
+
 
     }
 }

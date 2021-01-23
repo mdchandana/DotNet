@@ -9,7 +9,7 @@ namespace IrrigationWebSystem.Models.Interfaces
     public interface IEmployeeLeaveRepository
     {
         List<EmployeeLeave> GetEmpLeavesByEmployeeId(int employeeId);
-        void AddEmpLeave(EmployeeLeave employeeLeave);
+        void AddEmpLeave(List<EmployeeLeave> employeeLeaveList);
         void DeleteEmpLeaveByEmployeeId(int employeeId);
 
     }

@@ -1,0 +1,33 @@
+﻿
+@model IEnumerable<EmployeeLeaveVM>
+
+
+@foreach (var leave in Model)
+{
+    
+
+    <tr>
+        <td>@leave.EmployeeId</td>
+        <td>@leave.LeaveType</td>
+        <td>@leave.HalfFullLeaveType</td>
+        <td>@leave.LeaveDate</td>
+        <td><a href="#" id="tableRowDeleteButton" onclick="deleteItemFromTempList(@leave.IdForLeaveTempList)">@leave.IdForLeaveTempList Delete</a></td>
+    </tr>
+}
+
+<script>
+    function deleteItemFromTempList(id) {
+        //alert('need to delete to ' + id);
+
+        $.ajax({
+
+            method: "Get",
+            url: "/Leave/RemoveFromLeaveTempList?tempId=" + id,
+            success: function (response) {
+
+                $("#leaveTableBody").html(response);
+            }
+
+        })
+    }
+</script>

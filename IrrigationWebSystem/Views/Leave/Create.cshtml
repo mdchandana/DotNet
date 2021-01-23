@@ -5,7 +5,7 @@
 
 <br />
 
-<h3 class="text-info">Updating Water level and Water Issue - Muruthawela Tank</h3>
+<h3 class="text-info">Updating - Employee Leave</h3>
 
 <br />
 <br />
@@ -13,59 +13,34 @@
 <div>
 
 
-    <form id="myForm">
-
+    <form id="leaveForm" asp-controller="Leave" asp-action="Create" method="post">
 
         <div class="form-group row">
-            <div class="col-md-1">
-                <label asp-for="PositionId" class="col-form-label">Position</label>
+            <div class="col-md-2">
+                <label asp-for="PositionId" class="col-form-label">Employee Position</label>
             </div>
             <div class="col-md-4">
                 <select asp-for="PositionId" asp-items="@Model.EmployeePositions" class="form-control"></select>
             </div>
+          
         </div>
 
 
         <div class="form-group row">
-            <div class="col-md-1">
-                <label asp-for="EmployeeId" class="col-form-label">Position</label>
+            <div class="col-md-2">
+                <label asp-for="EmployeeId" class="col-form-label">Employee Name</label>
             </div>
             <div class="col-md-4">
                 <select asp-for="EmployeeId" asp-items="@Model.Employees" class="form-control"></select>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-md-3">
-                <label asp-for="LeaveType" class="form-label">Water Issue Duration From</label>
-            </div>
-            <div class="col-md-3">
-                <input asp-for="LeaveType" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-md-3">
-                <label asp-for="LeaveDate" class="form-label">Water Issue Duration From</label>
-            </div>
-            <div class="col-md-3">
-                <input asp-for="LeaveDate" class="form-control" />
-            </div>
+            <span class="text-danger" asp-validation-for="EmployeeId"></span>
         </div>
 
 
-        <div class="form-group row">
-            <div class="col-md-3">
-                <label asp-for="HalfFullLeaveType" class="form-label">Water Issue Duration From</label>
-            </div>
-            <div class="col-md-3">
-                <input asp-for="HalfFullLeaveType" class="form-control" />
-            </div>
-        </div>
 
         <div class="form-group row">
             <div class="col-md-2">
-                <label asp-for="LeaveType" class="form-label"></label>
+                <label asp-for="LeaveType" class="form-label">Leave Type</label>
             </div>
             <div class="col-md-4">
                 <select asp-for="LeaveType" class="form-control"
@@ -73,10 +48,68 @@
                     <option>Plz Select</option>
                 </select>
             </div>
+            <span class="text-danger" asp-validation-for="LeaveType"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label asp-for="HalfFullLeaveType" class="form-label">Half Day / Full Day</label>
+            </div>
+            <div class="col-md-4">
+                <select asp-for="HalfFullLeaveType" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<HalfFullLeaveType>()">
+                    <option>Plz Select</option>
+                </select>
+            </div>
+            <span class="text-danger" asp-validation-for="HalfFullLeaveType"></span>
         </div>
 
 
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label asp-for="LeaveDate" class="form-label">Leave Date</label>
+            </div>
+            <div class="col-md-4">
+                <input asp-for="LeaveDate" class="form-control" />
+            </div>
+            <span class="text-danger" asp-validation-for="LeaveDate"></span>
+
+            <button type="button" id="AddToListLeave" class="btn btn-primary">Add To List</button>
+            <button type="button" id="Update" class="btn btn-success">Update</button>
+        </div>
+
+       
+
     </form>
+
+
+
+    <div class="table-responsive border">
+        <table class="table">
+           <thead class="text-info">
+               <tr class="text-info">
+                   <th>Name With Initials</th>
+                   <th>Leave Type</th>
+                   <th>Full/Half Day</th>
+                   <th>Leave Date</th>
+                   <th></th>
+               </tr>
+           </thead>
+            <tbody id="leaveTableBody">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <br />
+    <br />
 
     <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
 
@@ -92,7 +125,56 @@
 
 
 <script>
+
+
     $(document).ready(function () {
+
+        
+
+        $("#AddToListLeave").click(function () {
+
+            var leaveFormData = $("#leaveForm").serialize();
+
+            $.ajax({
+
+                method: "POST",
+                url: "/Leave/AddToListLeave",
+                data: leaveFormData,
+                success: function (response) {
+
+                    $("#leaveTableBody").html(response);
+                    //console.log(laveFormData);
+                }
+            })            
+
+        })
+
+
+
+
+
+
+        $("#Update").click(function () {
+
+            $.ajax({
+
+                method: "Get",
+                url: "/Leave/Update",
+                success: function (response) {
+                    $("#leaveTableBody").html(response);
+                    alert('Updated');
+                }
+            })
+        })
+
+
+
+
+
+    })
+
+
+    @*$(document).ready(function () {
 
 
         //$("#WarterLevelAtSluice").val('');
@@ -101,7 +183,7 @@
         $("#btnAddToList").click(function () {
 
 
-            $("#loader").show();
+            //$("#loader").show();
 
             var myFormData = $("#myForm").serialize();
 
@@ -125,5 +207,5 @@
 
 
 
-    })
+    })*@
 </script>

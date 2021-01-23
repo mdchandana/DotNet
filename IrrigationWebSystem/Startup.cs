@@ -29,17 +29,22 @@ namespace IrrigationWebSystem
         {
             services.AddControllersWithViews();
 
-            //services.AddDbContext<AppDbContext>(options =>
-            //    options.UseSqlServer(_configuration.GetConnectionString("IrrigationSystemDbConnString")));
-
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("AzureDbConnectionString")));
+                options.UseSqlServer(_configuration.GetConnectionString("IrrigationSystemDbConnString")));
+
+            //services.AddDbContext<AppDbContext>(options =>
+            //    options.UseSqlServer(_configuration.GetConnectionString("AzureDbConnectionString")));
 
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IWaterLevelCapacityMuruthawelaTank, WaterLevelCapacityMuruthawelaTankRepository>();
             services.AddScoped<IWaterIssueRepository, WaterIssueRepository>();
+            services.AddScoped<IEmployeeLeaveRepository, EmployeeLeaveRepository>();
+
+
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +58,9 @@ namespace IrrigationWebSystem
             app.UseStaticFiles();
           
             app.UseRouting();
+
+
+            app.UseSession(); //before mvc middleware
 
             app.UseEndpoints(endpoints =>
             {

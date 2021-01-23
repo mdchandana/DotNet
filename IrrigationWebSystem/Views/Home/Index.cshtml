@@ -3,8 +3,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<form asp-controller="Home" asp-action="Test" method="post">
+<partial name="_Carousel" />
+
+
+
+@*<form asp-controller="Home" asp-action="Test" method="post">
     <input type="submit" value="Submit" />
-</form>
+</form>*@
+
+
+
+<script>
+
+    $('.carousel').carousel()
+
+</script>

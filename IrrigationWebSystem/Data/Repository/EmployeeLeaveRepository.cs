@@ -16,9 +16,12 @@ namespace IrrigationWebSystem.Data.Repository
         {
             _appDbContext = appDbContext;
         }
-        public void AddEmpLeave(EmployeeLeave employeeLeave)
+        public void AddEmpLeave(List<EmployeeLeave> employeeLeaveList)
         {
-            _appDbContext.EmployeeLeaves.Add(employeeLeave);
+            foreach(var empLeave in employeeLeaveList)
+            {
+                _appDbContext.EmployeeLeaves.Add(empLeave);
+            }            
             _appDbContext.SaveChanges();
         }
 

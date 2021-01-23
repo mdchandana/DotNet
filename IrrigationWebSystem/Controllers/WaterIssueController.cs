@@ -47,11 +47,11 @@ namespace IrrigationWebSystem.Controllers
         {
             string tankName = "Muruthawela";
             
-            //get capacity by level
+            //Get capacity by water level --- accessing Database
             int tankCapacity = _waterLevelCapacityRepository
                                 .GetMuruthawelaWaterCapacityByLevel(wmDailyWaterLevelAndissueVM.WarterLevelAtSluice).capacity;
 
-            //----
+           //Instantiation
             WmDailyWaterLevelAndissue wmDailyWaterLevelAndissue = new WmDailyWaterLevelAndissue(); 
 
 
@@ -60,7 +60,7 @@ namespace IrrigationWebSystem.Controllers
             //                             280.20 - 244 = 36.20
 
 
-            double silLevel = 244;  //this is a fixed value                                   
+            double silLevel = 244;  //---------Sill Level This is a fixed value                                   
             double effectiveHead = 0;
             effectiveHead = (double)wmDailyWaterLevelAndissueVM.WarterLevelAtSluice - silLevel;
 
@@ -76,8 +76,9 @@ namespace IrrigationWebSystem.Controllers
             wmDailyWaterLevelAndissue.GateOpenedSize = wmDailyWaterLevelAndissueVM.GateOpenedSize;
             wmDailyWaterLevelAndissue.WaterIssuedInAcft = 0;
 
-            //=========================================Time Manipulation===========================================
 
+
+            //=========================================Time Manipulation===========================================
             var timeStamp = wmDailyWaterLevelAndissueVM.WaterIssuedDurationToDateWithTime
                             .Subtract(wmDailyWaterLevelAndissueVM.WaterIssuedDurationFromDateWithTime);
 
@@ -86,9 +87,9 @@ namespace IrrigationWebSystem.Controllers
             int hrs = timeStamp.Hours;
             int remainingMinutes = (int)totMinutes - (hrs * 60);
 
-            //==============Time duration pass to DB=======================================================================
+            //======================================Time duration pass to DB===============================================
             wmDailyWaterLevelAndissue.NoOfHours = (decimal)double.Parse((hrs.ToString() + "." + remainingMinutes.ToString()));
-            //================================================================================================================
+            //=============================================================================================================
 
 
 
@@ -111,14 +112,14 @@ namespace IrrigationWebSystem.Controllers
 
 
 
-            //==============Time duration pass to formula===================================================
+            //====================================Time duration pass to formula=======================================
             double timeDurationPassToFormula = double.Parse((hrs.ToString()+"." + minutesAsUnits.ToString()));
-            //=====================================================================================================
+            //========================================================================================================
 
 
 
-            //======================CALCULATING WATER ISSUED============================
-
+            //======================CALCULATING WATER ISSUED================================
+            //===============================FORMULA========================================
             double waterIssued = 0;
             try
             {
