@@ -1,0 +1,23 @@
+﻿
+
+
+You will want it to be inclusive on the start date, but exclusive on the end date. This is because a DateTime used as a date is really the very beginning of that day, and doesn't extend to the end of the day.
+
+// dates that are inclusive on the date range
+var startDate = new DateTime(2016, 1, 1);
+var endDate = new DateTime(2016, 12, 31);
+
+...
+
+// WRONG: this will ignore data on the last day
+.Where(obj => obj.StartDate >= startDate && obj.EndDate <= endDate)
+
+// RIGHT: this will include the last day
+var endDateExclusive = endDate.AddDays(1);
+
+...
+
+.Where(obj => obj.StartDate >= startDate && obj.EndDate < endDateExclusive)
+Even if you are using specific DateTime values, it can still be important to use >= and <, rather than >= and <= or > and <.
+
+If you use both >= and <= signs, then two date ranges from X to Y and from Y to Z would both include records that exactly match Y. Depending on your requirements it could be a serious flaw to include the record in both date ranges. Similarly, if you use > and <, you would instead exclude records from both date ranges that exactly matched Y.

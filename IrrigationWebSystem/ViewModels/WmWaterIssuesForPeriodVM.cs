@@ -14,5 +14,8 @@ namespace IrrigationWebSystem.ViewModels
 
         [DataType(DataType.Date)]
         public DateTime DurationEnd { get; set; }
+
+
+        public List<WmDailyWaterLevelAndissueVM> WmDailyWaterLevelAndissueVMs { get; set; }
     }
 }

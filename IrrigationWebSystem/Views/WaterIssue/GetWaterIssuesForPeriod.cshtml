@@ -15,36 +15,66 @@
 
     <form id="myForm">
 
-        <div class="form-group">            
-            <label asp-for="DurationStart" class="form-label">Date From</label>
+        <div class="form-group row">
+
             <div class="col-md-3">
+                <label asp-for="DurationStart" class="form-label"> Date From</label>
                 <input asp-for="DurationStart" class="form-control" />
             </div>
-        </div>
 
-
-        <div class="form-group">
-            <label asp-for="DurationEnd" class="form-label">Date To</label>
             <div class="col-md-3">
+                <label asp-for="DurationEnd" class="form-label">Date To</label>
                 <input asp-for="DurationEnd" class="form-control" />
             </div>
         </div>
-
+        <button type="button" class="btn btn-primary" id="btnSeachForPeriod">Search</button>
 
 
     </form>
 
-
+    <br />
 
 
     <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
 
     <div id="divWaterIssuesForPeriod">
 
+        <div class="table-responsive border">
+            <table class="table">
+                <thead>
+                    <tr class="table-info">
+                        <th>Date</th>
+                        <th>Water Level</th>
+                        <th>Effective Head</th>
+                        <th>TankCapacity</th>
+                        <th>Issue Start</th>
+                        <th>Issue End</th>
+                        <th>Gate Opened</th>
+                        <th>Water Issued (ACFT)</th>
+                    </tr>
+                </thead>
+                <tbody id="waterIssuesForPeriodTableBody">
+                    @foreach (var waterIssues in Model.WmDailyWaterLevelAndissueVMs)
+                    {
+                    <tr>
+                        <td>@waterIssues.WaterIssuingConsiderDate.ToShortDateString()</td>
+                        <td>@waterIssues.WarterLevelAtSluice</td>
+                        <td>@waterIssues.EffectiveHead</td>
+                        <td>@waterIssues.Capacity</td>
+                        <td>@waterIssues.WaterIssuedDurationFromDateWithTime.ToString("dd/MM/yyyy hh:mm:tt")</td>                      
+                        <td>@waterIssues.WaterIssuedDurationToDateWithTime.ToString("dd/MM/yyyy hh:mm:tt")</td>
+                        <td>@waterIssues.GateOpenedSize</td>
+                        <td>@waterIssues.WaterIssuedInAcft</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
-
-
+    <br />
+    <br />
 
 </div>
 
@@ -57,23 +87,25 @@
         //$("#WarterLevelAtSluice").val('');
         //$("#GateOpenedSize").val('');
 
-        $("#btnAddToList").click(function () {
+        $("#btnSeachForPeriod").click(function () {
 
 
             $("#loader").show();
 
-            var myFormData = $("#myForm").serialize();
+            //var myFormData = $("#myForm").serialize();
+            var durationStart = $("#DurationStart").val();
+            var durationEnd = $("#DurationEnd").val();
 
             $.ajax({
 
                 method: "POST",
                 url: "/WaterIssue/GetWaterIssuesForPeriod",
-                data: myFormData,
+                data: { startDate: durationStart, endDate: durationEnd},
                 success: function (response) {
                     //console.log(response);
-                    $("#divWaterIssuesForPeriod").html(response);
+                    $("#waterIssuesForPeriodTableBody").html(response);
                     $("#loader").hide();
-                    
+
                 }
             })
 

@@ -152,17 +152,68 @@ namespace IrrigationWebSystem.Controllers
             return PartialView("PartialWaterIssued", wmDailyWaterLevelAndissue); 
         }
 
+        
+        [HttpGet]
+        public ActionResult GetWaterIssuesForPeriod()
+        {
+            var dateStart = DateTime.Now.AddMonths(-1);
+            var dateEnd = DateTime.Today;
+
+            WmWaterIssuesForPeriodVM wmWaterIsuueForPeriod = new WmWaterIssuesForPeriodVM()
+            {
+                DurationStart = dateStart,
+                DurationEnd = dateEnd,
+                WmDailyWaterLevelAndissueVMs = _waterIssueRepository.GetWaterIssuesForPeriod(dateStart, dateEnd)
+                                                .Select(waterIssueVm => new WmDailyWaterLevelAndissueVM()
+                                                {
+                                                    WaterIssuingConsiderDate= waterIssueVm.WaterIssuingConsiderDate,
+                                                    WarterLevelAtSluice=waterIssueVm.WarterLevelAtSluice,
+                                                    EffectiveHead=waterIssueVm.EffectiveHead,
+                                                    Capacity=waterIssueVm.Capacity,                                                    
+                                                    WaterIssuedDurationFromDateWithTime=waterIssueVm.WaterIssuedDurationFromDateWithTime,
+                                                    WaterIssuedDurationToDateWithTime = waterIssueVm.WaterIssuedDurationToDateWithTime,
+                                                    NoOfHours = waterIssueVm.NoOfHours,
+                                                    GateOpenedSize = waterIssueVm.GateOpenedSize,
+                                                    WaterIssuedInAcft =waterIssueVm.WaterIssuedInAcft
+                                                }).ToList()
+            };
+
+            return View(wmWaterIsuueForPeriod);
+        }
 
 
-
-
+       
+        [HttpPost]
         public ActionResult GetWaterIssuesForPeriod(DateTime startDate,DateTime endDate)
         {
             var waterIssueForPeriod=_waterIssueRepository.GetWaterIssuesForPeriod(startDate, endDate);
 
+            WmWaterIssuesForPeriodVM wmWaterIsuueForPeriod = new WmWaterIssuesForPeriodVM()
+            {
+                
+                WmDailyWaterLevelAndissueVMs = _waterIssueRepository.GetWaterIssuesForPeriod(startDate, endDate)
+                                                .Select(waterIssueVm => new WmDailyWaterLevelAndissueVM()
+                                                {
+                                                    WaterIssuingConsiderDate = waterIssueVm.WaterIssuingConsiderDate,
+                                                    WarterLevelAtSluice = waterIssueVm.WarterLevelAtSluice,
+                                                    EffectiveHead = waterIssueVm.EffectiveHead,
+                                                    Capacity = waterIssueVm.Capacity,
+                                                    WaterIssuedDurationFromDateWithTime = waterIssueVm.WaterIssuedDurationFromDateWithTime,
+                                                    WaterIssuedDurationToDateWithTime = waterIssueVm.WaterIssuedDurationToDateWithTime,
+                                                    NoOfHours = waterIssueVm.NoOfHours,
+                                                    GateOpenedSize = waterIssueVm.GateOpenedSize,
+                                                    WaterIssuedInAcft = waterIssueVm.WaterIssuedInAcft
+                                                }).ToList()
+            };
 
-            return PartialView("PartialwaterIssuesForPeriod", waterIssueForPeriod);
+            return PartialView("PartialwaterIssuesForPeriod", wmWaterIsuueForPeriod);
         }
+
+
+
+
+
+
        
     }
 }

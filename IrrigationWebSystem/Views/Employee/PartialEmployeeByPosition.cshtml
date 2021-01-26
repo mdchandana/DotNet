@@ -1,6 +1,6 @@
 ﻿@model EmployeeListVM
 
-<div class="table-responsive">
+<div class="table-responsive border">
     <table class="table">
         <thead>
             <tr class="table-info">
@@ -16,7 +16,7 @@
             @foreach (var emp in Model.EmployeesVMs)
             {
                 <tr>
-                    <td><img src="@("/Photoes/"+emp.EmpNumber+".jpg")" class="rounded-circle" width="40" height="50" /></td>
+                    <td><img src="@("/Photoes/"+emp.EmpNumber+".jpg")" class="rounded-circle" width="50" height="50" /></td>
                     <td>@emp.EmpNumber</td>
                     <td>@emp.PersonalFileNumber</td>
                     <td>@emp.NameWithInitial</td>
