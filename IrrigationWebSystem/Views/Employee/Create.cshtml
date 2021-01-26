@@ -1,19 +1,28 @@
 ﻿@model EmployeeVM
 @{
-    ViewData["Title"] = "Edit Employee";
+    ViewData["Title"] = "New Employee";
 }
 
 
 <br />
 
-<h3 class="text-info">Edit Employee</h3>
-
-
 <form asp-controller="Employee" asp-action="Create" method="post">
-    <div class="text-right">
-        <input type="submit" class="btn btn-success" value="Save Employee" />
-    </div>
+    @*<div class="text-right">
+            <div>
+                <img src="/images/no image.jpg" class="rounded-circle border" width="60" height="70" />
+            </div>
+        </div>*@
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="text-info">New Employee</h3>
+        </div>
 
+        <div class="col-md-3">
+            <div>
+                <img src="/images/no image.jpg" class="border border-info" width="60" height="70" />
+            </div>
+        </div>
+    </div>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Main Informations</a>
@@ -39,6 +48,11 @@
                     <div class="col-md-6">
                         <input asp-for="NameWithInitial" class="form-control" />
                     </div>
+                    @*<div class="col-md-4 text-right">
+                            <div>
+                                <img src="/images/no image.jpg" class="rounded-circle border" width="60" height="70" />
+                            </div>
+                        </div>*@
                 </div>
 
                 <div class="form-group row">
@@ -122,11 +136,7 @@
                     </div>
                 </div>
 
-                <br />
             </div>
-
-
-
 
 
         </div>
@@ -191,10 +201,10 @@
 
                 <div class="form-group row">
                     <div class="col-md-2">
-                        <label asp-for="ContactNumber1" class="form-label">ContactNumber</label>
+                        <label asp-for="ContactNumber" class="form-label">ContactNumber</label>
                     </div>
                     <div class="col-md-4">
-                        <input asp-for="ContactNumber1" class="form-control" />
+                        <input asp-for="ContactNumber" class="form-control" />
                     </div>
                 </div>
 
@@ -207,8 +217,6 @@
                     </div>
                 </div>
 
-                <br />
-
             </div>
         </div>
 
@@ -220,8 +228,14 @@
         </div>
 
 
-
     </div>
+
+    <div class="form-group row ml-2">
+        <input type="submit" class="btn btn-success" value="Save Employee" />
+    </div>
+
+
+
 </form>
 
 

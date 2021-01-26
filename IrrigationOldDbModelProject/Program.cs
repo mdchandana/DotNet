@@ -92,7 +92,7 @@ namespace IrrigationOldDbModelProject
 
             //        newEmployeeObj.DateOfBirth = empOld.EmpDateOfBirth;
             //        newEmployeeObj.Email = empOld.EmpEmail;
-
+            //        newEmployeeObj.ContactNumber = empOld.EmpContact1;
 
             //        newEmployeeObj.ClassMnGrade = ClassMnGrade.UnKnown;   //enums
 
@@ -109,7 +109,7 @@ namespace IrrigationOldDbModelProject
 
             //        newContext.Employees.Add(newEmployeeObj);
             //        newContext.SaveChanges();
-                    
+
 
 
             //        //        //Saving Emp Contacts----------------------------------------------------------------

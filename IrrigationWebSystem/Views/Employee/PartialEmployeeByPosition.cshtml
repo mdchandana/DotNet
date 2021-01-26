@@ -4,6 +4,7 @@
     <table class="table">
         <thead>
             <tr class="table-info">
+                <th></th>
                 <th>Emp Number</th>
                 <th>Personel File Number</th>
                 <th>Name With Initials</th>
@@ -15,6 +16,7 @@
             @foreach (var emp in Model.EmployeesVMs)
             {
                 <tr>
+                    <td><img src="@("/Photoes/"+emp.EmpNumber+".jpg")" class="rounded-circle" width="40" height="50" /></td>
                     <td>@emp.EmpNumber</td>
                     <td>@emp.PersonalFileNumber</td>
                     <td>@emp.NameWithInitial</td>

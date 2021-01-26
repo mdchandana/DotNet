@@ -3,15 +3,20 @@
     ViewData["Title"] = "Edit Employee";
 }
 
-
 <br />
 
-<h3 class="text-info">Edit Employee</h3>
-
-
 <form asp-controller="Employee" asp-action="Create" method="post">
-    <div class="text-right">
-        <input type="submit" class="btn btn-success" value="Save Employee" />
+
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="text-info">Edit Employee</h3>
+        </div>
+
+        <div class="col-md-3">
+            <div>
+                <img src="@("/Photoes/"+Model.EmpNumber+".jpg")" class="border border-info" width="80" height="90" />
+            </div>
+        </div>
     </div>
 
     <nav>
@@ -28,107 +33,102 @@
 
 
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <br />            
+            <br />
 
-                <div class="m-3">
+            <div class="m-3">
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="NameWithInitial" class="form-label">Name With Initials</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input asp-for="NameWithInitial" class="form-control" />
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="NameWithInitial" class="form-label">Name With Initials</label>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="EmpNumber" class="form-label">Emp Number</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input asp-for="EmpNumber" class="form-control" />
-                        </div>
+                    <div class="col-md-6">
+                        <input asp-for="NameWithInitial" class="form-control" />
                     </div>
+                </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="PersonalFileNumber" class="form-label">Personal File Number</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input asp-for="PersonalFileNumber" class="form-control" />
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="EmpNumber" class="form-label">Emp Number</label>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Nic" class="form-label">NIC Number</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input asp-for="Nic" class="form-control" />
-                        </div>
+                    <div class="col-md-4">
+                        <input asp-for="EmpNumber" class="form-control" />
                     </div>
+                </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="EmployeePositionId" class="form-label"></label>
-                        </div>
-                        <div class="col-md-4">
-                            <select asp-for="EmployeePositionId" class="form-control" asp-items="ViewBag.Positions">
-                            </select>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="PersonalFileNumber" class="form-label">Personal File Number</label>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="AppointmentDate" class="form-label">Appointment Date</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input asp-for="AppointmentDate" class="form-control" />
-                        </div>
+                    <div class="col-md-4">
+                        <input asp-for="PersonalFileNumber" class="form-control" />
                     </div>
-
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="ClassMnGrade" class="form-label"></label>
-                        </div>
-                        <div class="col-md-4">
-                            <select asp-for="ClassMnGrade" class="form-control"
-                                    asp-items="@Html.GetEnumSelectList<ClassMnGrade>()">
-                                <option>Plz Select</option>
-                            </select>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="Nic" class="form-label">NIC Number</label>
                     </div>
-
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input asp-for="DateOfBirth" class="form-control" />
-                        </div>
+                    <div class="col-md-4">
+                        <input asp-for="Nic" class="form-control" />
                     </div>
+                </div>
 
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Gender" class="form-label"></label>
-                        </div>
-                        <div class="col-md-4">
-                            <select asp-for="Gender" class="form-control"
-                                    asp-items="@Html.GetEnumSelectList<Gender>()">
-                                <option>Plz Select</option>
-                            </select>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="EmployeePositionId" class="form-label"></label>
                     </div>
+                    <div class="col-md-4">
+                        <select asp-for="EmployeePositionId" class="form-control" asp-items="ViewBag.Positions">
+                        </select>
+                    </div>
+                </div>
 
-                    <br />
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="AppointmentDate" class="form-label">Appointment Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="AppointmentDate" class="form-control" />
+                    </div>
                 </div>
 
 
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="ClassMnGrade" class="form-label"></label>
+                    </div>
+                    <div class="col-md-4">
+                        <select asp-for="ClassMnGrade" class="form-control"
+                                asp-items="@Html.GetEnumSelectList<ClassMnGrade>()">
+                            <option>Plz Select</option>
+                        </select>
+                    </div>
+                </div>
 
 
-           
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="DateOfBirth" class="form-control" />
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="Gender" class="form-label"></label>
+                    </div>
+                    <div class="col-md-4">
+                        <select asp-for="Gender" class="form-control"
+                                asp-items="@Html.GetEnumSelectList<Gender>()">
+                            <option>Plz Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
 
@@ -191,10 +191,10 @@
 
                 <div class="form-group row">
                     <div class="col-md-2">
-                        <label asp-for="ContactNumber1" class="form-label">ContactNumber</label>
+                        <label asp-for="ContactNumber" class="form-label">ContactNumber</label>
                     </div>
                     <div class="col-md-4">
-                        <input asp-for="ContactNumber1" class="form-control" />
+                        <input asp-for="ContactNumber" class="form-control" />
                     </div>
                 </div>
 
@@ -206,9 +206,6 @@
                         <input asp-for="Email" class="form-control" />
                     </div>
                 </div>
-
-                <br />
-
             </div>
         </div>
 
@@ -219,9 +216,13 @@
             </div>
         </div>
 
-
-
     </div>
+
+    <div class="form-group row ml-2">
+        <input type="submit" class="btn btn-success" value="Save Employee" />
+    </div>
+
+
 </form>
 
 
