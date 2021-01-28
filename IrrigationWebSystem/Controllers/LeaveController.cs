@@ -34,6 +34,22 @@ namespace IrrigationWebSystem.Controllers
 
 
         [HttpGet]
+        public IActionResult GetEmployeesByPosition(int positionId)
+        {
+            var employees = _employeeRepository.GetEmployeesByPositionId(positionId);
+
+            var nameList = new List<string>()
+            {
+                new string("chandana"),
+                new string("priyantha")
+            };
+
+
+            return Json(employees.ToList());
+        }
+
+
+        [HttpGet]
         public ActionResult Create()
         {
 

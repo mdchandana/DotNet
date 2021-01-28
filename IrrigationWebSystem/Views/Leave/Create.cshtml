@@ -129,7 +129,33 @@
 
     $(document).ready(function () {
 
-        
+
+
+        //Get employees by positionId
+        $("#PositionId").change(function () {
+
+            //$("#EmployeeId option").remove();
+            //var positionId = $("#PositionId option:selected").val();
+            //alert(positionId);
+
+
+
+            var positionId = $("#PositionId").val();
+
+            $.ajax({
+
+                method: "GET",
+                url: "/Leave/GetEmployeesByPosition?positionId="+positionId,
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        })
+
+
+
+
+
 
         $("#AddToListLeave").click(function () {
 

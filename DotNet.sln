@@ -71,6 +71,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShopHRM.Api", "PieShopHR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IrrigationWebSystem", "IrrigationWebSystem\IrrigationWebSystem.csproj", "{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jquery Ajax", "Jquery Ajax", "{7DDF1500-98E8-46CE-96A0-6F56A0BFA445}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JqueryAjax", "JqueryAjax\JqueryAjax.csproj", "{F709215E-D870-4E23-BCB0-343BB8D69B9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDotnetCore", "JsonDotnetCore\JsonDotnetCore.csproj", "{4E6D69EC-CBF8-45F7-9F16-8F1FFD53FF71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +159,14 @@ Global
 		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D405A7FC-3BF1-4495-BABD-C47D9F8C2382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F709215E-D870-4E23-BCB0-343BB8D69B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F709215E-D870-4E23-BCB0-343BB8D69B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F709215E-D870-4E23-BCB0-343BB8D69B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F709215E-D870-4E23-BCB0-343BB8D69B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E6D69EC-CBF8-45F7-9F16-8F1FFD53FF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E6D69EC-CBF8-45F7-9F16-8F1FFD53FF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E6D69EC-CBF8-45F7-9F16-8F1FFD53FF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E6D69EC-CBF8-45F7-9F16-8F1FFD53FF71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
