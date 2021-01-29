@@ -16,14 +16,18 @@ namespace JqueryAjax
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
 
-            ////In order to instruct MVC to stop using camel casing you can write this code in the ConfigureServices()
-            //services.AddControllersWithViews()
-            //    .AddJsonOptions(options =>
-            //    {
-            //        options.JsonSerializerOptions.PropertyNamingPolicy = null;
-            //    });
+
+            //===========To use pascalCase instead of camelCase , when retuen json==========================
+            //For Asp.Net Core serialize, its default serializer is camelCase
+            //In order to instruct MVC to stop using camel casing you can write this code in the ConfigureServices()
+            //you need to change the asp.net core to return PascalCase with configuration below in Startup.cs
+            services.AddControllersWithViews()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

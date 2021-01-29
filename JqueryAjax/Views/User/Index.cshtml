@@ -1,0 +1,96 @@
+﻿
+@model JqueryAjax.Models.UserVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<h1>Create User</h1>
+<h3>Chceck User already available , Using [Remote] Attribute</h3>
+
+<form id="myForm">
+
+    <label asp-for="UserName"></label>
+    <input asp-for="UserName" />
+    <span asp-validation-for="UserName" class="text-danger"></span>
+    <br />
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+    <br />
+
+    <button type="button" id="btnCreateUser" onclick="createUser()">Crete User</button>
+</form>
+
+
+
+
+<script>
+
+    var createUser = function () {
+
+        if (!$("#myForm").valid()) {
+
+            alert("Validation Failed..Fuck having errors");
+            return false;
+        }
+        else {
+
+            alert("Validation Done..")
+
+            var formDate = $("#myForm").serialize();
+
+            $.ajax({
+
+                method: "GET",
+                url: "/User/CreateUser",
+                data: formDate,
+                success: function (response) {
+
+                    if (response.status == "Added") {
+                        alert("Added...");
+
+                        var addedObjectRecieved = response.addedObject;
+                        alert("Added UserName :" + addedObjectRecieved.UserName);
+                        console.log(addedObjectRecieved);
+
+                    }
+                }
+            });
+            
+        }
+    }
+
+
+
+
+
+    //$(document).ready(function () {
+
+    //    $("#btnCreateUser").click(function () {
+
+    //        var userName = $("#UserName").val();
+
+    //        $.ajax({
+
+    //            method: "GET",
+    //            url: "/User/IsUserNameAvailable",
+    //            data: { UserName: userName },
+    //            success: function (response) {
+
+    //                console.log(response);
+    //            }
+    //        })
+
+    //    });
+
+    //});
+
+</script>

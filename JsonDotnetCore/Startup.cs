@@ -16,6 +16,14 @@ namespace JsonDotnetCore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+
+            ////In order to instruct MVC to stop using camel casing you can write this code in the ConfigureServices()
+            //services.AddControllersWithViews()
+            //    .AddJsonOptions(options =>
+            //    {
+            //        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +38,12 @@ namespace JsonDotnetCore
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
+
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }
