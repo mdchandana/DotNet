@@ -24,6 +24,7 @@ namespace JqueryAjax.Controllers
         }
 
 
+        //[AcceptVerbs("Get","Post")]
         public JsonResult IsUserNameAvailable(string UserName)
         {
             User user = new User();

@@ -6,10 +6,10 @@
 }
 
 
-<script src="~/lib/jquery/jquery.min.js"></script>
-<script src="~/lib/jquery-validate/jquery.validate.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
 
 <h1>Create User</h1>
 <h3>Chceck User already available , Using [Remote] Attribute</h3>
@@ -30,18 +30,25 @@
 </form>
 
 
+@* Jquery pluggin should be added in this order *@
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 
 <script>
 
     var createUser = function () {
 
-        if (!$("#myForm").valid()) {
+        //$("myForm").valid() is the main method which is checking the form is valid or not
+        if (!$("#myForm").valid())
+        {
 
             alert("Validation Failed..Fuck having errors");
             return false;
         }
-        else {
+        else
+        {
 
             alert("Validation Done..")
 
@@ -64,7 +71,7 @@
                     }
                 }
             });
-            
+
         }
     }
 

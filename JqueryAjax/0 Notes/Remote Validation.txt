@@ -1,0 +1,11 @@
+﻿
+
+
+===============================Remote Validation==============================
+Remote Validation is a technique of validating only particular input field without 
+posting the entire form to the server.
+It is very helpful for instant checking of an input field. You might notice this -
+feature when creating an account in Gmail. 
+As you jump out from the email input field, it instantly checks for existence email id
+and if it already found in the database,it suggests you choose another email id.
+
