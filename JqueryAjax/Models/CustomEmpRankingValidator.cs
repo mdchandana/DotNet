@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JqueryAjax.Models
+namespace JqueryAjax.Models.DomainEntities
 {
     public class CustomEmpRankingValidator : ValidationAttribute
     {

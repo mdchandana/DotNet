@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace JqueryAjax.Enums
-
 {
-    public enum Gender
+    public enum CurrentlyWorkingStatus
     {
-        Male = 1,
-        FeMale = 2
+        Working=0,
+        Transfered=1,
+        Retired=2
     }
 }

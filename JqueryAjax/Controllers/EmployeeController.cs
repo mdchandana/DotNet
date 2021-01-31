@@ -1,5 +1,9 @@
-﻿using JqueryAjax.Models;
+﻿using JqueryAjax.Enums;
+using JqueryAjax.Models;
+using JqueryAjax.Models.DomainEntities;
+using JqueryAjax.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +15,55 @@ namespace JqueryAjax.Controllers
     public class EmployeeController : Controller
     {
 
-        private Employee _employee = null;
-        private List<Employee> _employeeList = null;
+        
+        private List<EmployeeVM> _employeeVmList = null;
 
 
         public EmployeeController()
         {
 
-            _employee = new Employee() { Id = 2008, Name = "Madhawa", Address = "Benthota" };
-
-            _employeeList = new List<Employee>()
+            _employeeVmList = new List<EmployeeVM>()
             {
-                 new Employee(){Id=2001,Name="Sidath",Address="Kamburupitiya"},
-                 new Employee(){Id=2016,Name="Chandana",Address="Dickwella"},
-                 new Employee(){Id=2047,Name="Yasiru",Address="JaEla"}
+                 new EmployeeVM(){EmpNumber="2001",NameWithInitial="Sidath",Address="Kamburupitiya", Gender=Gender.Male,BasicSalary=125000,Age=38, PositionId=1},
+                 new EmployeeVM(){EmpNumber="2016",NameWithInitial="Chandana",Address="Dickwella", Gender=Gender.Male,BasicSalary=40000,Age=39, PositionId=2},
+                 new EmployeeVM(){EmpNumber="2047",NameWithInitial="Yasiru",Address="Ragama", Gender=Gender.Male,BasicSalary=78000,Age=40, PositionId=3}
             };
 
         }
 
+
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            EmployeePosition empPosition = new EmployeePosition();
+
+
+            var EmpVM = new EmployeeVM()
+            {
+                 EmployeePositions=new SelectList(empPosition.GetAllPositions(),"Id", "Position")
+            };
+
+
+            return View("EmployeeView", EmpVM);
         }
 
+        [HttpPost]
+        public JsonResult CreateEmployee(EmployeeVM employeeVM)
+        {
+            string status;
+
+            if(ModelState.IsValid)
+            {
+                status = "Validation Successed and Created Employee";
+            }
+            else
+            {
+                status = "Validation Failed";
+            }
+
+
+            return Json(status);
+        }
 
 
        
@@ -42,23 +72,23 @@ namespace JqueryAjax.Controllers
         public IActionResult GetEmployees()
         {
            
-            return Json(_employeeList);
+            return Json("");
         }
 
 
 
         [HttpGet]
-        public ActionResult GetEmployeeById(int? id)
+        public ActionResult GetEmployeeByEmpNumber(string empNumber)
         {
-            var foundEmp = _employeeList.FirstOrDefault(emp => emp.Id == id);
+            var foundEmp = _employeeVmList.FirstOrDefault(emp => emp.EmpNumber == empNumber);
 
-            if (id == null)
+            if (empNumber == null)
                 return BadRequest("EmployeeId cannot be null");
 
             if (foundEmp == null)
             {
                 ModelState.AddModelError("myError", "fuck");
-                return NotFound($"Employee with Id : {id} Notfound");
+                return NotFound($"Employee with Id : {empNumber} Notfound");
                 
             }
             return Json(foundEmp);

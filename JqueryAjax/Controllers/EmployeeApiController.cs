@@ -1,4 +1,5 @@
 ﻿using JqueryAjax.Models;
+using JqueryAjax.Models.DomainEntities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,13 @@ namespace JqueryAjax.Controllers
         public EmployeeApiController()
         {
 
-            _employee = new Employee() { Id = 2008, Name = "Madhawa", Address = "Benthota" };
+            _employee = new Employee() { EmpNumber = "2008", NameWithInitial = "Madhawa", Address = "Benthota" };
 
             _employeeList = new List<Employee>()
             {
-                 new Employee(){Id=2001,Name="Sidath",Address="Kamburupitiya"},
-                 new Employee(){Id=2016,Name="Chandana",Address="Dickwella"},
-                 new Employee(){Id=2047,Name="Yasiru",Address="JaEla"}
+                 new Employee(){EmpNumber="2001",NameWithInitial="Sidath",Address="Kamburupitiya"},
+                 new Employee(){EmpNumber="2016",NameWithInitial="Chandana",Address="Dickwella"},
+                 new Employee(){EmpNumber="2047",NameWithInitial="Yasiru",Address="JaEla"}
             };
 
         }

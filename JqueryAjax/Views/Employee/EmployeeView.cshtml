@@ -1,0 +1,142 @@
+﻿@model JqueryAjax.ViewModels.EmployeeVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Employee  - Index</h3>
+
+
+<h4>EmployeeGetById</h4>
+
+<form id="myEmpForm">
+
+    @*<label asp-for="EmployeeId"></label>
+    <input type="text" id="EmployeeId" />
+    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    <br />*@
+
+    <label asp-for="EmpNumber"></label>
+    <input type="text" id="EmpNumber" />
+    <span asp-validation-for="EmpNumber" class="text-danger"></span>
+    <br />
+
+    <label asp-for="NameWithInitial"></label>
+    <input asp-for="NameWithInitial" />
+    <span asp-validation-for="NameWithInitial" class="text-danger"></span>
+    <br />
+
+    <label asp-for="Address"></label>
+    <input asp-for="Address" />
+    <span asp-validation-for="Address" class="text-danger"></span>
+    <br />
+
+    <label asp-for="Age"></label>
+    <input asp-for="Age" />
+    <span asp-validation-for="Age" class="text-danger"></span>
+    <br />
+
+    <label asp-for="BasicSalary"></label>
+    <input asp-for="BasicSalary" />
+    <span asp-validation-for="BasicSalary" class="text-danger"></span>
+    <br />
+
+    <select asp-for="Gender"
+            asp-items="@Html.GetEnumSelectList<Gender>()">
+        <option value="">Plz Select Gender</option>
+    </select>
+    <span asp-validation-for="Gender" class="text-danger"></span>
+    <br />
+
+    <label asp-for="PositionId"></label>
+    <select asp-for="PositionId" asp-items="@Model.EmployeePositions">
+        <option value="">Plz Select position</option>
+    </select>
+    <span asp-validation-for="PositionId" class="text-danger"></span>
+    <br />
+
+    <button type="button" onclick="createEmployee()">Update</button>
+    <button type="button" id="EmpSearch">Search</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+</form>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+
+    var createEmployee = function () {
+
+        if (!$("#myEmpForm").valid()) {
+
+            alert("Validation Failed..Fuck EmpForm having errors");
+            return false;
+        }
+        else {
+
+            var formData = $("#myEmpForm").serialize();
+
+            $.ajax({
+
+                method: "POST",
+                url: "Employee/CreateEmployee",
+                data: formData,
+                success: function (response) {
+
+                    alert(response);
+
+                    $("#myEmpForm")[0].reset();
+                }
+            })
+        }
+
+
+    }
+
+
+    var clearForm = function () {
+        $("#myEmpForm")[0].reset();
+    }
+
+
+
+    $(document).ready(function () {
+
+        $("#EmpSearch").click(function () {
+
+            var empNumberVal = $("#EmpNumber").val();
+
+            //clear before load
+            $("#NameWithInitial").val("");
+            $("#Address").val("");
+
+            $.ajax({
+
+                method: "GET",
+                url: "/Employee/GetEmployeeByEmpNumber",
+                data: { empNumber: empNumberVal },
+                success: function (response) {
+
+                    //console.log(response);
+                    //console.log("Name :" + response.Name);
+                    //console.log("Address :" + response.Address);
+
+                    $("#NameWithInitial").val(response.NameWithInitial);
+                    $("#Address").val(response.Address);
+                    $("#Age").val(response.Age);
+                    $("#BasicSalary").val(response.BasicSalary);
+                    $("#Gender").val(response.Gender);
+                    $("#PositionId").val(response.PositionId);                   
+
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+
+        });
+    });
+
+</script>
+
+@*//data: {number1: val1, number2: val2, number3: val3},*@

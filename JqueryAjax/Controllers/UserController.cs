@@ -1,4 +1,5 @@
 ﻿using JqueryAjax.Models;
+using JqueryAjax.Models.DomainEntities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace JqueryAjax.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View("UserView");
         }
 
-        [HttpGet]
+        [HttpPost]
         public JsonResult CreateUser(User user)
         {
             var jsonObject = new { status = "Added", addedObject = user };
@@ -24,7 +25,7 @@ namespace JqueryAjax.Controllers
         }
 
 
-        //[AcceptVerbs("Get","Post")]
+        [AcceptVerbs("Get", "Post")]
         public JsonResult IsUserNameAvailable(string UserName)
         {
             User user = new User();

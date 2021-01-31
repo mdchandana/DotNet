@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JqueryAjax.Enums
-
+namespace JqueryAjax.DbContext
 {
-    public enum Gender
+    public class AppDbContext
     {
-        Male = 1,
-        FeMale = 2
     }
 }

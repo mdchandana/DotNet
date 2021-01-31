@@ -6,31 +6,36 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JqueryAjax.Models
+namespace JqueryAjax.ViewModels
 {
-    public class AddEmployeeVM
+    public class EmployeeVM
     {
-        public int Id { get; set; }
+        //public int EmployeeId { get; set; }
+
+        public string EmpNumber { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string NameWithInitial { get; set; }
 
         [Required]
         public string Address { get; set; }
 
-        [Required]
-        public Gender Gender { get; set; }
+        //[Required]  ===== No need to specify , 
+        public Gender Gender { get; set; }    //enums
 
         [Required]
         [Range(20,60,ErrorMessage ="Age should between 20 - 60")]
         public int Age { get; set; }
 
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid salary")]
+        public double BasicSalary { get; set; }
+
         
-        public double Salary { get; set; }
+
 
         //--------------FOR HANDLE POSITIONS-----------------------------------------------------
-        public int DepartmentId { get; set; }  //this is just for keep deptId From Department selectlist
-        public SelectList  EmployeeDepartments { get; set; }
+        public int PositionId { get; set; }  //this is just for keep deptId From Department selectlist
+        public SelectList EmployeePositions { get; set; }        
         //-----------------------------------------------------------------------------------------
 
 

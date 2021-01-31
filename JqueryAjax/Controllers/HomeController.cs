@@ -12,7 +12,7 @@ namespace JqueryAjax.Controllers
 
         public ActionResult Index()
         {
-            return Content("HomeController-Index Method Called");
+            return View();
         }
     }
 }

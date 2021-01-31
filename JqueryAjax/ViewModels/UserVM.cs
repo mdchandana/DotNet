@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JqueryAjax.Models
+namespace JqueryAjax.ViewModels
 {
     public class UserVM
     {
