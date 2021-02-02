@@ -1,0 +1,79 @@
+﻿@model JqueryAjax.ViewModels.CascadeListVM
+
+@{
+    ViewData["Title"] = "CascadeListView";
+}
+
+<h1>Go to Cascade dropdownList Test</h1>
+
+<form id="myEmpForm">
+    <label asp-for="PositionId"></label>
+    <select asp-for="PositionId" asp-items="@Model.EmpPositionsSelectList">
+        <option value="">Select Position</option>
+    </select>
+    <span asp-validation-for="PositionId"></span>
+    <br />
+
+    <label asp-for="EmpNumber"></label>
+    <select asp-for="EmpNumber" asp-items="@Model.EmpNamesSelectList">
+        <option value="">Select Employee</option>
+    </select>
+    <span asp-validation-for="EmpNumber"></span>
+    <button type="button" onclick="submitForm()">Update</button>
+</form>
+
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        //insert default item "Select" in dropdownlist on load
+        var items = "<option value=''>Select Employee</option>";
+        $("#EmpNumber").html(items);
+    });
+
+
+    //bind employees dropdownlist
+    $("#PositionId").change(function () {
+
+        var positionIdSelected = $("#PositionId").val();
+
+        //--WORKED
+        var url = "/Employee/GetEmployeesByPositionId";
+        $.getJSON(url, { PositionId: positionIdSelected }, function (data) {
+
+            var items = "";
+            $("#EmpNumber").empty();
+
+            items = "<option value=''>Select Employee</option>";
+
+            $.each(data, function (i, employee) {
+                items += "<option value='" + employee.EmpNumber + "'>" + employee.NameWithInitial + "</option>";
+            });
+
+            $("#EmpNumber").html(items);
+        });
+
+
+
+
+
+    });
+
+
+
+    var submitForm = function () {
+
+        if (!$("#myEmpForm").valid()) {
+
+            alert("Validation Failed..Fuck EmpForm having errors");
+            return false;
+        }
+
+    }
+
+</script>

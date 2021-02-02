@@ -35,7 +35,7 @@ namespace JqueryAjax.ViewModels
 
         //--------------FOR HANDLE POSITIONS-----------------------------------------------------
         public int PositionId { get; set; }  //this is just for keep deptId From Department selectlist
-        public SelectList EmployeePositions { get; set; }        
+        public SelectList EmpPositionsSelectList { get; set; }        
         //-----------------------------------------------------------------------------------------
 
 

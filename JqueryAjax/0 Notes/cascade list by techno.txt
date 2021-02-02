@@ -1,0 +1,59 @@
+<script>
+
+    $(document).ready(function () {
+
+        $("#CountryId").change(function () {
+
+            var selectedCountryId = $(this).val();
+
+            $.ajax({
+
+                type: "Post",
+                url: "/Employee/GetStatesByCountry?countryId="+selectedCountryId,
+                contentType: "html",
+                success: function (response) {
+
+                    $("#StateId").empty();
+                    $("#StateId").append(response);
+                }
+
+            })
+
+
+
+        })
+
+    })
+
+</script>
+
+
+
+
+
+
+------------------------------------------------------------------------------
+<option value="">--Select--</option>
+
+@if(ViewBag.StateOptions != null)
+{
+    foreach(var item in ViewBag.StateOptions)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+
+}
+
+
+
+------------------------------------------------------------------------------
+
+        public ActionResult GetStatesByCountry(int countryId)
+        {
+            List<State> listStates = null;
+            listStates = context.States.Where(x => x.ContryId == countryId).ToList();
+
+            ViewBag.StateOptions = new SelectList(listStates, "StateId", "StateName");
+
+            return PartialView("PartialStateOption");
+        }

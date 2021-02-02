@@ -3,10 +3,10 @@
     ViewData["Title"] = "Index";
 }
 
+
+<a asp-controller="Employee" asp-action="CascadeList">Go to Cascade dropdownList Test</a>
+
 <h3>Employee  - Index</h3>
-
-
-<h4>EmployeeGetById</h4>
 
 <form id="myEmpForm">
 
@@ -48,7 +48,7 @@
     <br />
 
     <label asp-for="PositionId"></label>
-    <select asp-for="PositionId" asp-items="@Model.EmployeePositions">
+    <select asp-for="PositionId" asp-items="@Model.EmpPositionsSelectList">
         <option value="">Plz Select position</option>
     </select>
     <span asp-validation-for="PositionId" class="text-danger"></span>
@@ -58,6 +58,8 @@
     <button type="button" id="EmpSearch">Search</button>
     <button type="button" onclick="clearForm()">Clear</button>
 </form>
+
+
 
 <script src="~/lib/jquery/jquery.min.js"></script>
 <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>

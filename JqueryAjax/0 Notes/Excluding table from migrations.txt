@@ -1,0 +1,31 @@
+
+
+
+
+
+Excluding types from the model
+If you don't want a type to be included in the model, you can exclude it:
+
+-----------------------
+[NotMapped]
+public class BlogMetadata
+{
+    public DateTime LoadedFromDatabase { get; set; }
+}
+
+----------------------
+
+
+
+
+
+----------------------
+Excluding from migrations
+The ability to exclude tables from migrations was introduced in EF Core 5.0.
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<IdentityUser>()
+        .ToTable("AspNetUsers", t => t.ExcludeFromMigrations());
+}
+----------------------

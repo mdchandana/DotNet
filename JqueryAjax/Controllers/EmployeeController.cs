@@ -26,6 +26,7 @@ namespace JqueryAjax.Controllers
             {
                  new EmployeeVM(){EmpNumber="2001",NameWithInitial="Sidath",Address="Kamburupitiya", Gender=Gender.Male,BasicSalary=125000,Age=38, PositionId=1},
                  new EmployeeVM(){EmpNumber="2016",NameWithInitial="Chandana",Address="Dickwella", Gender=Gender.Male,BasicSalary=40000,Age=39, PositionId=2},
+                 new EmployeeVM(){EmpNumber="2027",NameWithInitial="Rukmal",Address="Gammudawa", Gender=Gender.Male,BasicSalary=42000,Age=43, PositionId=2},
                  new EmployeeVM(){EmpNumber="2047",NameWithInitial="Yasiru",Address="Ragama", Gender=Gender.Male,BasicSalary=78000,Age=40, PositionId=3}
             };
 
@@ -40,7 +41,7 @@ namespace JqueryAjax.Controllers
 
             var EmpVM = new EmployeeVM()
             {
-                 EmployeePositions=new SelectList(empPosition.GetAllPositions(),"Id", "Position")
+                EmpPositionsSelectList = new SelectList(empPosition.GetAllPositions(),"Id", "Position")
             };
 
 
@@ -66,14 +67,47 @@ namespace JqueryAjax.Controllers
         }
 
 
-       
+        [HttpGet]
+        public ActionResult CascadeList()
+        {
+            EmployeePosition empPosition = new EmployeePosition();
+
+            var cascadeListVM = new CascadeListVM()
+            {
+                EmpPositionsSelectList = new SelectList(empPosition.GetAllPositions(), "Id", "Position"),
+                EmpNamesSelectList=new SelectList(_employeeVmList,"EmpNumber", "NameWithInitial")
+            };
+
+
+            return View("CascadeListView", cascadeListVM);
+        }
+
+
+        //--------This is for cascadedropdownlist---------------------------------------------
+        [HttpGet]
+        public JsonResult GetEmployeesByPositionId(int PositionId)
+        {
+
+            List<EmployeeVM> employeesByPosition = _employeeVmList
+                                                    .Where(position => position.PositionId == PositionId).ToList();
+
+            //var empSelectlist = new SelectList(employeesByPosition, "EmpNumber", "NameWithInitial");
+
+            //return Json(new SelectList(employeesByPosition, "EmpNumber", "NameWithInitial"));
+            return Json(employeesByPosition);
+        }
+
+
+
 
         [HttpGet]
-        public IActionResult GetEmployees()
+        public IActionResult AllEmployees()
         {
            
-            return Json("");
+            return View("AllEmployeesView");
         }
+
+
 
 
 
@@ -93,6 +127,17 @@ namespace JqueryAjax.Controllers
             }
             return Json(foundEmp);
         }
+
+
+
+        
+
+
+
+
+
+
+
     }
 }
 
