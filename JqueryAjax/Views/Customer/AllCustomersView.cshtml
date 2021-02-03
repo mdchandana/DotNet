@@ -1,4 +1,5 @@
-﻿
+﻿@model JqueryAjax.Models.Customer
+
 @{
     ViewData["Title"] = "AllCustomersView";
 }
@@ -9,34 +10,50 @@
 <script src="~/lib/jquery/jquery.js"></script>
 <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
 <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+<script src="~/lib/moment.js/moment.min.js"></script>
 
-<h1>All Customers View</h1>
+
+<br />
+<h3 class="text-info">Customers</h3>
+<br />
 
 @*<div style="width:90%; margin:0 auto;" class="table-responsive border">
     <table id="customerDatatable" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">*@
 
-<label>CustomerId</label>
-<input id="txtId" placeholder="Cust Id" /> <br />
-<label>Name</label>
-<input id="txtName" placeholder="Name" /> <br />
-<label>Address</label>
-<input id="txtAddress" placeholder="Address" /> <br />
-<label>Contact</label>
-<input id="txtContact" placeholder="Contact" /> <br />
-<label>Date Of Birth</label>
-<input id="txtDateOfBirth" placeholder="Date Of Birth" /> <br />
-<button id="btnSave" type="button">Save</button>
-
+<div class="form-group row">
+    <label asp-for="Id" class="col-md-2"></label>
+    <input asp-for="Id" class="form-control col-md-4" placeholder="Cust Id" readonly /> <br />
+</div>
+<div class="form-group row">
+    <label asp-for="Name" class="col-md-2"></label>
+    <input asp-for="Name" class="form-control col-md-4" placeholder="Name" /> <br />
+</div>
+<div class="form-group row">
+    <label asp-for="Address" class="col-md-2"></label>
+    <input asp-for="Address" class="form-control col-md-4" placeholder="Address" /> <br />
+</div>
+<div class="form-group row">
+    <label asp-for="Contact" class="col-md-2"></label>
+    <input asp-for="Contact" class="form-control col-md-4" placeholder="Contact" /> <br />
+</div>
+<div class="form-group row">
+    <label asp-for="DateOfBirth" class="col-md-2"></label>
+    <input asp-for="DateOfBirth" class="form-control col-md-4" placeholder="Date Of Birth" /> <br />
+</div>
+<div class="form-group">
+    <button type="button" id="btnSave" class="btn btn-success">Save Customer</button>
+    <button type="button" onclick="Reset()" class="btn btn-success">Reset</button>
+</div>
 
 <br />
 <div class="table-responsive border">
     <table id="customerDatatable" class="table table-striped table-bordered dt-responsive nowrap">
         <thead>
-            <tr>
+            <tr class="text-info">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
-                <th>Contact</th>                
+                <th>Contact</th>
                 <th>Date Of Birth</th>
                 <th>Actions</th>
             </tr>
@@ -51,7 +68,7 @@
 <script>
 
     $(document).ready(function () {
-
+        
         $('#customerDatatable').DataTable({
             ajax: {
                 url: "/Customer/GetCustomers",
@@ -63,11 +80,11 @@
                 { data: "Name" },
                 { data: "Address" },
                 { data: "Contact" },
-                { data: "DateOfBirth" },               
+                { data: "DateOfBirth"},
                 {
                     data: "Id", render: function (data, type, row, meta) {
                         return "<button class='btn btn-primary' style='margin-right:5px;' onclick=Edit(" + JSON.stringify(row) + ")>Edit</button>" +
-                            "<button class='btn btn-primary' style='margin-right:5px;' onclick=Delete(" + JSON.stringify(row) + ")>Delete</button>"
+                            "<button class='btn btn-danger' style='margin-right:5px;' onclick=Delete(" + JSON.stringify(row) + ")>Delete</button>"
                     }
                     //"render": function (data, row) { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.FirstName + "'); >Delete</a>"; }
                 }
@@ -78,11 +95,11 @@
 
         $("#btnSave").click(function () {
             var customer = {
-                Id: $.trim($("#txtId").val()) == "" ? 0 : $("#txtId").val(),
-                Name: $("#txtName").val(),
-                Address: $("#txtAddress").val(),
-                Contact: $("#txtContact").val(),
-                DateOfBirth: $("#txtDateOfBirth").val(),
+                Id: $.trim($("#Id").val()) == "" ? 0 : $("#Id").val(),
+                Name: $("#Name").val(),
+                Address: $("#Address").val(),
+                Contact: $("#Contact").val(),
+                DateOfBirth: $("#DateOfBirth").val(),
             };
 
             $.post("/Customer/SaveCustomer", { customer: customer })
@@ -92,24 +109,28 @@
                     alert("Saved");
                 });
         });
+
+
+
     });
 
 
 
 
     var Edit = function (customerRow) {
-        $("#txtId").val(customerRow.Id);
-        $("#txtName").val(customerRow.Name);
-        $("#txtAddress").val(customerRow.Address);
-        $("#txtContact").val(customerRow.Contact);
-        $("#txtDateOfBirth").val(customerRow.DateOfBirth);
+        alert('Edit form' + customerRow.Id);
+        $("#Id").val(customerRow.Id);
+        $("#Name").val(customerRow.Name);
+        $("#Address").val(customerRow.Address);
+        $("#Contact").val(customerRow.Contact);
+        //$("#DateOfBirth").val(customerRow.DateOfBirth);
     }
 
     function Delete(customerRow) {
         $.ajax({
             url: "/Customer/DeleteCustomer",
             method: "POST",
-            data: { customerId: customerRow.Id},
+            data: { customerId: customerRow.Id },
             success: function (response) {
                 alert('Deleted');
                 ReloadGrid();
@@ -118,10 +139,12 @@
     }
 
     function Reset() {
-        $("#txtId").val(0);
-        $("#txtName").val("");
-        $("#txtAddress").val("");
-        $("#txtContact").val("");
+        alert('Resetting form');
+        $("#Id").val(0);
+        $("#Name").val("");
+        $("#Address").val("");
+        $("#Contact").val("");
+        $("#DateOfBirth").val("");
     }
 
     function ReloadGrid() {
