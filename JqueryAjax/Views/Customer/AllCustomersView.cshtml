@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewData["Title"] = "AllCustomersView";
+}
+
+<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+
+<h1>All Customers View</h1>
+
+@*<div style="width:90%; margin:0 auto;" class="table-responsive border">
+    <table id="customerDatatable" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">*@
+
+<label>CustomerId</label>
+<input id="txtId" placeholder="Cust Id" /> <br />
+<label>Name</label>
+<input id="txtName" placeholder="Name" /> <br />
+<label>Address</label>
+<input id="txtAddress" placeholder="Address" /> <br />
+<label>Contact</label>
+<input id="txtContact" placeholder="Contact" /> <br />
+<label>Date Of Birth</label>
+<input id="txtDateOfBirth" placeholder="Date Of Birth" /> <br />
+<button id="btnSave" type="button">Save</button>
+
+
+<br />
+<div class="table-responsive border">
+    <table id="customerDatatable" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact</th>                
+                <th>Date Of Birth</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<br />
+<br />
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#customerDatatable').DataTable({
+            ajax: {
+                url: "/Customer/GetCustomers",
+                type: "GET",
+                dataSrc: "data"
+            },
+            columns: [
+                { data: "Id" },
+                { data: "Name" },
+                { data: "Address" },
+                { data: "Contact" },
+                { data: "DateOfBirth" },               
+                {
+                    data: "Id", render: function (data, type, row, meta) {
+                        return "<button class='btn btn-primary' style='margin-right:5px;' onclick=Edit(" + JSON.stringify(row) + ")>Edit</button>" +
+                            "<button class='btn btn-primary' style='margin-right:5px;' onclick=Delete(" + JSON.stringify(row) + ")>Delete</button>"
+                    }
+                    //"render": function (data, row) { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.FirstName + "'); >Delete</a>"; }
+                }
+
+            ]
+        });
+
+
+        $("#btnSave").click(function () {
+            var customer = {
+                Id: $.trim($("#txtId").val()) == "" ? 0 : $("#txtId").val(),
+                Name: $("#txtName").val(),
+                Address: $("#txtAddress").val(),
+                Contact: $("#txtContact").val(),
+                DateOfBirth: $("#txtDateOfBirth").val(),
+            };
+
+            $.post("/Customer/SaveCustomer", { customer: customer })
+                .done(function (data) {
+                    Reset();
+                    ReloadGrid();
+                    alert("Saved");
+                });
+        });
+    });
+
+
+
+
+    var Edit = function (customerRow) {
+        $("#txtId").val(customerRow.Id);
+        $("#txtName").val(customerRow.Name);
+        $("#txtAddress").val(customerRow.Address);
+        $("#txtContact").val(customerRow.Contact);
+        $("#txtDateOfBirth").val(customerRow.DateOfBirth);
+    }
+
+    function Delete(customerRow) {
+        $.ajax({
+            url: "/Customer/DeleteCustomer",
+            method: "POST",
+            data: { customerId: customerRow.Id},
+            success: function (response) {
+                alert('Deleted');
+                ReloadGrid();
+            }
+        });
+    }
+
+    function Reset() {
+        $("#txtId").val(0);
+        $("#txtName").val("");
+        $("#txtAddress").val("");
+        $("#txtContact").val("");
+    }
+
+    function ReloadGrid() {
+        $("#customerDatatable").DataTable().clear();
+        $("#customerDatatable").DataTable().ajax.reload();
+
+    }
+
+
+//$(document).ready(function () {
+
+//        $('#customerDatatable').DataTable({
+//            "ajax": {
+//                "url": "/Customer/LoadCustomers",
+//                "type" :"POST",
+//                "dataSrc" : "",
+//            },
+//            "columns": [
+//                { data: "Id" },
+//                { data: "FirstName" },
+//                { data: "LastName" },
+//                { data: "Contact" },
+//                { data: "Email" },
+//                { data: "DateOfBirth" }
+//            ]
+//        });
+//    });
+
+
+//$("#customerDatatable").DataTable({
+//    "processing": true,
+//    "serverSide": true,
+//    "filter": true,
+//    "ajax": {
+//        "url": "/Customer/LoadCustomers",
+//        "type": "POST",
+//        "datatype": "json"
+//    },
+//    "columnDefs": [{
+//        "targets": [0],
+//        "visible": false,
+//        "searchable": false
+//    }],
+//"columns": [
+//    { "data": "id", "name": "Id", "autoWidth": true },
+//    { "data": "firstName", "name": "First Name", "autoWidth": true },
+//    { "data": "lastName", "name": "Last Name", "autoWidth": true },
+//    { "data": "contact", "name": "Country", "autoWidth": true },
+//    { "data": "email", "name": "Email", "autoWidth": true },
+//    { "data": "dateOfBirth", "name": "Date Of Birth", "autoWidth": true },
+//    {
+//        "render": function (data, row) { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.id + "'); >Delete</a>"; }
+//    },
+//]
+
+//    "columns": [
+//        { "data": "Id", "name": "Id", "autoWidth": true },
+//        { "data": "FirstName", "name": "First Name", "autoWidth": true },
+//        { "data": "LastName", "name": "Last Name", "autoWidth": true },
+//        { "data": "Contact", "name": "Country", "autoWidth": true },
+//        { "data": "Email", "name": "Email", "autoWidth": true },
+//        { "data": "DateOfBirth", "name": "Date Of Birth", "autoWidth": true },
+//        {
+//            "render": function (data, row)
+//            { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.id + "'); >Delete</a>"; }
+//        },
+//    ]
+//});
+
+</script>
+
+

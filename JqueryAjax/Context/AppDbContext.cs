@@ -16,7 +16,7 @@ namespace JqueryAjax.Context
         }
 
 
-        //---This is a [NotMapped] table
+        
         public DbSet<Customer> Customers { get; set; }  
 
 
@@ -25,8 +25,15 @@ namespace JqueryAjax.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Customer>()
+                .ToTable("Customer");
+
+
+            //====Worked
+            //====Excluding from migrations
+            //====The ability to exclude tables from migrations was introduced in EF Core 5.0.
             //modelBuilder.Entity<Customer>()
-            //    .ToTable("Customer");
+            //    .ToTable("Customer", t => t.ExcludeFromMigrations());
         }
 
 
