@@ -27,7 +27,8 @@ namespace JqueryAjax.Controllers
         [HttpGet]
         public JsonResult GetCustomers()
         {
-            var customerList = _context.Customers.ToList();
+            var customerList = _context.Customers
+                                .ToList();
 
             return Json(new { data = customerList });
         }

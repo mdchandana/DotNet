@@ -10,8 +10,15 @@
 <script src="~/lib/jquery/jquery.js"></script>
 <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
 <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
-<script src="~/lib/moment.js/moment.min.js"></script>
+<script src="~/lib/moment.js/moment-with-locales.js"></script>
 
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>*@
 
 <br />
 <h3 class="text-info">Customers</h3>
@@ -38,7 +45,7 @@
 </div>
 <div class="form-group row">
     <label asp-for="DateOfBirth" class="col-md-2"></label>
-    <input asp-for="DateOfBirth" class="form-control col-md-4" placeholder="Date Of Birth" /> <br />
+    <input asp-for="DateOfBirth" asp-format="{0:yyyy-MM-dd}" class="form-control col-md-4" placeholder="Date Of Birth" /> <br />
 </div>
 <div class="form-group">
     <button type="button" id="btnSave" class="btn btn-success">Save Customer</button>
@@ -67,9 +74,27 @@
 
 <script>
 
+    var editor;
+
     $(document).ready(function () {
-        
+        //editor = new $.fn.dataTable.editor({
+        //    table: '#customerDatatable',
+        //    fields:
+        //        [
+        //            {
+        //                label: 'Date Of Birth:',
+        //                name: 'DateOfBirth',
+        //                type: 'datetime',
+        //                def: function () { return new Date(); },
+        //                format: 'MM-DD-YYYY',
+        //            }
+        //        ]
+        //});
+
         $('#customerDatatable').DataTable({
+
+            "order": [[0, "desc"]],    //order by descending
+
             ajax: {
                 url: "/Customer/GetCustomers",
                 type: "GET",
@@ -80,7 +105,14 @@
                 { data: "Name" },
                 { data: "Address" },
                 { data: "Contact" },
-                { data: "DateOfBirth"},
+                {
+                    data: "DateOfBirth", type:"date",
+                    render: function (d) {
+                        //return moment(d).format("DD-MM-YYYY");
+                        return moment(d).format("YYYY-MM-DD");
+                        //return moment(d).format("DD:MM:YYYY HH:mm:ss");
+                    }
+                },
                 {
                     data: "Id", render: function (data, type, row, meta) {
                         return "<button class='btn btn-primary' style='margin-right:5px;' onclick=Edit(" + JSON.stringify(row) + ")>Edit</button>" +
@@ -94,7 +126,7 @@
 
 
         $("#btnSave").click(function () {
-            var customer = {
+            var customerData = {
                 Id: $.trim($("#Id").val()) == "" ? 0 : $("#Id").val(),
                 Name: $("#Name").val(),
                 Address: $("#Address").val(),
@@ -102,12 +134,24 @@
                 DateOfBirth: $("#DateOfBirth").val(),
             };
 
-            $.post("/Customer/SaveCustomer", { customer: customer })
-                .done(function (data) {
+            ///==Worked
+            //$.post("/Customer/SaveCustomer", { customer: customerData })
+            //    .done(function (data) {
+            //        Reset();
+            //        ReloadGrid();
+            //        alert("Saved");
+            //    });
+
+            $.ajax({
+                url: "/Customer/SaveCustomer",
+                method: "POST",
+                data: customerData,
+                success: function (response) {
                     Reset();
                     ReloadGrid();
-                    alert("Saved");
-                });
+                    alert("Customer Record Saved");
+                }
+            });
         });
 
 
@@ -118,12 +162,12 @@
 
 
     var Edit = function (customerRow) {
-        alert('Edit form' + customerRow.Id);
+
         $("#Id").val(customerRow.Id);
         $("#Name").val(customerRow.Name);
         $("#Address").val(customerRow.Address);
         $("#Contact").val(customerRow.Contact);
-        //$("#DateOfBirth").val(customerRow.DateOfBirth);
+        $("#DateOfBirth").val(customerRow.DateOfBirth);
     }
 
     function Delete(customerRow) {
@@ -139,7 +183,7 @@
     }
 
     function Reset() {
-        alert('Resetting form');
+
         $("#Id").val(0);
         $("#Name").val("");
         $("#Address").val("");
