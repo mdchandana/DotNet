@@ -13,13 +13,6 @@
 <script src="~/lib/moment.js/moment-with-locales.js"></script>
 
 
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-    <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>*@
-
 <br />
 <h3 class="text-info">Customers</h3>
 <br />
@@ -45,12 +38,21 @@
 </div>
 <div class="form-group row">
     <label asp-for="DateOfBirth" class="col-md-2"></label>
-    <input asp-for="DateOfBirth" asp-format="{0:yyyy-MM-dd}" class="form-control col-md-4" placeholder="Date Of Birth" /> <br />
+    <input asp-for="DateOfBirth" class="form-control col-md-4" placeholder="Date Of Birth" /> <br />
+</div>
+<div class="form-group row">
+    <label asp-for="CreatedTime" class="col-md-2"></label>
+    <input asp-for="CreatedTime"  class="form-control col-md-4" placeholder="Date Of Birth" /> <br />
 </div>
 <div class="form-group">
     <button type="button" id="btnSave" class="btn btn-success">Save Customer</button>
-    <button type="button" onclick="Reset()" class="btn btn-success">Reset</button>
+    <button type="button" onclick="Reset();"  class="btn btn-success">Reset</button>
 </div>
+
+
+@*asp-format="{0:yyyy-MM-dd}"*@
+
+
 
 <br />
 <div class="table-responsive border">
@@ -62,6 +64,7 @@
                 <th>Address</th>
                 <th>Contact</th>
                 <th>Date Of Birth</th>
+                <th>Created Time</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -91,9 +94,28 @@
         //        ]
         //});
 
+
+
+        //===========Set today date default================================
+        var today = new Date().toISOString().split('T')[0];
+        $("#DateOfBirth").val(today);
+
+        //var now = new Date($.now());
+        //var nowNew = now.getHours() + ":" + now.getMinutes() + now.getSeconds();
+        //var nowNew=moment(new Date()).format("YYYY-MM-DD hh:mm A"); // 12H clock (AM/PM)
+        //$("#CreatedTime").val(nowNew);
+
+        //moment(new Date()).format("YYYY-MM-DD HH:mm"); // 24H clock
+        //moment(new Date()).format("YYYY-MM-DD hh:mm A"); // 12H clock (AM/PM)
+        //moment(new Date()).format("YYYY-MM-DD hh:mm a"); // 12H clock (am/pm)
+
+        //var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+
         $('#customerDatatable').DataTable({
 
             "order": [[0, "desc"]],    //order by descending
+            //'scrollY':200,
 
             ajax: {
                 url: "/Customer/GetCustomers",
@@ -103,15 +125,32 @@
             columns: [
                 { data: "Id" },
                 { data: "Name" },
-                { data: "Address" },
+                {
+                    data: "Address",
+                    'searchable': false,
+                    'orderable': false
+                },
                 { data: "Contact" },
                 {
-                    data: "DateOfBirth", type:"date",
-                    render: function (d) {
+                    data: "DateOfBirth", type: "date",
+                    render: function (jsonDate) {
                         //return moment(d).format("DD-MM-YYYY");
-                        return moment(d).format("YYYY-MM-DD");
+                        return moment(jsonDate).format("YYYY-MM-DD");
                         //return moment(d).format("DD:MM:YYYY HH:mm:ss");
                     }
+
+
+                },
+                {
+                    data: "CreatedTime", type: "date",
+                    render: function (jsonDate) {
+                        //return moment(d).format("DD-MM-YYYY");
+                        //return moment(jsonDate).format("YYYY-MM-DD hh:mm a"); // am/pm
+                         return moment(jsonDate).format("YYYY-MM-DD hh:mm A"); // AM/PM
+                        //return moment(d).format("DD:MM:YYYY HH:mm:ss");
+                    }
+
+
                 },
                 {
                     data: "Id", render: function (data, type, row, meta) {
@@ -132,6 +171,7 @@
                 Address: $("#Address").val(),
                 Contact: $("#Contact").val(),
                 DateOfBirth: $("#DateOfBirth").val(),
+                CreatedTime: $("#CreatedTime").val()
             };
 
             ///==Worked
@@ -167,7 +207,15 @@
         $("#Name").val(customerRow.Name);
         $("#Address").val(customerRow.Address);
         $("#Contact").val(customerRow.Contact);
-        $("#DateOfBirth").val(customerRow.DateOfBirth);
+        //$("#DateOfBirth").val(customerRow.DateOfBirth);
+
+        var dob = new Date(customerRow.DateOfBirth);
+        //var dob = customerRow.DateOfBirth.toISOString().split('T')[0];
+        //dob = customerRow.DateOfBirth.toISOString().split('T')[0];
+        var newDob = dob.toISOString().split('T')[0];
+        //$("#DateOfBirth").val(dob);
+        $("#DateOfBirth").val(newDob);
+        //alert(newDob);
     }
 
     function Delete(customerRow) {
@@ -188,7 +236,21 @@
         $("#Name").val("");
         $("#Address").val("");
         $("#Contact").val("");
-        $("#DateOfBirth").val("");
+
+        //$("#DateOfBirth").val("");
+        var today = new Date().toISOString().split('T')[0];
+        $("#DateOfBirth").val(today);
+
+        //var nowNew = moment(new Date()).format("YYYY-MM-DD hh:mm A"); // 12H clock (AM/PM)
+        //$("#CreatedTime").val(nowNew);
+
+        //worked
+        //var now = moment($.now()).format("YYYY-MM-DD hh:mm A");
+        //alert("NOW :" + now + " and from CreatedTime :" + $("#CreatedTime").val());
+     
+        alert(new Date($.now()));
+
+
     }
 
     function ReloadGrid() {
@@ -257,6 +319,34 @@
 //        },
 //    ]
 //});
+
+
+
+
+
+
+    //"Price": {
+    //    "type": "decimals",
+    //        "decimals": 2,
+    //            "thousand_sep": " ",
+    //                "decimal_point": ".",
+    //                    "alignment": "right"
+    //},
+
+
+    //"LastMovementDate": {
+    //    "type": "date"
+    //},
+    //"ProductGroup1": {
+    //    "type": "text"
+
+    //}
+
+
+
+
+
+
 
 </script>
 

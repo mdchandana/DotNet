@@ -46,6 +46,7 @@ namespace JqueryAjax.Controllers
                     customerFound.Address = customer.Address;
                     customerFound.Contact = customer.Contact;
                     customerFound.DateOfBirth = customer.DateOfBirth;
+                    customerFound.CreatedTime = customer.CreatedTime;
                 }
             }
             else  //new

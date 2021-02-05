@@ -1,10 +1,89 @@
 ﻿
+
+<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Home Controller - Index</h1>
 
-<a asp-controller="User" asp-action="Index">Go to User Controller</a>  <br />
+<a asp-controller="User" asp-action="Index">Go to User Controller</a>
+<br />
 <a asp-controller="Employee" asp-action="Index">Go to Employee Controller</a>
 
+
+
+
+@{
+    <br />
+    <span>C# date time very basics</span>
+    <br />
+    <br />
+
+    DateTime currentDate = DateTime.Now;
+    <span>Without format :@currentDate</span>
+    <br />
+
+    string format1 = "dd-MM-yyyy HH:MM tt";
+    string formatedcurrentDate1 = currentDate.ToString(format1);
+    <span>Formated 1 :@formatedcurrentDate1</span>
+    <br />
+
+
+    string format2 = "yyyy-MM-dd HH:MM tt";
+    string formatedcurrentDate2 = currentDate.ToString(format2);
+    <span>Formated 2 :@formatedcurrentDate2</span>
+    <br />
+
+}
+
+
+<br />
+<br />
+
+<input 
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/moment.js/moment.min.js"></script>
+
+
+<script>
+
+    console.log("--Javascript DateTime---------------");
+    //getMonth() function will return the month of a specified
+    //date as a zero - based value(where 0 indicates the first month of the year).
+    //var d = new Date();
+    //var n = d.getMonth() + 1;
+
+    //const monthNames = ["January", "February", "March", "April", "May", "June",
+    //    "July", "August", "September", "October", "November", "December"
+    //]
+    //const dateObj = new Date()
+    //const monthNumber = dateObj.getMonth()
+    //const monthName = monthNames[monthNumber]
+
+
+
+    var d1 = new Date(); //without params it defaults to "now"
+    var t1 = d1.getFullYear() + "-" + d1.getMonth() + "-" + d1.getDay() + " | " + d1.getHours() + ":" + d1.getMinutes() + ":" + d1.getSeconds();
+    console.log("default jsDate" + d1);
+    console.log("manual 1 :" + t1);
+
+    var d = new Date();
+    var amOrPm = (d.getHours() < 12) ? "AM" : "PM";
+    var hour = (d.getHours() <= 12) ? d.getHours() : d.getHours() - 12;
+    var diplay = d.getDate() + ' / ' + d.getMonth() + ' / ' + d.getFullYear() + ' ' + hour + ':' + d.getMinutes() + ' ' + amOrPm;
+    var diplay = d.getFullYear() + ' / ' + d.getMonth() + ' / ' + d.getDate() + ' ' + hour + ':' + d.getMinutes() + ' ' + amOrPm;
+    console.log(diplay);
+
+
+    console.log("--Using momonet DateTime---------------");
+
+    var moment1 = moment(new Date()).format("YYYY-MM-DD HH:mm"); // 24H clock
+    var moment2 = moment(new Date()).format("YYYY-MM-DD hh:mm A"); // 12H clock (AM/PM)
+    var moment3 = moment(new Date()).format("YYYY-MM-DD hh:mm a"); // 12H clock (am/pm)
+
+    console.log(moment1);
+    console.log(moment2);
+    console.log(moment3);
+</script>
