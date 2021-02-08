@@ -220,7 +220,7 @@ namespace IrrigationWebSystem.Controllers
                     Gender = foundEmployee.Gender,
                     CivilStatus = foundEmployee.CivilStatus,
                     Address = foundEmployee.Address,
-                    //ContactNumber1 = foundEmployee.EmployeeContacts.ToList()[0].ToString(),
+                    ContactNumber = foundEmployee.ContactNumber,
                     Email = foundEmployee.Email,
                     DateOfBirth = foundEmployee.DateOfBirth,
                     AppointmentDate = foundEmployee.AppointmentDate,
@@ -259,7 +259,7 @@ namespace IrrigationWebSystem.Controllers
                     foundEmployee.Gender = employeeVMChanges.Gender;
                     foundEmployee.CivilStatus = employeeVMChanges.CivilStatus;
                     foundEmployee.Address = employeeVMChanges.Address;
-                    //foundEmployee.EmployeeContacts.ToList()[0].ToString(),
+                    foundEmployee.ContactNumber = employeeVMChanges.ContactNumber;                   
                     foundEmployee.Email = employeeVMChanges.Email;
                     foundEmployee.DateOfBirth = employeeVMChanges.DateOfBirth;
                     foundEmployee.AppointmentDate = employeeVMChanges.AppointmentDate;

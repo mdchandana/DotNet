@@ -13,7 +13,10 @@
     <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
     @*<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-        <script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>*@
+     <script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>*@
+
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 </head>
 <body>
@@ -37,9 +40,9 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">HR Managemet</a>
 
                     <div class="dropdown-menu">
-                        <a asp-controller="Employee" asp-action="Index" class="dropdown-item">Employee Informations</a>                        
-                        <a asp-controller="Leave" asp-action="Index" class="dropdown-item">Search Employee Leaves</a>
+                        <a asp-controller="Employee" asp-action="Index" class="dropdown-item">Employee Informations</a>
                         <a asp-controller="Leave" asp-action="Create" class="dropdown-item">New Employee Leave</a>
+                        <a asp-controller="Leave" asp-action="SearchEmployeeLeaves" class="dropdown-item">Search Employee Leaves</a>
                     </div>
                 </div>
 
@@ -64,19 +67,32 @@
                         <a asp-controller="Make" asp-action="Index" class="dropdown-item">Farmer Organizations</a>
                         <a asp-controller="Model" asp-action="Index" class="dropdown-item">FO Members with Positions</a>
                         <a asp-controller="Model" asp-action="Index" class="dropdown-item">Cultivation Season Informations</a>
-                        <a href="#" class="dropdown-item">Drafts</a>
+                        @*<a href="#" class="dropdown-item">Drafts</a>*@
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Photo Gallery</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Stores Management</a>
 
-                <div class="dropdown-menu">
-                    <a asp-controller="Make" asp-action="Index" class="dropdown-item">View Photo Library</a>
-                    <a asp-controller="Model" asp-action="Index" class="dropdown-item">Add photoes to Library</a>
-                    <a href="#" class="dropdown-item">Drafts</a>
+                    <div class="dropdown-menu">
+                        @*<a asp-controller="Make" asp-action="Index" class="dropdown-item">Farmer Organizations</a>
+                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">FO Members with Positions</a>
+                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">Cultivation Season Informations</a>*@
+                        @*<a href="#" class="dropdown-item">Drafts</a>*@
+                    </div>
                 </div>
-            </div>
+
+
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Photo Gallery</a>
+
+                    <div class="dropdown-menu">
+                        <a asp-controller="Make" asp-action="Index" class="dropdown-item">View Photo Library</a>
+                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">Add photoes to Library</a>
+                        @*<a href="#" class="dropdown-item">Drafts</a>*@
+                    </div>
+                </div>
 
                 <a href="#" class="nav-item nav-link">About</a>
 

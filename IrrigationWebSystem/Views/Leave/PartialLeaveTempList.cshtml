@@ -7,11 +7,11 @@
     
 
     <tr>
-        <td>@leave.EmployeeId</td>
+        <td>@leave.NameWithInitial</td>
         <td>@leave.LeaveType</td>
         <td>@leave.HalfFullLeaveType</td>
-        <td>@leave.LeaveDate</td>
-        <td><a href="#" id="tableRowDeleteButton" onclick="deleteItemFromTempList(@leave.IdForLeaveTempList)">@leave.IdForLeaveTempList Delete</a></td>
+        <td>@leave.LeaveDate.ToShortDateString()</td>
+        <td><a href="#" id="tableRowDeleteButton" onclick="deleteItemFromTempList(@leave.IdForLeaveTempList)">Delete</a></td>
     </tr>
 }
 

@@ -129,28 +129,31 @@
 
     $(document).ready(function () {
 
-
+        //insert default item "Select" in dropdownlist on load
+        var items = "<option value=''>Select Employee</option>";
+        $("#EmployeeId").html(items);
 
         //Get employees by positionId
         $("#PositionId").change(function () {
 
-            //$("#EmployeeId option").remove();
-            //var positionId = $("#PositionId option:selected").val();
-            //alert(positionId);
+            var positionIdSelected = $("#PositionId").val();
 
+            //--WORKED
+            var url = "/Leave/GetEmployeesByPositionId";
+            $.getJSON(url, { PositionId: positionIdSelected }, function (data) {
 
+                var items = "";
+                $("#EmployeeId").empty();
 
-            var positionId = $("#PositionId").val();
+                items = "<option value=''>Select Employee</option>";
 
-            $.ajax({
+                $.each(data, function (i, employee) {
+                    items += "<option value='" + employee.EmployeeId + "'>" + employee.NameWithInitial + "</option>";
+                });
 
-                method: "GET",
-                url: "/Leave/GetEmployeesByPosition?positionId="+positionId,
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        })
+                $("#EmployeeId").html(items);
+            });
+        });
 
 
 

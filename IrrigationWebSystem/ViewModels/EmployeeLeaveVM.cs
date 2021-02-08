@@ -14,13 +14,14 @@ namespace IrrigationWebSystem.ViewModels
 
         public int EmployeeId { get; set; }
 
-        [Required]
+        public string NameWithInitial { get; set; }
 
+        [Required]
         public LeaveType LeaveType { get; set; }   //enums
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime? LeaveDate { get; set; }
+        public DateTime LeaveDate { get; set; }
 
         [Required]
         public HalfFullLeaveType HalfFullLeaveType { get; set; }   //enums

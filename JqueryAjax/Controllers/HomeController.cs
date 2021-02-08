@@ -14,5 +14,11 @@ namespace JqueryAjax.Controllers
         {
             return View();
         }
+
+
+        public ActionResult DateTimeTest()
+        {
+            return View("DateTimeTestView");
+        }
     }
 }

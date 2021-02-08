@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "DateTimeTestView";
+}
+
+<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+<script src="~/lib/moment.js/moment.min.js"></script>
+
+<script src="~/lib/jqueryui/jquery-ui.js"></script>
+<link href="~/lib/jqueryui/jquery-ui.css" rel="stylesheet" />
+
+@*<script src="~/lib/jquery-datetimepicker/jquery.datetimepicker.js"></script>
+<link href="~/lib/jquery-datetimepicker/jquery.datetimepicker.css" rel="stylesheet" />*@
+
+<script src="~/lib/jquery-timepicker/jquery.timepicker.js"></script>
+<link href="~/lib/jquery-timepicker/jquery.timepicker.css" rel="stylesheet" />
+<h1>Date Time Test View</h1>
+<br />
+
+
+
+<div class="form-group row">
+    <label class="col-md-2">Start Date-Time</label>
+    <input id="StartDate" type="date" class="form-control col-md-3" />
+    <input id="StartTime" class="form-control col-md-2" />
+</div>
+<button type="button" id="btnDateAdded" class="btn btn btn-primary">Add</button>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        //$.datepicker.setDateFormatter('moment');
+
+        $("#StartDate").datepicker({
+            dateFormat: 'yy-mm-dd',            
+            changeYear: true,
+            yearRange: 'c-50:c+0',    //last 50 years and current years
+            //buttonImage: 'contact/calendar/calendar.gif',
+            onselect: function (dateText) {
+                console.log('date changed :' + dateText);
+            }
+        }).attr('readonly', 'readonly');;
+
+        //set date
+        var today = new Date();
+        $("#StartDate").datepicker('setDate', today);
+
+        //get date
+        var selectedDate = $("#StartDate").datepicker({ dateFormat: "yy-mm-dd" }).val()
+
+        
+        //$("#StartDate").datepicker('refresh');
+      
+
+
+        //----Time
+        $("#StartTime").timepicker({
+            format: 'h:mm p',
+            step: 1,
+            default:'10'
+        });
+
+
+    });
+
+
+    $("#btnDateAdded").click(function () {
+
+        var selectedDate = $("#StartDate").datepicker({ dateFormat: "yy-mm-dd" }).val();       
+        alert(selectedDate);
+       
+    });
+
+
+
+    //WORKED
+    //var momentObj = moment(new Date()).format("YYYY-MM-DD hh:mm A");
+    //$('#datetimepicker').val(momentObj);
+
+    console.log("--Javascript DateTime---------------");
+    //getMonth() function will return the month of a specified
+    //date as a zero - based value(where 0 indicates the first month of the year).
+    //var d = new Date();
+    //var n = d.getMonth() + 1;
+
+    //const monthNames = ["January", "February", "March", "April", "May", "June",
+    //    "July", "August", "September", "October", "November", "December"
+    //]
+    //const dateObj = new Date()
+    //const monthNumber = dateObj.getMonth()
+    //const monthName = monthNames[monthNumber]
+
+
+
+    var d1 = new Date(); //without params it defaults to "now"
+    var t1 = d1.getFullYear() + "-" + d1.getMonth() + "-" + d1.getDay() + " | " + d1.getHours() + ":" + d1.getMinutes() + ":" + d1.getSeconds();
+    console.log("default jsDate" + d1);
+    console.log("manual 1 :" + t1);
+
+    var d = new Date();
+    var amOrPm = (d.getHours() < 12) ? "AM" : "PM";
+    var hour = (d.getHours() <= 12) ? d.getHours() : d.getHours() - 12;
+    var diplay = d.getDate() + ' / ' + d.getMonth() + ' / ' + d.getFullYear() + ' ' + hour + ':' + d.getMinutes() + ' ' + amOrPm;
+    var diplay = d.getFullYear() + ' / ' + d.getMonth() + ' / ' + d.getDate() + ' ' + hour + ':' + d.getMinutes() + ' ' + amOrPm;
+    console.log(diplay);
+
+
+    console.log("--Using momonet DateTime---------------");
+
+    var moment1 = moment(new Date()).format("YYYY-MM-DD HH:mm"); // 24H clock
+    var moment2 = moment(new Date()).format("YYYY-MM-DD hh:mm A"); // 12H clock (AM/PM)
+    var moment3 = moment(new Date()).format("YYYY-MM-DD hh:mm a"); // 12H clock (am/pm)
+
+    console.log(moment1);
+    console.log(moment2);
+    console.log(moment3);
+    console.log(moment().format('hh:mm a'));
+</script>
+
+
+
+
+
+@{
+    <br />
+    <br />
+    <span>====C# date time very basics====</span>
+    <br />
+
+    DateTime currentDate = DateTime.Now;
+    <span>Without format :@currentDate</span>
+    <br />
+
+    string format1 = "dd-MM-yyyy HH:MM tt";
+    string formatedcurrentDate1 = currentDate.ToString(format1);
+    <span>Formated 1 :@formatedcurrentDate1</span>
+    <br />
+
+
+    string format2 = "yyyy-MM-dd HH:MM tt";
+    string formatedcurrentDate2 = currentDate.ToString(format2);
+    <span>Formated 2 :@formatedcurrentDate2</span>
+    <br />
+
+}
+
+
+<br />
+<br />

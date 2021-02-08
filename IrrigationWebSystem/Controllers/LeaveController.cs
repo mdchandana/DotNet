@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-
+using System.Text.Json;
 
 namespace IrrigationWebSystem.Controllers
 {
@@ -33,20 +33,58 @@ namespace IrrigationWebSystem.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult GetEmployeesByPosition(int positionId)
-        {
-            var employees = _employeeRepository.GetEmployeesByPositionId(positionId);
+        //[HttpGet]
+        //public IActionResult GetEmployeesByPosition(int positionId)
+        //{
+        //    var employees = _employeeRepository.GetEmployeesByPositionId(positionId);
 
-            var nameList = new List<string>()
+        //    var nameList = new List<string>()
+        //    {
+        //        new string("chandana"),
+        //        new string("priyantha")
+        //    };
+
+
+        //    return Json(employees.ToList());
+        //}
+
+
+        //--------This is for cascadedropdownlist---------------------------------------------
+        [HttpGet]
+        public JsonResult GetEmployeesByPositionId(int PositionId)
+        {
+
+            List<EmployeeVM> employeesByPosition = _employeeRepository
+                                            .GetEmployeesByPositionId(PositionId)
+                                            .Select(emp => new EmployeeVM()
+                                            {
+                                                EmployeeId=emp.EmployeeId,
+                                                NameWithInitial=emp.NameWithInitial
+                                            }).ToList();
+
+
+            //var empSelectlist = new SelectList(employeesByPosition, "EmpNumber", "NameWithInitial");
+
+            //return Json(new SelectList(employeesByPosition, "EmpNumber", "NameWithInitial"));
+
+            var options = new JsonSerializerOptions()
             {
-                new string("chandana"),
-                new string("priyantha")
+                PropertyNamingPolicy = null
             };
 
-
-            return Json(employees.ToList());
+            return Json(employeesByPosition, options);
         }
+
+
+
+
+
+
+
+
+
+
+
 
 
         [HttpGet]
@@ -56,7 +94,8 @@ namespace IrrigationWebSystem.Controllers
             var employeeLeaveVM = new EmployeeLeaveVM()
             {
                 EmployeePositions = new SelectList(_positionRepository.GetAllPositions(), "Id", "Position"),
-                Employees = new SelectList(_employeeRepository.GetEmployees(), "EmployeeId", "NameWithInitial")
+                Employees = new SelectList(_employeeRepository.GetEmployees(), "EmployeeId", "NameWithInitial"),
+                LeaveDate=DateTime.Today
             };
 
 
@@ -67,6 +106,13 @@ namespace IrrigationWebSystem.Controllers
         [HttpPost]
         public ActionResult AddToListLeave(EmployeeLeaveVM empLeaveVM)
         {
+            //==========NEED SOLUTION==== NOW TEMP
+            //we need to pass NameWithInitials also....add NameWithInitial to EmployeeLeaveVM to viewing purpose..
+            //with empLeave info.. so we have to get it
+            var foundEmp = _employeeRepository.GetEmployeeByEmpId(empLeaveVM.EmployeeId);
+            empLeaveVM.NameWithInitial = foundEmp.NameWithInitial;
+
+
             //using Microsoft.AspNetCore.Http;
             //HttpContext.Session.SetString("name", "chandana");
             //var nameFromSeesion = HttpContext.Session.GetString("name");
@@ -118,7 +164,7 @@ namespace IrrigationWebSystem.Controllers
                     EmployeeId = empLeaveVM.EmployeeId,
                     LeaveType = empLeaveVM.LeaveType,
                     HalfFullLeaveType = empLeaveVM.HalfFullLeaveType,
-                    LeaveDate = empLeaveVM.LeaveDate.Value
+                    LeaveDate = empLeaveVM.LeaveDate  //empLeaveVM.LeaveDate.Value
                 }).ToList();
 
                 _employeeLeaveRepository.AddEmpLeave(employeeLeaveList);
@@ -131,6 +177,48 @@ namespace IrrigationWebSystem.Controllers
 
             return PartialView("PartialLeaveTempList", _leaveTempList);
         }
+
+
+
+        [HttpGet]
+        public ActionResult SearchEmployeeLeaves()
+        {
+            var employeeLeaveVM = new EmployeeLeaveVM()
+            {
+                EmployeePositions = new SelectList(_positionRepository.GetAllPositions(), "Id", "Position"),
+                Employees = new SelectList(_employeeRepository.GetEmployees(), "EmployeeId", "NameWithInitial")                
+            };
+
+            return View(employeeLeaveVM);
+        }
+
+
+        [HttpGet]
+        public ActionResult SearchEmployeeLeavesByEmployeeId(int EmployeeId)
+        {
+            //==========NEED SOLUTION==== NOW TEMP
+            //we need to pass NameWithInitials also....add NameWithInitial to EmployeeLeaveVM to viewing purpose..
+            //with empLeave info.. so we have to get it
+            var empNameWithInitial = _employeeRepository.GetEmployeeByEmpId(EmployeeId).NameWithInitial;
+
+
+            var empLeaves = _employeeLeaveRepository.GetEmpLeavesByEmployeeId(EmployeeId)
+                                .Select(empLeave => new EmployeeLeaveVM()
+                                {
+                                    EmployeeId= empLeave.EmployeeId,
+                                    NameWithInitial= empNameWithInitial,
+                                    LeaveType = empLeave.LeaveType,
+                                    HalfFullLeaveType = empLeave.HalfFullLeaveType,
+                                    LeaveDate = empLeave.LeaveDate
+
+                                }).ToList();
+
+            
+
+            return PartialView("PartialSearchEmpLeave", empLeaves);
+        }
+
+
 
 
 

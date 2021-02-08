@@ -46,6 +46,22 @@
     {
       "library": "moment.js@2.29.1",
       "destination": "wwwroot/lib/moment.js/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "jquery-datetimepicker@2.5.20",
+      "destination": "wwwroot/lib/jquery-datetimepicker/"
+    },
+    {
+      "library": "bootstrap-datetimepicker@4.17.47",
+      "destination": "wwwroot/bootstrap-datetimepicker/"
+    },
+    {
+      "library": "jquery-timepicker@1.13.16",
+      "destination": "wwwroot/lib/jquery-timepicker/"
     }
   ]
 }

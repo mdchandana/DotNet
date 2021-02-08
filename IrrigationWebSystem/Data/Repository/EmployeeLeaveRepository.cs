@@ -38,7 +38,7 @@ namespace IrrigationWebSystem.Data.Repository
 
         public List<EmployeeLeave> GetEmpLeavesByEmployeeId(int employeeId)
         {
-            return _appDbContext.EmployeeLeaves.ToList();
+            return _appDbContext.EmployeeLeaves.Where(empLeave => empLeave.EmployeeId == employeeId).ToList();
         }
     }
 }
