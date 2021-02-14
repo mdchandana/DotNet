@@ -14,17 +14,17 @@
             <div class="col-md-1">
                 <label asp-for="PositionId" class="col-form-label">Position</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <select asp-for="PositionId" asp-items="@Model.EmployeePositions" class="form-control"></select>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
+    @*<div class="col-md-3">
         <div class="text-right">
-            <a class="btn btn-info " asp-controller="Employee" asp-action="Create">Add New Employee</a>
+            <a class="btn btn-info" asp-controller="Employee" asp-action="Create">Add New Employee</a>
         </div>
-    </div>
+    </div>*@
 </div>
 
 
@@ -51,7 +51,7 @@
                         <td>@emp.PersonalFileNumber</td>
                         <td>@emp.NameWithInitial</td>
                         <td>@emp.EmployeePosition.Position</td>
-                        <td class="text-right"><a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.EmployeeId" class="btn btn-primary">Edit</a></td>
+                        <td class="text-right"><a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.EmployeeId" class="btn btn-info">Details</a></td>
                     </tr>
                 }
             </tbody>

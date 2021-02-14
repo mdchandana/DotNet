@@ -156,8 +156,8 @@ namespace IrrigationWebSystem.Controllers
         public ActionResult Update()
         {
             _leaveTempList = HttpContext.Session.GetLeaveTempListFromSession();
-            if (_leaveTempList.Count > 0)
-            {
+            //if (_leaveTempList.Count > 0)
+            //{
                 //mapping EmployeeLeaveVM to EmployeeLeave
                 var employeeLeaveList = _leaveTempList.Select(empLeaveVM => new EmployeeLeave()
                 {
@@ -173,7 +173,12 @@ namespace IrrigationWebSystem.Controllers
                 _leaveTempList = new List<EmployeeLeaveVM>(); ;
                 HttpContext.Session.Remove("leaveTempList");
 
-            }
+            //}
+            //else
+            //{
+                
+            //    return Json( new {status = "EmptyList" });
+            //}
 
             return PartialView("PartialLeaveTempList", _leaveTempList);
         }

@@ -17,10 +17,17 @@ namespace IrrigationWebSystem.Data.Repository
             _appDbContext = appDbContext;
         }
 
+        public List<WmWaterLevelCapacityMuruthawelaTank> GetAllWaterlevels()
+        {
+            return _appDbContext.WmWaterLevelCapacityMuruthawelaTanks.ToList();
+        }
+
         public WmWaterLevelCapacityMuruthawelaTank GetMuruthawelaWaterCapacityByLevel(decimal waterLevel)
         {
             return _appDbContext.WmWaterLevelCapacityMuruthawelaTanks
                     .FirstOrDefault(level => level.WaterLevel == waterLevel);
         }
+
+
     }
 }

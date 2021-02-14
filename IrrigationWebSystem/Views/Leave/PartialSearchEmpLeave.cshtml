@@ -1,32 +1,43 @@
 ﻿
 @model IEnumerable<EmployeeLeaveVM>
 
-
-@foreach (var leave in Model)
+@if (Model == null || Model.Count() == 0)
 {
-    
-
     <tr>
-        <td>@leave.NameWithInitial</td>
-        <td>@leave.LeaveType</td>
-        <td>@leave.HalfFullLeaveType</td>
-        <td>@leave.LeaveDate.ToShortDateString()</td>
-    </tr>
+        <td>No Any Records to display</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>    
+}
+else
+{
+    @foreach (var leave in Model)
+    {
+
+        <tr>
+            <td>@leave.NameWithInitial</td>
+            <td>@leave.LeaveType</td>
+            <td>@leave.HalfFullLeaveType</td>
+            <td>@leave.LeaveDate.ToShortDateString()</td>
+        </tr>
+    }
 }
 
 @*<script>
-    function deleteItemFromTempList(id) {
-        //alert('need to delete to ' + id);
+        function deleteItemFromTempList(id) {
+            //alert('need to delete to ' + id);
 
-        $.ajax({
+            $.ajax({
 
-            method: "Get",
-            url: "/Leave/RemoveFromLeaveTempList?tempId=" + id,
-            success: function (response) {
+                method: "Get",
+                url: "/Leave/RemoveFromLeaveTempList?tempId=" + id,
+                success: function (response) {
 
-                $("#leaveTableBody").html(response);
-            }
+                    $("#leaveTableBody").html(response);
+                }
 
-        })
-    }
-</script>*@
+            })
+        }
+    </script>*@

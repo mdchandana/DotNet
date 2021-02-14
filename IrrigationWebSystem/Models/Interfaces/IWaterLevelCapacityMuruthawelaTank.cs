@@ -9,5 +9,6 @@ namespace IrrigationWebSystem.Models.Interfaces
     public interface IWaterLevelCapacityMuruthawelaTank
     {
         WmWaterLevelCapacityMuruthawelaTank GetMuruthawelaWaterCapacityByLevel(decimal waterLevel);
+        List<WmWaterLevelCapacityMuruthawelaTank> GetAllWaterlevels();
     }
 }

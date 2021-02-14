@@ -11,102 +11,107 @@
 <br />
 
 
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Water Issue Updates</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tank Level and capacity</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">How Calculated</a>
-
-        </div>
-    </nav>
-
-
-
-    <div class="tab-content" id="nav-tabContent">
-
-
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <br />
-
-            <div class="m-3">
-
-                <form id="myForm">
-
-                    <div class="form-group row">
-                        <div class="col-md-3">
-                            <label asp-for="WaterIssuedDurationFromDateWithTime" class="form-label">Water Issue Duration From</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input asp-for="WaterIssuedDurationFromDateWithTime" class="form-control" />
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <div class="col-md-3">
-                            <label asp-for="WaterIssuedDurationToDateWithTime" class="form-label">Water Issue Duration To</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input asp-for="WaterIssuedDurationToDateWithTime" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-3">
-                            <label asp-for="WarterLevelAtSluice" class="form-label">WarterLevelAtSluice</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input asp-for="WarterLevelAtSluice" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-3">
-                            <label asp-for="GateOpenedSize" class="form-label">GateOpenedSize</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input asp-for="GateOpenedSize" class="form-control" />
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="btnUpdateDb">Update</button>
-                </form>
-
-                <div>
-                    <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
-                </div>
-
-                <br />
-                <div id="tblUpdatedRecord">
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <br />
-
-            <div class="m-3">
-                 
-                <h4>Water levels and capacity</h4>
-                
-                <br />
-
-            </div>
-        </div>
-
-
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <div class="m-3">
-                <h4>How calculated</h4>
-            </div>
-        </div>
-
-
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Water Issue Updates</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tank Level and capacity</a>
+        @*<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">How Calculated</a>*@
 
     </div>
+</nav>
+
+
+
+<div class="tab-content" id="nav-tabContent">
+
+
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br />
+
+        <div class="m-3">
+
+            <form id="myForm">
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label asp-for="WaterIssuedDurationFromDateWithTime" class="form-label">Water Issue Duration From</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="WaterIssuedDurationFromDateWithTime" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="WaterIssuedDurationFromDateWithTime"></span>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label asp-for="WaterIssuedDurationToDateWithTime" class="form-label">Water Issue Duration To</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="WaterIssuedDurationToDateWithTime" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="WaterIssuedDurationToDateWithTime"></span>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label asp-for="WarterLevelAtSluice" class="form-label">WarterLevelAtSluice</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="WarterLevelAtSluice" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="WarterLevelAtSluice"></span>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label asp-for="GateOpenedSize" class="form-label">GateOpenedSize</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="GateOpenedSize" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="GateOpenedSize"></span>
+                </div>
+                <button type="button" class="btn btn-primary" id="btnUpdateDb">Update</button>
+            </form>
+
+            <div>
+                <div><img src="~/images/loader.gif" id="loader" height="75" width="75" style="display:none;" /></div>
+            </div>
+
+            <br />
+            <div id="tblUpdatedRecord">
+
+            </div>
+         
+        </div>
+    </div>
+
+
+
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <br />
+
+        <div class="m-3">
+
+            <h4>Water levels and capacity</h4>
+
+            <br />
+
+        </div>
+    </div>
+
+
+    @*<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="m-3">
+            <h4>How calculated</h4>
+        </div>
+    </div>*@
+
+
+
+</div>
 
 
 
@@ -142,30 +147,38 @@
 
         $("#btnUpdateDb").click(function () {
 
+            if (!$("#myForm").valid())
+            {
 
-            $("#loader").show();
+                alert("Please Fill All the Required Fields.. ");
+                return false;
+            }
+            else
+            {
+                $("#tblUpdatedRecord").empty();
 
-            var myFormData = $("#myForm").serialize();
+                $("#loader").show();
 
-            $.ajax({
+                var myFormData = $("#myForm").serialize();
 
-                method: "POST",
-                url: "/WaterIssue/Create",
-                data: myFormData,
-                success: function (response) {
-                    //console.log(response);
-                    $("#tblUpdatedRecord").html(response);
+                $.ajax({
 
-                    $("#loader").hide();
+                    method: "POST",
+                    url: "/WaterIssue/Create",
+                    data: myFormData,
+                    success: function (response) {
+                        //console.log(response);
+                        $("#tblUpdatedRecord").html(response);
 
-                    alert('WaterIssue Record Updated successfully..');
-                }
-            })
+                        $("#loader").hide();
+
+                        alert('WaterIssue Record Updated successfully..');
+                    }
+                })
+
+            }
 
         })
-
-
-
 
     })
 </script>

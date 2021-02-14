@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace IrrigationWebSystem.Models.DomainEntities
 {
-    public class WmScheme
+    public class WmCannel
     {
-        public int SchemeId { get; set; }
+        public int Id { get; set; }
+
+        [Required]
         public string Name { get; set; }
 
-        public List<WmCultivationSeasonInformation> WmCultivationSeasonInformations { get; set; }
+        [Required]
+        public int SchemeId { get; set; }
 
+        public int Track { get; set; }
+
+
+        public WmScheme WmScheme { get; set; }
     }
 }

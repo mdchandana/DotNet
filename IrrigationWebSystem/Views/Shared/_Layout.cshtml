@@ -24,7 +24,7 @@
     @*<nav class="navbar navbar-expand-md navbar-light bg-light">*@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Irrigation Web System</a>
+        <a href="/Home/Index" class="navbar-brand">Irrigation Web System</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,8 +32,8 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav">
 
-                @*<a href="/Make/Bikes" class="nav-item nav-link active">Home</a>
-        <a href="#" class="nav-item nav-link">Profile</a>*@
+                @*<a href="/Make/Bikes" class="nav-item nav-link active">Home</a>*@
+                @*<a href="#" class="nav-item nav-link">Profile</a>*@
 
 
                 <div class="nav-item dropdown">
@@ -41,7 +41,7 @@
 
                     <div class="dropdown-menu">
                         <a asp-controller="Employee" asp-action="Index" class="dropdown-item">Employee Informations</a>
-                        <a asp-controller="Leave" asp-action="Create" class="dropdown-item">New Employee Leave</a>
+                        <a asp-controller="Leave" asp-action="Create" class="dropdown-item">Update Employee Leave</a>
                         <a asp-controller="Leave" asp-action="SearchEmployeeLeaves" class="dropdown-item">Search Employee Leaves</a>
                     </div>
                 </div>
@@ -64,9 +64,9 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Development</a>
 
                     <div class="dropdown-menu">
-                        <a asp-controller="Make" asp-action="Index" class="dropdown-item">Farmer Organizations</a>
-                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">FO Members with Positions</a>
-                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">Cultivation Season Informations</a>
+                        <a href="#" class="dropdown-item">Farmer Organizations</a>
+                        <a href="#" class="dropdown-item">FO Members with Positions</a>
+                        <a href="#" class="dropdown-item">Cultivation Season Informations</a>
                         @*<a href="#" class="dropdown-item">Drafts</a>*@
                     </div>
                 </div>
@@ -88,8 +88,8 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Photo Gallery</a>
 
                     <div class="dropdown-menu">
-                        <a asp-controller="Make" asp-action="Index" class="dropdown-item">View Photo Library</a>
-                        <a asp-controller="Model" asp-action="Index" class="dropdown-item">Add photoes to Library</a>
+                        <a href="#" class="dropdown-item">View Photo Library</a>
+                        <a href="#" class="dropdown-item">Add photoes to Library</a>
                         @*<a href="#" class="dropdown-item">Drafts</a>*@
                     </div>
                 </div>

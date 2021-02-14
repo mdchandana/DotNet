@@ -12,8 +12,9 @@ namespace IrrigationWebSystem.ViewModels
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Employee Name field is required.")]        
         public int EmployeeId { get; set; }
-
+       
         public string NameWithInitial { get; set; }
 
         [Required]

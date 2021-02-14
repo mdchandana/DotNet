@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IrrigationWebSystem.Models.Enums
 {
-    public enum CultivationSeason
+    public enum CultivationYalaMaha
     {
         Yala=1,
         Maha=2

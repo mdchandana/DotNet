@@ -42,6 +42,57 @@ namespace IrrigationWebSystem.Controllers
         }
 
 
+
+        //[AcceptVerbs("Get", "Post")]
+        //public JsonResult IsWaterlevelCorrect(decimal waterlevel)
+        //{
+            
+
+        //    //here status true mean , not displaying a validation message
+        //    bool status = false;
+
+        //    ////Worked.. status = false mean userName is not available, alrady taken
+        //    //var foundUser = user.GetAllUsers().Find(u => u.UserName == UserName);
+        //    //if (foundUser != null)
+        //    //    status = false;
+
+        //    ////Worked.. status = false mean userName is not available, alrady taken
+        //    //userName already taken
+        //    //client side validation displaying
+        //    //if (_waterLevelCapacityRepository.GetAllWaterlevels().Any(w => w.WaterLevel == waterlevel))
+        //    //{
+        //    //    status = true;
+        //    //}
+
+        //    //Less than zero d1 is less than d2.
+        //    //Zero d1 and d2 are equal.
+        //    //Greater than zero d1 is greater than d2.
+
+        //    int compareResult = 1;
+
+        //    foreach(var level in _waterLevelCapacityRepository.GetAllWaterlevels())
+        //    {
+        //        compareResult=decimal.Compare(level.WaterLevel, waterlevel);
+        //    }
+
+            
+        //    if(compareResult==0)
+        //    {
+        //        status = true;
+        //    }
+
+
+
+        //    return Json(status);
+        //}
+
+
+
+
+
+
+
+
         [HttpPost]
         public ActionResult Create(WmDailyWaterLevelAndissueVM wmDailyWaterLevelAndissueVM)
         {
@@ -208,6 +259,25 @@ namespace IrrigationWebSystem.Controllers
 
             return PartialView("PartialwaterIssuesForPeriod", wmWaterIsuueForPeriod);
         }
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult MuruthawelaCannelsWaterIssue()
+        {
+
+            return View();
+        }
+
+
+
+
+
+
+
 
 
 

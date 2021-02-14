@@ -13,7 +13,7 @@
 <div>
 
 
-    <form id="leaveForm" asp-controller="Leave" asp-action="Create" method="post">
+    <form id="SearchLeaveForm" asp-controller="Leave" asp-action="Create" method="post">
 
         <div class="form-group row">
             <div class="col-md-2">
@@ -61,7 +61,7 @@
             </thead>
             <tbody id="leaveTableBody">
                 <tr>
-                    <td></td>
+                    <td>No Any Records to display</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -126,19 +126,28 @@
 
         $("#Search").click(function () {
 
-            var employeeId = $("#EmployeeId").val();
+            if (!$("#SearchLeaveForm").valid()) {
 
-            $.ajax({
+                alert("Please Fill All the Required Fields.. ");
+                return false;
+            }
+            else
+            {
 
-                method: "GET",
-                url: "/Leave/SearchEmployeeLeavesByEmployeeId",
-                data: { EmployeeId: employeeId},
-                success: function (response) {
+                var employeeId = $("#EmployeeId").val();
 
-                    $("#leaveTableBody").html(response);
-                    //console.log(laveFormData);
-                }
-            })
+                $.ajax({
+
+                    method: "GET",
+                    url: "/Leave/SearchEmployeeLeavesByEmployeeId",
+                    data: { EmployeeId: employeeId },
+                    success: function (response) {
+
+                        $("#leaveTableBody").html(response);
+                        //console.log(laveFormData);
+                    }
+                })
+            }
 
         })
 

@@ -20,9 +20,11 @@
                 <label asp-for="PositionId" class="col-form-label">Employee Position</label>
             </div>
             <div class="col-md-4">
-                <select asp-for="PositionId" asp-items="@Model.EmployeePositions" class="form-control"></select>
+                <select asp-for="PositionId" asp-items="@Model.EmployeePositions" class="form-control">
+                    <option value="">Select Position</option>
+                </select>
             </div>
-          
+
         </div>
 
 
@@ -45,7 +47,7 @@
             <div class="col-md-4">
                 <select asp-for="LeaveType" class="form-control"
                         asp-items="@Html.GetEnumSelectList<LeaveType>()">
-                    <option>Plz Select</option>
+                    <option value="">Plz Select</option>
                 </select>
             </div>
             <span class="text-danger" asp-validation-for="LeaveType"></span>
@@ -58,7 +60,7 @@
             <div class="col-md-4">
                 <select asp-for="HalfFullLeaveType" class="form-control"
                         asp-items="@Html.GetEnumSelectList<HalfFullLeaveType>()">
-                    <option>Plz Select</option>
+                    <option value="">Plz Select</option>
                 </select>
             </div>
             <span class="text-danger" asp-validation-for="HalfFullLeaveType"></span>
@@ -74,11 +76,11 @@
             </div>
             <span class="text-danger" asp-validation-for="LeaveDate"></span>
 
-            <button type="button" id="AddToListLeave" class="btn btn-primary">Add To List</button>
-            <button type="button" id="Update" class="btn btn-success">Update</button>
+            <button type="button" id="AddToListLeave" class="btn btn-info">Add To List</button>
+            <button type="button" id="Update" class="btn btn-success ml-1">Update</button>
         </div>
 
-       
+
 
     </form>
 
@@ -86,15 +88,15 @@
 
     <div class="table-responsive border">
         <table class="table">
-           <thead>
-               <tr class="table-info">
-                   <th>Name With Initials</th>
-                   <th>Leave Type</th>
-                   <th>Full/Half Day</th>
-                   <th>Leave Date</th>
-                   <th></th>
-               </tr>
-           </thead>
+            <thead>
+                <tr class="table-info">
+                    <th>Name With Initials</th>
+                    <th>Leave Type</th>
+                    <th>Full/Half Day</th>
+                    <th>Leave Date</th>
+                    <th></th>
+                </tr>
+            </thead>
             <tbody id="leaveTableBody">
                 <tr>
                     <td></td>
@@ -162,19 +164,28 @@
 
         $("#AddToListLeave").click(function () {
 
-            var leaveFormData = $("#leaveForm").serialize();
+            if (!$("#leaveForm").valid()) {
 
-            $.ajax({
+                alert("Please Fill All the Required Fields.. ");
+                return false;
+            }
+            else
+            {
 
-                method: "POST",
-                url: "/Leave/AddToListLeave",
-                data: leaveFormData,
-                success: function (response) {
+                var leaveFormData = $("#leaveForm").serialize();
 
-                    $("#leaveTableBody").html(response);
-                    //console.log(laveFormData);
-                }
-            })            
+                $.ajax({
+
+                    method: "POST",
+                    url: "/Leave/AddToListLeave",
+                    data: leaveFormData,
+                    success: function (response) {
+
+                        $("#leaveTableBody").html(response);
+                        //console.log(laveFormData);
+                    }
+                })
+            }
 
         })
 
@@ -190,8 +201,15 @@
                 method: "Get",
                 url: "/Leave/Update",
                 success: function (response) {
-                    $("#leaveTableBody").html(response);
-                    alert('Updated');
+
+                    //if (response.status = "EmptyList") {
+
+                    //    alert("Nothing to update..Plz Add Leave records to List before update..");
+                    //}
+                    //else {
+                        $("#leaveTableBody").html(response);
+                        alert("Leave Records are successfully Updated");
+                    //}
                 }
             })
         })

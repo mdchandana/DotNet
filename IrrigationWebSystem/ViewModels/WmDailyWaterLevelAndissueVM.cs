@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,8 +20,11 @@ namespace IrrigationWebSystem.ViewModels
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime WaterIssuingConsiderDate { get; set; }
 
-        [Required]
+        //IsWaterlevelCorrect
+
+        [Required(ErrorMessage = "Waterlevel at sluice field is required.")]
         //[Column(TypeName = "decimal(13,2)")]
+        //[Remote(controller: "WaterIssue", action: "IsWaterlevelCorrect", ErrorMessage = "The Waterlevel you entered, not a valid level")]  ///WORKED
         public decimal WarterLevelAtSluice { get; set; }
 
         [Required]
@@ -30,14 +34,14 @@ namespace IrrigationWebSystem.ViewModels
         [Required]
         public int Capacity { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "GateOpenedSize field is required.")]
         //[Column(TypeName = "decimal(13,2)")]
         public decimal GateOpenedSize { get; set; }
 
-        [Required]      
+        [Required(ErrorMessage = "WaterIssue Start Date/Time field is required.")]
         public DateTime WaterIssuedDurationFromDateWithTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "WaterIssue End Date/Time field is required.")]
         public DateTime WaterIssuedDurationToDateWithTime { get; set; }
 
         [Required]
