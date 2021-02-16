@@ -17,3 +17,17 @@ $ dotnet ef migrations add InitialMigration -o Data/Migrations
 Build started...
 Build succeeded.
 Done. To undo this action, use 'ef migrations remove'
+
+
+
+Chandana Priyantha@CHANDANA MINGW64 /e/DEVELOPMENT/TESTING/1 DotNet/DotNet/IrrigationWebSystem (master)
+$ dotnet ef database update
+Build started...
+Build succeeded.
+Security Warning: The negotiated TLS 1.0 is an insecure protocol and is supported for backward compatibility only. The recommended protocol version is TLS 1.2 and later.
+Security Warning: The negotiated TLS 1.0 is an insecure protocol and is supported for backward compatibility only. The recommended protocol version is TLS 1.2 and later.
+Security Warning: The negotiated TLS 1.0 is an insecure protocol and is supported for backward compatibility only. The recommended protocol version is TLS 1.2 and later.
+Done.
+
+
+

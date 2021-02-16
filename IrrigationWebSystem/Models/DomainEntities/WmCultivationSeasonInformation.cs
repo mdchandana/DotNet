@@ -14,20 +14,20 @@ namespace IrrigationWebSystem.Models.DomainEntities
         [Required]
         public int WmSchemeId { get; set; }
 
-        public string Status { get; set; }
-
         [Required]
         public int Year { get; set; }
 
         [Required]
         public CultivationYalaMaha CultivationYalaMaha { get; set; }    //enums             
-       
 
         [Required]
         public DateTime WaterIssueStartDate { get; set; }
 
         [Required]
         public DateTime WaterIssueEndDate { get; set; }
+
+        public string Status { get; set; }
+
 
 
 

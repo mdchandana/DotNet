@@ -29,6 +29,8 @@ namespace IrrigationWebSystem.Data.Context
         public DbSet<WmRainFall> WmRainFalls { get; set; }
         public DbSet<WmCultivationSeasonInformation> WmCultivationSeasonInformations { get; set; }
         public DbSet<WmDailyWaterLevelAndissue> WmDailyWaterLevelAndissues { get; set; }
+        public DbSet<WmCannel> WmCannels  { get; set; }
+        public DbSet<WmCannelsWaterIssue> WmCannelsWaterIssues { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,9 +54,24 @@ namespace IrrigationWebSystem.Data.Context
                 .ToTable("WmCultivationSeasonInformation");
             modelBuilder.Entity<WmDailyWaterLevelAndissue>()
                 .ToTable("WmDailyWaterLevelAndissue");
+            modelBuilder.Entity<WmCannel>()
+                .ToTable("WmCannel");
+            modelBuilder.Entity<WmCannelsWaterIssue>()
+                .ToTable("WmCannelsWaterIssue");
+            modelBuilder.Entity<WmCultivationSeasonInformation>()
+                .ToTable("WmCultivationSeasonInformation");
 
-            //modelBuilder.Entity<EmployeeContact>()
-            //    .ToTable("EmployeeContact");
+            // //-----------set primary key fluent api -------------------------
+            // modelBuilder.Entity<WmCannel>()
+            // .HasKey(c => c.CannelName);
+
+            // ////-----------set Identity  -- auto increment OFF -- fluent api -------------------------
+            // modelBuilder.Entity<WmCannel>()
+            //.Property(c => c.CannelName)
+            //.ValueGeneratedNever();
+
+
+
         }
 
 

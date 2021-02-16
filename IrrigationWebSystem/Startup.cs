@@ -41,6 +41,8 @@ namespace IrrigationWebSystem
             services.AddScoped<IWaterLevelCapacityMuruthawelaTank, WaterLevelCapacityMuruthawelaTankRepository>();
             services.AddScoped<IWaterIssueRepository, WaterIssueRepository>();
             services.AddScoped<IEmployeeLeaveRepository, EmployeeLeaveRepository>();
+            services.AddScoped<ICannelRepository, CannelRepository>();
+            services.AddScoped<ICannelWaterIssueRepository, CannelWaterIssueRepository>();
 
 
             services.AddSession();

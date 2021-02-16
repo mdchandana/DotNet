@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IrrigationWebSystem.Data.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class InitalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,13 +62,13 @@ namespace IrrigationWebSystem.Data.Migrations
                 name: "WmScheme",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    WmSchemeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WmScheme", x => x.Id);
+                    table.PrimaryKey("PK_WmScheme", x => x.WmSchemeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -122,16 +122,36 @@ namespace IrrigationWebSystem.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WmCannel",
+                columns: table => new
+                {
+                    CannelName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    WmSchemeId = table.Column<int>(type: "int", nullable: false),
+                    Track = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WmCannel", x => x.CannelName);
+                    table.ForeignKey(
+                        name: "FK_WmCannel_WmScheme_WmSchemeId",
+                        column: x => x.WmSchemeId,
+                        principalTable: "WmScheme",
+                        principalColumn: "WmSchemeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "WmCultivationSeasonInformation",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CultivationSeason = table.Column<int>(type: "int", nullable: false),
-                    CultivationSeasonYear = table.Column<int>(type: "int", nullable: false),
                     WmSchemeId = table.Column<int>(type: "int", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    CultivationYalaMaha = table.Column<int>(type: "int", nullable: false),
                     WaterIssueStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WaterIssueEndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    WaterIssueEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -140,7 +160,7 @@ namespace IrrigationWebSystem.Data.Migrations
                         name: "FK_WmCultivationSeasonInformation_WmScheme_WmSchemeId",
                         column: x => x.WmSchemeId,
                         principalTable: "WmScheme",
-                        principalColumn: "Id",
+                        principalColumn: "WmSchemeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -166,6 +186,31 @@ namespace IrrigationWebSystem.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WmCannelsWaterIssue",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WmCannelId = table.Column<int>(type: "int", nullable: false),
+                    WaterIssuedDurationFromDateWithTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    WaterIssuedDurationToDateWithTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Height = table.Column<decimal>(type: "decimal(13,2)", nullable: false),
+                    WaterIssuedInCumecs = table.Column<decimal>(type: "decimal(13,2)", nullable: false),
+                    WaterIssuedInAcft = table.Column<decimal>(type: "decimal(13,2)", nullable: false),
+                    WmCannelCannelName = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WmCannelsWaterIssue", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WmCannelsWaterIssue_WmCannel_WmCannelCannelName",
+                        column: x => x.WmCannelCannelName,
+                        principalTable: "WmCannel",
+                        principalColumn: "CannelName",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_EmployeePositionId",
                 table: "Employee",
@@ -177,6 +222,16 @@ namespace IrrigationWebSystem.Data.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_WmCannel_WmSchemeId",
+                table: "WmCannel",
+                column: "WmSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WmCannelsWaterIssue_WmCannelCannelName",
+                table: "WmCannelsWaterIssue",
+                column: "WmCannelCannelName");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WmCultivationSeasonInformation_WmSchemeId",
                 table: "WmCultivationSeasonInformation",
                 column: "WmSchemeId");
@@ -186,6 +241,9 @@ namespace IrrigationWebSystem.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "EmployeeLeave");
+
+            migrationBuilder.DropTable(
+                name: "WmCannelsWaterIssue");
 
             migrationBuilder.DropTable(
                 name: "WmCultivationSeasonInformation");
@@ -203,10 +261,13 @@ namespace IrrigationWebSystem.Data.Migrations
                 name: "Employee");
 
             migrationBuilder.DropTable(
-                name: "WmScheme");
+                name: "WmCannel");
 
             migrationBuilder.DropTable(
                 name: "EmployeePosition");
+
+            migrationBuilder.DropTable(
+                name: "WmScheme");
         }
     }
 }

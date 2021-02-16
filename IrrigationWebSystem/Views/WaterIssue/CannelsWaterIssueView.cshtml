@@ -1,0 +1,29 @@
+﻿
+@model WmCannelsWaterIssuVM
+
+@{
+    ViewData["Title"] = "Update Cannel Water issue";
+}
+
+<br />
+
+<h3 class="text-info">Update Cannel Water issue</h3>
+
+<br />
+<br />
+
+
+<div class="form-group row">
+    <label asp-for="CannelName" class="col-md-2"></label>
+    <select asp-for="CannelName" asp-items="@Model.CannelNames" class="form-control col-md-4">
+        <option value="">Select Cannel</option>
+    </select>
+</div>
+<div class="form-group row">
+    <label asp-for="Height" class="col-md-2"></label>
+    <input asp-for="Height" class="form-control col-md-4" />
+</div>
+
+
+
+

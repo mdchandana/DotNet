@@ -2,6 +2,7 @@
 using IrrigationWebSystem.Models.Interfaces;
 using IrrigationWebSystem.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,13 +15,18 @@ namespace IrrigationWebSystem.Controllers
     {
         private IWaterIssueRepository _waterIssueRepository;
         private IWaterLevelCapacityMuruthawelaTank _waterLevelCapacityRepository;
+        private ICannelRepository _cannelRepository;
+        private ICannelWaterIssueRepository _cannelWaterIssueRepository;
 
         public WaterIssueController(IWaterIssueRepository waterIssueRepository,
-                                    IWaterLevelCapacityMuruthawelaTank waterLevelCapacityRepository)
+                                    IWaterLevelCapacityMuruthawelaTank waterLevelCapacityRepository,
+                                    ICannelRepository cannelRepository,
+                                    ICannelWaterIssueRepository cannelWaterIssueRepository)
         {
             _waterIssueRepository = waterIssueRepository;
             _waterLevelCapacityRepository = waterLevelCapacityRepository;
-
+            _cannelRepository = cannelRepository;
+            _cannelWaterIssueRepository = cannelWaterIssueRepository;
         }
 
         public IActionResult Index()
@@ -268,8 +274,22 @@ namespace IrrigationWebSystem.Controllers
         [HttpGet]
         public ActionResult MuruthawelaCannelsWaterIssue()
         {
+            var CannelWaterIssueVM = new WmCannelsWaterIssuVM()
+            {
+                 CannelNames=new SelectList(_cannelRepository.GetAllCannels(), "CannelName", "CannelName")
+            };
 
-            return View();
+
+            return View("CannelsWaterIssueView", CannelWaterIssueVM);
+        }
+
+
+
+        [HttpPost]
+        public JsonResult MuruthawelaCannelsWaterIssue(WmCannelsWaterIssuVM wmCannelsWaterIssuVM)
+        {
+
+            return Json("");
         }
 
 
@@ -279,11 +299,120 @@ namespace IrrigationWebSystem.Controllers
 
 
 
+        private double CalculateMuruthawelaCannelWaterIssue(string cannelName, double guageHeight, DateTime startTime,DateTime endTime)
+        {
+            
+            double H = guageHeight;
+            double resultCumecs = 0;
+            double resultReturning = 0;
+
+            if(cannelName.Equals("LB-Main-Cannel"))
+            {
+                //Main cannel worked----------------------
+                
+                var issueResult = H - 0.385;
+                resultCumecs = Math.Pow(issueResult, 1.34) * 5.3785;
+                
+            }
+            else if (cannelName.Equals("Track-02-D4"))
+            {
+                //Track 02 D4----------------------
+                var track2D4Result1 = H * 0.1405 - (0.00009);
+                var powerH = Math.Pow(H, 2);
+                var track2D4Result2 = 0.963 * powerH;
+                resultCumecs = track2D4Result1 + track2D4Result2;
+               
+            }
+            else if (cannelName.Equals("Track-02-D6"))
+            {
+                ////Track 02 D6----------------------
+                var track2D6Result1 = H - 0.04;
+                var powerH_track2D6Result1 = Math.Pow(track2D6Result1, 1.0506);
+                resultCumecs = 0.8298 * powerH_track2D6Result1;
+
+            }
+            else if (cannelName.Equals("Track-01-D2"))
+            {
+                //Track 01 D2----------------------               
+                var powerH = Math.Pow(H, 2);
+                var track1D2Result1 = 0.0548 * H + 0.0002;
+                var track1D2Result2 = 1.3095 * powerH;
+                resultCumecs = track1D2Result1 + track1D2Result2;  
+                
+            }
+            else if (cannelName.Equals("Track-02-D8"))
+            {
+                //Track 02 D8----------------------                
+                var powerH = Math.Pow(H, 2);
+                var track2D8Result1 = 1.3878 * powerH;
+                resultCumecs = track2D8Result1 + (0.6583 * H) - 0.0019;
+               
+            }
+            else if (cannelName.Equals("Track-02-FC-01"))
+            {
+                //Track 02 FC 01----------------------                
+                var powerH = Math.Pow(H, 2);
+                var track2FC1Result1 = 5.4662 * powerH;
+                resultCumecs = track2FC1Result1 + (0.6308 * H) - 0.0003;              
+
+            }
+            else if (cannelName.Equals("Track-02-D9"))
+            {
+                //Track 02 D9----------------------                
+                var powerH = Math.Pow(H, 2);
+                var track2D92Result1 = 1.6506 * powerH;
+                resultCumecs = track2D92Result1 - (0.0948 * H) - 0.0026;     
+                
+            }
+            else if (cannelName.Equals("Track-03-D2"))
+            {
+                //Track 03 D2----------------------                
+                var powerH = Math.Pow(H, 2);
+                var track3D2Result1 = 0.2756 * powerH;
+                resultCumecs = track3D2Result1 + (0.4663 * H) + 0.0039;    
+                
+            }
+            else if (cannelName.Equals("Track-03-D3"))
+            {
+                //Track 03 D3----------------------               
+                var track3D3Result1 = H - 0.025;
+                var powerH = Math.Pow(track3D3Result1, 2.6567);
+                resultCumecs = 3.984 * powerH;                
+
+            }
+            else if (cannelName.Equals("Track-03-D5"))
+            {
+                //Track 03 D5----------------------                
+                var powerH = Math.Pow(H, 2);
+                resultCumecs = (1.0216 * powerH) - (0.0023 * H) - 0.0001;
+
+            }
+            else if (cannelName.Equals("Track-03-D6"))
+            {
+                ////Track 03 D6-----------------   ===============  Program Result not tally to given result by doc
+                var powerH = Math.Pow(H, 2);
+                resultCumecs = (0.7649 * powerH) + (0.1106 * H) - 0.0041;
+               
+            }
+            else if (cannelName.Equals("Track-03-D9"))
+            {
+                //Track 03 D9-----------------                  
+                var powerH = Math.Pow(H, 2);
+                resultCumecs = (4.039 * powerH) + (0.0152 * H) + 0.0014;
+            }
+
+
+
+
+            resultReturning = Math.Round(resultCumecs, 3);
+
+            return resultReturning;
+
+        }
 
 
 
 
 
-       
     }
 }

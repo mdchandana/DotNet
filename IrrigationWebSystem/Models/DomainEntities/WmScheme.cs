@@ -8,10 +8,11 @@ namespace IrrigationWebSystem.Models.DomainEntities
 {
     public class WmScheme
     {
-        public int SchemeId { get; set; }
+        public int WmSchemeId { get; set; }
         public string Name { get; set; }
 
         public List<WmCultivationSeasonInformation> WmCultivationSeasonInformations { get; set; }
-
+        public List<WmCannel> WmCannels { get; set; }
+        
     }
 }
