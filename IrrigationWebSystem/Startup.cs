@@ -29,11 +29,11 @@ namespace IrrigationWebSystem
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("IrrigationSystemDbConnString")));
-
             //services.AddDbContext<AppDbContext>(options =>
-            //    options.UseSqlServer(_configuration.GetConnectionString("AzureDbConnectionString")));
+            //    options.UseSqlServer(_configuration.GetConnectionString("IrrigationSystemDbConnString")));
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(_configuration.GetConnectionString("AzureDbConnectionString")));
 
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();

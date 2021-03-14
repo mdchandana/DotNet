@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IrrigationWebSystem.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210216173030_InitalMigration")]
+    [Migration("20210218003521_InitalMigration")]
     partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,6 +152,80 @@ namespace IrrigationWebSystem.Data.Migrations
                     b.HasIndex("WmSchemeId");
 
                     b.ToTable("WmCannel");
+
+                    b.HasData(
+                        new
+                        {
+                            CannelName = "LB-Main-Cannel",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-01-D2",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-02-D4",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-02-D6",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-02-D8",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-02-D9",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-02-FC-01",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-03-D2",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-03-D3",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-03-D5",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-03-D6",
+                            Track = "",
+                            WmSchemeId = 1
+                        },
+                        new
+                        {
+                            CannelName = "Track-03-D9",
+                            Track = "",
+                            WmSchemeId = 1
+                        });
                 });
 
             modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.WmCannelsWaterIssue", b =>
@@ -299,6 +373,23 @@ namespace IrrigationWebSystem.Data.Migrations
                     b.HasKey("WmSchemeId");
 
                     b.ToTable("WmScheme");
+
+                    b.HasData(
+                        new
+                        {
+                            WmSchemeId = 1,
+                            Name = "Muruthawela"
+                        },
+                        new
+                        {
+                            WmSchemeId = 2,
+                            Name = "UrubokuOya"
+                        },
+                        new
+                        {
+                            WmSchemeId = 3,
+                            Name = "KiramaOya"
+                        });
                 });
 
             modelBuilder.Entity("IrrigationWebSystem.Models.DomainEntities.WmWaterLevelCapacityMuruthawelaTank", b =>

@@ -72,6 +72,104 @@ namespace IrrigationWebSystem.Data.Context
 
 
 
+
+            //we are using the HasData method to inform EF Core about the data it has to seed
+            modelBuilder.Entity<WmScheme>()
+                .HasData(
+                    new WmScheme()
+                    {
+                        WmSchemeId = 1,
+                        Name = "Muruthawela"
+                    },
+                    new WmScheme()
+                    {
+                        WmSchemeId = 2,
+                        Name = "UrubokuOya"
+                    },
+                    new WmScheme()
+                    {
+                        WmSchemeId = 3,
+                        Name = "KiramaOya"
+                    }
+                );
+
+
+
+            modelBuilder.Entity<WmCannel>()
+                .HasData(
+                    new WmCannel()
+                    {
+                        CannelName = "LB-Main-Cannel",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-01-D2",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-02-D4",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-02-D6",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-02-D8",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-02-D9",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-02-FC-01",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-03-D2",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-03-D3",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-03-D5",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-03-D6",
+                        WmSchemeId = 1,
+                        Track = ""
+                    },
+                    new WmCannel()
+                    {
+                        CannelName = "Track-03-D9",
+                        WmSchemeId = 1,
+                        Track = ""
+                    }
+               );
         }
 
 

@@ -53,7 +53,8 @@ namespace JsonDotnetCore.Controllers
          =========================Camel casing and MVC controllers====================
          In ASP.NET Core MVC you can use Json() method to serialize data JSON format. 
          Consider the following action that shows how this can be done.
-         The Index() action creates a List of Employee objects. The empList is then serialized to the client using Json() method.
+         The Index() action creates a List of Employee objects. 
+         The empList is then serialized to the client using Json() method.
          
          -------------------------
          0	

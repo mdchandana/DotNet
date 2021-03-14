@@ -211,6 +211,40 @@ namespace IrrigationWebSystem.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "WmScheme",
+                columns: new[] { "WmSchemeId", "Name" },
+                values: new object[] { 1, "Muruthawela" });
+
+            migrationBuilder.InsertData(
+                table: "WmScheme",
+                columns: new[] { "WmSchemeId", "Name" },
+                values: new object[] { 2, "UrubokuOya" });
+
+            migrationBuilder.InsertData(
+                table: "WmScheme",
+                columns: new[] { "WmSchemeId", "Name" },
+                values: new object[] { 3, "KiramaOya" });
+
+            migrationBuilder.InsertData(
+                table: "WmCannel",
+                columns: new[] { "CannelName", "Track", "WmSchemeId" },
+                values: new object[,]
+                {
+                    { "LB-Main-Cannel", "", 1 },
+                    { "Track-01-D2", "", 1 },
+                    { "Track-02-D4", "", 1 },
+                    { "Track-02-D6", "", 1 },
+                    { "Track-02-D8", "", 1 },
+                    { "Track-02-D9", "", 1 },
+                    { "Track-02-FC-01", "", 1 },
+                    { "Track-03-D2", "", 1 },
+                    { "Track-03-D3", "", 1 },
+                    { "Track-03-D5", "", 1 },
+                    { "Track-03-D6", "", 1 },
+                    { "Track-03-D9", "", 1 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_EmployeePositionId",
                 table: "Employee",

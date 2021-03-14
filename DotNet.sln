@@ -77,7 +77,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JqueryAjax", "JqueryAjax\Jq
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonDotnetCore", "JsonDotnetCore\JsonDotnetCore.csproj", "{4E6D69EC-CBF8-45F7-9F16-8F1FFD53FF71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterIssueConsole", "WaterIssueConsole\WaterIssueConsole.csproj", "{C0FF0155-52F2-4209-A93A-3246A83B069F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterIssueConsole", "WaterIssueConsole\WaterIssueConsole.csproj", "{C0FF0155-52F2-4209-A93A-3246A83B069F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Angular", "Angular", "{0037FCEB-D333-4E9E-8E8B-F6CA6C1F3E3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
